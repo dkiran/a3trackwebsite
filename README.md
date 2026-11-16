@@ -6,6 +6,8 @@ Static site built with [Astro](https://astro.build): every page is pre-rendered 
 
 ## Commands
 
+Requires **Node.js 22.23.4 or newer** (the build fails on Node 20). With nvm: `nvm install 22`.
+
 ```bash
 npm install        # install dependencies
 npm run dev        # local dev server at http://localhost:4321
