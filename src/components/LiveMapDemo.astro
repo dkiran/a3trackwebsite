@@ -1,0 +1,162 @@
+---
+// Animated live-tracking dashboard: vehicle list with ticking speeds, and a map with moving vehicles.
+const routes = [
+  { id: 'lm1', d: 'M-20 330 C 80 320, 130 250, 210 240 S 330 270, 380 200 S 450 90, 580 70', dur: 17 },
+  { id: 'lm2', d: 'M90 -20 C 100 80, 150 120, 230 130 S 370 120, 420 190 S 450 330, 580 370', dur: 21 },
+  { id: 'lm3', d: 'M-20 120 C 80 130, 150 190, 230 190 S 330 150, 380 200 S 360 350, 250 440', dur: 25 },
+];
+const movers = [
+  { r: 'lm2', begin: -4, c: '#0ea5e9' }, { r: 'lm2', begin: -14, c: '#0ea5e9' },
+  { r: 'lm3', begin: -8, c: '#7c3aed' }, { r: 'lm3', begin: -19, c: '#7c3aed' },
+  { r: 'lm1', begin: -9, c: '#2563eb' },
+];
+const fleet = [
+  { plate: 'AP09CC2318', status: 'Moving', tone: 'ok', speed: 46, where: 'ORR, Gachibowli', sel: true },
+  { plate: 'TS08UB4471', status: 'Moving', tone: 'ok', speed: 58, where: 'NH44, Kompally' },
+  { plate: 'KA01MJ9025', status: 'Idle', tone: 'amber', speed: 0, where: 'Depot gate · 12 min' },
+  { plate: 'MH12QW7730', status: 'Moving', tone: 'ok', speed: 39, where: 'Hitec City' },
+  { plate: 'TN22BX1184', status: 'Stopped', tone: 'mute', speed: 0, where: 'Unloading · Bay 3' },
+];
+const alerts = [
+  { tone: 'amber', title: 'Harsh braking detected', meta: 'TS08UB4471 · NH44 · clip saved' },
+  { tone: 'ok', title: 'Route re-optimised', meta: '3 stops resequenced · 18 min saved' },
+  { tone: 'red', title: 'Fuel drain alert', meta: 'KA01MJ9025 · 22 L while parked' },
+  { tone: 'sky', title: 'Entered Depot geofence', meta: 'MH12QW7730 · just now' },
+];
+const marker = (c: string, big = false) => `<circle r="${big ? 12 : 9}" fill="#fff" stroke="${c}" stroke-width="${big ? 4 : 3}"/><path d="M-3 -3.6 L4.2 0 L-3 3.6 Z" fill="${c}"/>`;
+---
+<div class="lm" data-livemap>
+  <div class="lm__bar"><span></span><span></span><span></span><em>app.a3track.com / live</em><b><i></i>Live</b></div>
+  <div class="lm__body">
+    <aside class="lm__side">
+      <div class="lm__search">Search vehicle or driver</div>
+      <ul>
+        {fleet.map((v, i) => (
+          <li class={v.sel ? 'sel' : ''} style={`--i:${i}`}>
+            <i class={`st st--${v.tone}`}></i>
+            <div><strong>{v.plate}</strong><small>{v.where}</small></div>
+            <span>{v.speed > 0 ? <><b data-speed={v.speed}>{v.speed}</b> km/h</> : v.status}</span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+    <div class="lm__map">
+      <svg viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" class="viz__svg" aria-hidden="true">
+        <rect width="560" height="420" fill="#eaf0f7" />
+        <path d="M-20 30 C 60 60, 40 130, -20 170 Z" fill="#cfe3fb" /><path d="M420 440 C 440 380, 520 360, 580 380 V440 Z" fill="#cfe3fb" />
+        <g fill="#d7ead3"><rect x="250" y="20" width="96" height="62" rx="10" /><rect x="60" y="356" width="110" height="48" rx="10" /><rect x="470" y="150" width="70" height="92" rx="10" /></g>
+        <g fill="#dde6f1"><rect x="120" y="20" width="84" height="56" rx="8" /><rect x="24" y="200" width="92" height="66" rx="8" /><rect x="262" y="300" width="86" height="64" rx="8" /><rect x="436" y="268" width="80" height="56" rx="8" /><rect x="270" y="160" width="62" height="40" rx="8" /></g>
+        <g fill="none" stroke-linecap="round">
+          <g stroke="#d3dce8" stroke-width="9"><path d="M-20 250 H580" /><path d="M230 -20 V440" /><path d="M430 -20 V440" /><path d="M-20 60 L580 300" /></g>
+          <g stroke="#fff" stroke-width="6"><path d="M-20 250 H580" /><path d="M230 -20 V440" /><path d="M430 -20 V440" /><path d="M-20 60 L580 300" /></g>
+          {routes.map((r) => <path d={r.d} stroke="#c9d4e3" stroke-width="15" />)}
+          {routes.map((r) => <path id={r.id} d={r.d} stroke="#fff" stroke-width="11" />)}
+          <path d={routes[0].d} stroke="#93c5fd" stroke-width="5" />
+          <path d={routes[0].d} stroke="#2563eb" stroke-width="5" class="flow" />
+        </g>
+        <!-- depot geofence -->
+        <g transform="translate(380 200)">
+          <circle r="50" fill="rgba(37,99,235,.08)" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6 6" class="spin" />
+          <circle r="50" fill="none" stroke="#2563eb" stroke-width="2" class="pulse" />
+          <rect x="-13" y="-13" width="26" height="26" rx="7" fill="#0f172a" /><path d="M-6 5 V-2 L0 -7 L6 -2 V5 Z" fill="#fff" />
+        </g>
+        <!-- idle vehicle -->
+        <g transform="translate(150 150)"><circle r="9" fill="#fff" stroke="#d99a1c" stroke-width="3" /><rect x="-2.5" y="-4" width="1.8" height="8" fill="#d99a1c" /><rect x="0.8" y="-4" width="1.8" height="8" fill="#d99a1c" /></g>
+        {movers.map((v) => {
+          const r = routes.find((x) => x.id === v.r)!;
+          return <g><Fragment set:html={marker(v.c)} /><animateMotion dur={`${r.dur}s`} begin={`${v.begin}s`} repeatCount="indefinite" rotate="auto"><mpath href={`#${r.id}`} /></animateMotion></g>;
+        })}
+        <!-- selected vehicle: halo + marker + label that follows without rotating -->
+        <g><circle r="12" fill="none" stroke="#2563eb" stroke-width="2" class="halo" /><Fragment set:html={marker('#2563eb', true)} /><animateMotion dur={`${routes[0].dur}s`} begin="0s" repeatCount="indefinite" rotate="auto"><mpath href="#lm1" /></animateMotion></g>
+        <g>
+          <g transform="translate(16 -58)">
+            <rect width="132" height="42" rx="10" fill="#0f172a" /><path d="M10 42 l8 9 l6 -9 z" fill="#0f172a" />
+            <text x="12" y="17" fill="#fff" font-size="11" font-weight="700" font-family="system-ui,sans-serif">AP09CC2318</text>
+            <text x="12" y="32" fill="#b3c2e0" font-size="9.5" font-family="system-ui,sans-serif"><tspan data-speed-label>46</tspan> km/h · ETA 25 min</text>
+            <circle cx="118" cy="14" r="4" fill="#5fd3a0" class="blink" />
+          </g>
+          <animateMotion dur={`${routes[0].dur}s`} begin="0s" repeatCount="indefinite"><mpath href="#lm1" /></animateMotion>
+        </g>
+      </svg>
+      <div class="lm__kpis"><span><i class="st st--ok"></i><b>181</b> moving</span><span><i class="st st--amber"></i><b>23</b> idle</span><span><i class="st st--mute"></i><b>44</b> parked</span></div>
+      <div class="lm__alerts">
+        {alerts.map((a, i) => (
+          <div class={`toast toast--${a.tone}`} style={`--i:${i}`}><span class="toast__dot"></span><div><strong>{a.title}</strong><small>{a.meta}</small></div><em>AI</em></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lm { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid rgba(15, 23, 42, 0.16); box-shadow: 0 50px 100px -50px rgba(15, 23, 42, 0.6), 0 12px 30px -18px rgba(15, 23, 42, 0.3); letter-spacing: 0; color: #0f172a; }
+  .lm__bar { display: flex; align-items: center; gap: 6px; padding: 11px 14px; background: #0f172a; }
+  .lm__bar span { width: 9px; height: 9px; border-radius: 50%; background: #334155; }
+  .lm__bar em { margin-left: 10px; font: 500 0.72rem/1 var(--font); font-style: normal; color: #b3c2e0; padding: 5px 10px; border-radius: 6px; background: rgba(255, 255, 255, 0.07); }
+  .lm__bar b { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 0.7rem/1 var(--font); color: #5fd3a0; }
+  .lm__bar b i { width: 7px; height: 7px; border-radius: 50%; background: #5fd3a0; animation: lm-blink 1.4s infinite; }
+  .lm__body { display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr); aspect-ratio: 4 / 2.9; }
+  .lm__side { border-right: 1px solid #e2e8f0; padding: 12px 10px; overflow: hidden; background: #fff; }
+  .lm__search { font-size: 0.72rem; color: #94a3b8; background: #f1f5f9; border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lm__side li { display: flex; align-items: center; gap: 8px; padding: 8px 8px; border-radius: 10px; border: 1px solid transparent; animation: lm-row .6s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 90ms + .3s); }
+  .lm__side li.sel { background: #eff6ff; border-color: #bfdbfe; }
+  .lm__side li div { flex: 1; min-width: 0; }
+  .lm__side strong { display: block; font-size: 0.76rem; font-weight: 600; white-space: nowrap; }
+  .lm__side small { display: block; font-size: 0.66rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lm__side li > span { font-size: 0.66rem; color: #64748b; white-space: nowrap; }
+  .lm__side li > span b { font-size: 0.82rem; color: #0f172a; font-variant-numeric: tabular-nums; }
+  .st { flex: none; width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .st--ok { background: #1f9d6e; box-shadow: 0 0 0 3px rgba(31, 157, 110, 0.18); } .st--amber { background: #d99a1c; } .st--mute { background: #94a3b8; }
+  .lm__map { position: relative; overflow: hidden; }
+  .viz__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .flow { stroke-dasharray: 14 22; animation: lm-flow 1.1s linear infinite; }
+  .spin { animation: lm-spin 30s linear infinite; transform-origin: center; transform-box: fill-box; }
+  .pulse { animation: lm-pulse 2.6s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+  .halo { animation: lm-halo 1.6s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+  .blink { animation: lm-blink 1.4s infinite; }
+  .lm__kpis { position: absolute; left: 10px; top: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .lm__kpis span { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.94); border: 1px solid #e2e8f0; border-radius: 999px; padding: 5px 10px; font-size: 0.68rem; color: #475569; box-shadow: 0 4px 10px -6px rgba(15, 23, 42, 0.4); }
+  .lm__kpis b { color: #0f172a; }
+  .lm__alerts { position: absolute; right: 10px; bottom: 10px; left: 10px; height: 52px; }
+  .toast { position: absolute; right: 0; bottom: 0; width: min(100%, 270px); display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: #0f172a; color: #f1f5ff; border-radius: 12px; box-shadow: 0 14px 28px -14px rgba(15, 23, 42, 0.8); opacity: 0; animation: lm-toast 16s infinite; animation-delay: calc(var(--i) * 4s + 1.2s); }
+  .toast strong { display: block; font-size: 0.76rem; line-height: 1.25; font-weight: 600; }
+  .toast small { display: block; font-size: 0.65rem; color: #b3c2e0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .toast > div { min-width: 0; flex: 1; }
+  .toast em { font: 700 0.58rem/1 var(--font); font-style: normal; padding: 4px 6px; border-radius: 5px; background: #2563eb; color: #fff; }
+  .toast__dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 28%, transparent); }
+  .toast--amber { --c: #f0c463; } .toast--ok { --c: #5fd3a0; } .toast--red { --c: #ff7a85; } .toast--sky { --c: #60a5fa; }
+
+  @keyframes lm-flow { to { stroke-dashoffset: -36; } }
+  @keyframes lm-spin { to { transform: rotate(360deg); } }
+  @keyframes lm-pulse { from { transform: scale(.6); opacity: .8; } to { transform: scale(1.5); opacity: 0; } }
+  @keyframes lm-halo { from { transform: scale(1); opacity: .9; } to { transform: scale(2.6); opacity: 0; } }
+  @keyframes lm-blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+  @keyframes lm-row { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+  @keyframes lm-toast { 0% { opacity: 0; transform: translateY(14px) scale(.97); } 3%, 22% { opacity: 1; transform: none; } 25%, 100% { opacity: 0; transform: translateY(-10px) scale(.97); } }
+
+  @media (max-width: 560px) {
+    .lm__body { grid-template-columns: 1fr; aspect-ratio: 4 / 3.4; }
+    .lm__side { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .toast:first-child { opacity: 1; } }
+</style>
+
+<script>
+  // Make the speed read-outs tick so the dashboard feels live. Purely illustrative.
+  const root = document.querySelector<HTMLElement>('[data-livemap]');
+  if (root && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const speeds = [...root.querySelectorAll<HTMLElement>('[data-speed]')];
+    const label = root.querySelector<SVGTSpanElement>('[data-speed-label]');
+    let onScreen = true;
+    new IntersectionObserver(([e]) => (onScreen = e.isIntersecting)).observe(root);
+    setInterval(() => {
+      if (!onScreen || document.hidden) return;
+      speeds.forEach((el, i) => {
+        const base = Number(el.dataset.speed);
+        const next = Math.max(base - 8, Math.min(base + 8, Number(el.textContent) + Math.round(Math.random() * 6 - 3)));
+        el.textContent = String(next);
+        if (i === 0 && label) label.textContent = String(next);
+      });
+    }, 1300);
+  }
+</script>
