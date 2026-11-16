@@ -298,7 +298,7 @@ export const solutions: Solution[] = [
     short: 'Automated records, regulatory device support and audit-ready reports.',
     metaTitle: 'Fleet Compliance Software — AIS-140, Driver Hours & Reports',
     metaDescription:
-      'Simplify fleet compliance with A3Track: support for AIS-140 tracking requirements in India, driver hours, inspections, document renewals and audit-ready reports.',
+      'Simplify fleet compliance with A3Track: support for AIS-140 tracking requirements in Bharat, driver hours, inspections, document renewals and audit-ready reports.',
     h1: 'Compliance that runs itself',
     lead: 'Regulations differ by country and vehicle type, but the need is the same: accurate records, on time. A3Track captures them automatically and keeps you audit-ready.',
     definition: {
@@ -306,7 +306,7 @@ export const solutions: Solution[] = [
       a: 'Fleet compliance management is the practice of making sure vehicles, drivers and operations meet legal and contractual requirements. This includes mandated tracking devices, driver working hours, vehicle inspections, permits and insurance, speed governance and data-retention rules. Telematics automates the record-keeping.',
     },
     features: [
-      { title: 'AIS-140 support for India', text: 'Works with vehicle location tracking devices and emergency buttons specified under India’s AIS-140 standard for public and commercial vehicles.' },
+      { title: 'AIS-140 support for Bharat', text: 'Works with vehicle location tracking devices and emergency buttons specified under Bharat’s AIS-140 standard for public and commercial vehicles.' },
       { title: 'Driver hours and fatigue', text: 'Track driving, rest and duty time; alert before limits are breached. Supports regional hours-of-service schemes.' },
       { title: 'Digital vehicle inspections', text: 'Paperless checklists with photos, defect tracking and sign-off history.' },
       { title: 'Document vault and reminders', text: 'Store registration, insurance, permits and licences with renewal alerts.' },
@@ -324,8 +324,8 @@ export const solutions: Solution[] = [
       { title: 'Report', text: 'Exceptions are flagged in real time; reports are generated on schedule.' },
     ],
     faqs: [
-      { q: 'What is AIS-140?', a: 'AIS-140 is an Automotive Industry Standard published in India that specifies requirements for vehicle location tracking devices and emergency (panic) buttons in public service and certain commercial vehicles. It covers device features, communication with government back-end systems and testing requirements.' },
-      { q: 'Which regulations does A3Track support?', a: 'A3Track is designed around configurable rule sets, so it can support different regional requirements, for example vehicle tracking mandates in India and driver-hours rules in other markets. Speak to our team about the specific regulations that apply to your fleet.' },
+      { q: 'What is AIS-140?', a: 'AIS-140 is an Automotive Industry Standard published in Bharat that specifies requirements for vehicle location tracking devices and emergency (panic) buttons in public service and certain commercial vehicles. It covers device features, communication with government back-end systems and testing requirements.' },
+      { q: 'Which regulations does A3Track support?', a: 'A3Track is designed around configurable rule sets, so it can support different regional requirements, for example vehicle tracking mandates in Bharat and driver-hours rules in other markets. Speak to our team about the specific regulations that apply to your fleet.' },
       { q: 'How long is compliance data stored?', a: 'Retention periods are configurable to meet the requirements of your regulators and contracts. Data can be exported at any time in standard formats.' },
     ],
     industries: ['public-transport', 'school-buses', 'government', 'oil-gas'],

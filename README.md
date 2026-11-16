@@ -35,6 +35,22 @@ npm run preview    # preview the production build
 
 To add a blog post, drop a new `.md` file in `src/content/blog/` with the same front matter as the existing ones. To add a solution or industry, add an entry to the data file; the page, navigation, sitemap and `llms.txt` update automatically.
 
+## Languages
+
+English is the source language. Other languages are produced at build time by `scripts/i18n.mjs`, which copies each page into `/<lang>/…` and replaces its text using a dictionary.
+
+| What | Where |
+|---|---|
+| List of languages, and sections not translated yet | `src/i18n/config.mjs` |
+| French dictionary (English text → French text) | `src/i18n/fr.json` |
+| Strings still missing a translation (written by the build) | `src/i18n/<lang>.missing.json` |
+
+- **After editing English text:** run `npm run build`. Any changed or new sentence appears in `fr.missing.json`; add its translation to `fr.json` and build again. Until then that sentence shows in English on the French page.
+- **To add a language:** add it to `locales` in `src/i18n/config.mjs`, copy `fr.json` to `<code>.json`, translate the values, and build.
+- **Not translated yet:** the blog, glossary and legal pages (listed in `untranslatedPrefixes`). Links to them go to the English page. The animated product demos are also left in English on purpose (`translate="no"`).
+- **Preview:** translated pages exist only after a build, so use `npm run build && npm run preview`, not `npm run dev`.
+- An empty value in a dictionary means "keep this string as it is" (brand names, plan names, addresses).
+
 ## Before launch checklist
 
 - [ ] Replace every value marked `DUMMY` in `src/config/site.ts`.

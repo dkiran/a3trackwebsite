@@ -38,7 +38,7 @@ export const platformPages: PlatformPage[] = [
       ] },
       { title: '24/7, in your language', intro: 'Fleets do not stop at 6 pm, and not everyone prefers English.', items: [
         { title: 'Always available', text: 'The AI agents answer WhatsApp messages and phone calls instantly, day and night, including weekends and holidays.' },
-        { title: 'Regional languages', text: 'Speak or type in English or in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali. The agent understands, and replies in the same language, in text and in voice.' },
+        { title: 'Regional languages', text: 'Speak or type in English or in Bharatiya regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali. The agent understands, and replies in the same language, in text and in voice.' },
         { title: 'For owners, managers and drivers', text: 'Owners check on their vehicles, managers get the numbers, and drivers receive calls they can understand.' },
         { title: 'A person when you need one', text: 'Ask for a human at any time and the agent hands the conversation to the A3Track support team with the full context.' },
       ] },
@@ -63,7 +63,7 @@ export const platformPages: PlatformPage[] = [
       { q: 'Can I call and talk to the AI agent?', a: 'Yes. Call the A3Track AI call-centre number from your registered phone and ask in your own words. The agent tells you the location, speed, ETA or status of your vehicles, 24 hours a day.' },
       { q: 'Will the AI agent call me when there is an alert?', a: 'Yes. You set thresholds, for example overspeeding, fuel drain or a temperature limit. When one is crossed, the agent places an automated voice call to the responsible person and, if nobody answers or acknowledges, escalates to the next contact in the chain you define.' },
       { q: 'Does A3Track work with ChatGPT?', a: 'Yes. Install the A3Track integration inside ChatGPT, sign in to your A3Track account and ask fleet questions in plain language, for example which vehicles are late, where a vehicle is or how much fuel was used. ChatGPT retrieves the answer from your live A3Track data and shows it in the conversation, including maps and tables.' },
-      { q: 'Which languages does the AI agent support?', a: 'The agent works in English and in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali, and replies in the language you use. Ask our team for the current list.' },
+      { q: 'Which languages does the AI agent support?', a: 'The agent works in English and in Bharatiya regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali, and replies in the language you use. Ask our team for the current list.' },
       { q: 'What kinds of questions can the AI agent answer?', a: 'Questions about anything recorded in A3Track: live vehicle location and status, trips and ETAs, fuel use and idling, driver safety events and scores, maintenance and fault codes, alerts, geofences and documents.' },
       { q: 'Is it secure? Can anyone ask about my vehicles?', a: 'No. The agent only responds to registered phone numbers and applies the same roles and vehicle permissions as the rest of the platform, so people only hear and see what they are allowed to.' },
     ],
@@ -127,7 +127,7 @@ export const platformPages: PlatformPage[] = [
     faqs: [
       { q: 'Can I use my existing GPS devices with A3Track?', a: 'In many cases, yes. A3Track supports a range of third-party device protocols. Share your device models with our team to confirm compatibility.' },
       { q: 'Who installs the devices?', a: 'Plug-in devices can be self-installed. For wired devices, cameras and sensors, A3Track works with trained installers who can fit vehicles at your depot.' },
-      { q: 'Do devices support India’s AIS-140 requirements?', a: 'A3Track works with vehicle location tracking devices built to the AIS-140 standard for vehicles that require them. Ask our team for the current list of supported, certified models.' },
+      { q: 'Do devices support Bharat’s AIS-140 requirements?', a: 'A3Track works with vehicle location tracking devices built to the AIS-140 standard for vehicles that require them. Ask our team for the current list of supported, certified models.' },
     ],
   },
   {
@@ -179,7 +179,7 @@ export const platformPages: PlatformPage[] = [
         { title: 'You own your data', text: 'A3Track processes fleet data on your behalf and only on your instructions.' },
         { title: 'Data minimisation', text: 'Collect only what you need, with configurable retention periods.' },
         { title: 'Driver privacy modes', text: 'Private-trip mode, camera privacy controls and face blurring.' },
-        { title: 'Regional data residency', text: 'Options to store data in specific regions to meet local requirements, including India’s data protection law and the EU GDPR.' },
+        { title: 'Regional data residency', text: 'Options to store data in specific regions to meet local requirements, including Bharat’s data protection law and the EU GDPR.' },
       ] },
     ],
     faqs: [

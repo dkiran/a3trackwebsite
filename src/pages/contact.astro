@@ -67,7 +67,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name:
     try {
       const res = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
       if (!res.ok) throw new Error(String(res.status));
-      window.location.href = '/thank-you/';
+      window.location.href = (location.pathname.match(/^\/[a-z]{2}(?=\/)/)?.[0] ?? '') + '/thank-you/';
     } catch {
       status!.className = 'form__status err';
       status!.textContent = 'Sorry, something went wrong. Please email us directly and we will respond quickly.';

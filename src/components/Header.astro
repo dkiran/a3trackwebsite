@@ -4,6 +4,8 @@ import Logo from './Logo.astro';
 import { solutions } from '../data/solutions';
 import { industries } from '../data/industries';
 import { nav } from '../config/site';
+import { locales, defaultLocale, isTranslatable } from '../i18n/config.mjs';
+const here = isTranslatable(Astro.url.pathname) ? Astro.url.pathname : '/';
 const caret = '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1.5 3.5L5 7l3.5-3.5"/></svg>';
 ---
 <header class="header">
@@ -41,8 +43,14 @@ const caret = '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke
         </div>
       </div>
       <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+      <div class="lang lang--nav" translate="no" aria-label="Language">
+        {locales.map((l) => <a href={(l.code === defaultLocale ? '' : `/${l.code}`) + here} data-lang={l.code} hreflang={l.code} lang={l.code} class={l.code === defaultLocale ? 'is-current' : ''}>{l.name}</a>)}
+      </div>
     </nav>
     <div class="header__cta">
+      <div class="lang" translate="no" aria-label="Language">
+        {locales.map((l) => <a href={(l.code === defaultLocale ? '' : `/${l.code}`) + here} data-lang={l.code} hreflang={l.code} lang={l.code} title={l.name} class={l.code === defaultLocale ? 'is-current' : ''}>{l.label}</a>)}
+      </div>
       <a class="btn btn--ghost btn--sm" href="/contact/">Contact</a>
       <a class="btn btn--primary btn--sm" href="/contact/#demo">Request a demo</a>
       <button class="burger" aria-label="Menu" aria-controls="nav" aria-expanded="false">

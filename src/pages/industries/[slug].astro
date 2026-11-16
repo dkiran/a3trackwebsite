@@ -23,7 +23,7 @@ const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
 
   <section class="section section--alt">
     <div class="container">
-      <div class="head reveal"><span class="eyebrow">The challenge</span><h2>What {s.name.toLowerCase()} fleets are up against</h2></div>
+      <div class="head reveal"><span class="eyebrow">The challenge</span><h2>What fleets in this industry are up against</h2></div>
       <div class="grid g3">
         {s.challenges.map((c, i) => (<div class="card reveal" style={`--d:${i * 80}ms`}><span class="num">0{i + 1}</span><h3>{c.title}</h3><p>{c.text}</p></div>))}
       </div>
@@ -47,7 +47,7 @@ const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
     <div class="container split">
       <div class="reveal">
         <span class="eyebrow">Use cases</span>
-        <h2>Common ways {s.name.toLowerCase()} teams use A3Track</h2>
+        <h2>Common ways teams in this industry use A3Track</h2>
         <p>Every deployment is configured around your operation. These are the workflows customers in this sector ask for most often.</p>
       </div>
       <ul class="checks reveal" style="--d:100ms">{s.useCases.map((u) => <li>{u}</li>)}</ul>
@@ -69,5 +69,5 @@ const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
       </div>
     </div>
   </section>
-  <Cta title={`See A3Track for ${s.name.toLowerCase()}`} />
+  <Cta title="See A3Track for your industry" />
 </Base>

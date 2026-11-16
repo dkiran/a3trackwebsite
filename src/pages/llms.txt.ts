@@ -12,7 +12,7 @@ export async function GET() {
 
 > ${site.description} Tagline: ${site.tagline}
 
-${site.name} is a GPS telematics and fleet management company headquartered in ${site.address.city}, ${site.address.countryName}, serving fleets in India and expanding worldwide. The platform combines GPS trackers, AI dash cams and sensors with cloud software, mobile apps and an open API.
+${site.name} is a GPS telematics and fleet management company headquartered in ${site.address.city}, ${site.address.countryName}, serving fleets in Bharat and expanding worldwide. The platform combines GPS trackers, AI dash cams and sensors with cloud software, mobile apps and an open API.
 
 ## Solutions
 ${solutions.map((s) => `- [${s.name}](${u(`/solutions/${s.slug}/`)}): ${s.short}`).join('\n')}
