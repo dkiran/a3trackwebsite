@@ -1,0 +1,80 @@
+---
+// Animated WhatsApp-style chat: the user asks where a vehicle is and the AI agent replies with a live map.
+const { plate = 'AP09CC2318' } = Astro.props;
+---
+<div class="phone wa" data-demo="12000" role="img" aria-label={`Illustration of a WhatsApp chat. The user asks: Where is my vehicle ${plate}? The A3Track AI agent replies with the vehicle's speed and location and a live map.`}>
+  <div class="phone__screen">
+    <div class="wa__head">
+      <span class="wa__av">A3</span>
+      <div><strong>A3Track AI Agent</strong><small>online · 24/7</small></div>
+    </div>
+    <div class="wa__body">
+      <span class="wa__day">Today</span>
+      <div class="b b--out step" style="--t:.5s">Where is my vehicle {plate}?<time>10:42 ✓✓</time></div>
+      <div class="typing step-typing" style="--t:1.3s"><i></i><i></i><i></i></div>
+      <div class="b b--in step" style="--t:3s"><strong>{plate}</strong> is moving at 46 km/h near Gachibowli, Hyderabad.<time>10:42</time></div>
+      <div class="b b--in b--map step" style="--t:3.9s">
+        <svg viewBox="0 0 240 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="240" height="120" fill="#e8eef5" />
+          <g stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"><path d="M-10 86 H250" /><path d="M70 -10 V130" /><path d="M176 -10 V130" /><path d="M-10 20 L250 70" /></g>
+          <g fill="#d5e6d3"><rect x="84" y="8" width="60" height="26" rx="4" /><rect x="190" y="92" width="44" height="22" rx="4" /></g>
+          <g fill="#dbe4f0"><rect x="8" y="34" width="46" height="34" rx="4" /><rect x="96" y="96" width="60" height="18" rx="4" /></g>
+          <path class="wa__route" d="M-6 86 H70 V44 L176 62 V86" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="100" />
+          <g transform="translate(176 86)"><circle class="wa__ping" r="7" fill="none" stroke="#2563eb" stroke-width="2" /><circle r="7" fill="#2563eb" stroke="#fff" stroke-width="3" /></g>
+        </svg>
+        <div class="wa__mapmeta"><strong>Live location</strong><small>ORR, Gachibowli · updated just now</small></div>
+        <span class="wa__open">Open live map</span>
+      </div>
+      <div class="wa__chips step" style="--t:5s"><span>Share ETA</span><span>Today's trips</span><span>Fuel level</span></div>
+    </div>
+    <div class="wa__input"><span>Message</span><i></i></div>
+  </div>
+</div>
+
+<style>
+  .phone { width: min(100%, 300px); margin-inline: auto; border-radius: 38px; padding: 9px; background: #0f172a; box-shadow: 0 40px 80px -40px rgba(15, 23, 42, 0.7), 0 0 0 1px rgba(15, 23, 42, 0.9); }
+  .phone__screen { border-radius: 30px; overflow: hidden; background: #efe9e0; display: flex; flex-direction: column; color: #111b21; font-size: 0.86rem; line-height: 1.38; letter-spacing: 0; }
+  .wa__head { display: flex; align-items: center; gap: 10px; padding: 14px 14px 12px; background: #0b6b5d; color: #fff; }
+  .wa__av { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #0b6b5d; display: grid; place-items: center; font: 700 0.72rem/1 var(--font); }
+  .wa__head strong { display: block; font-size: 0.9rem; font-weight: 600; }
+  .wa__head small { display: block; font-size: 0.7rem; opacity: .85; }
+  .wa__body { display: flex; flex-direction: column; gap: 7px; padding: 12px 10px 10px; min-height: 372px; }
+  .wa__day { align-self: center; font-size: 0.66rem; background: #fff; color: #54656f; padding: 3px 10px; border-radius: 8px; margin-bottom: 2px; }
+  .b { max-width: 86%; padding: 7px 10px 6px; border-radius: 10px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08); }
+  .b time { display: block; text-align: right; font-size: 0.6rem; color: #667781; margin-top: 2px; }
+  .b--out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 3px; }
+  .b--out time { color: #4f9a8a; }
+  .b--in { align-self: flex-start; background: #fff; border-top-left-radius: 3px; }
+  .b--map { padding: 4px; width: 86%; }
+  .b--map svg { display: block; width: 100%; height: auto; border-radius: 7px; }
+  .wa__mapmeta { padding: 6px 6px 4px; }
+  .wa__mapmeta strong { display: block; font-size: 0.82rem; }
+  .wa__mapmeta small { color: #667781; font-size: 0.7rem; }
+  .wa__open { display: block; text-align: center; border-top: 1px solid #e9edef; padding: 7px 0 4px; color: #027eb5; font-weight: 500; font-size: 0.8rem; }
+  .wa__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .wa__chips span { background: #fff; color: #027eb5; font-size: 0.72rem; font-weight: 500; padding: 5px 10px; border-radius: 999px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08); }
+  .typing { align-self: flex-start; display: flex; gap: 4px; background: #fff; border-radius: 10px; padding: 0 12px; height: 0; overflow: hidden; opacity: 0; align-items: center; margin-top: -7px; }
+  .typing i { width: 6px; height: 6px; border-radius: 50%; background: #8696a0; animation: wa-dot 1s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  .wa__input { display: flex; align-items: center; gap: 8px; padding: 8px 10px 12px; }
+  .wa__input span { flex: 1; background: #fff; border-radius: 999px; padding: 8px 14px; color: #8696a0; font-size: 0.8rem; }
+  .wa__input i { width: 34px; height: 34px; border-radius: 50%; background: #0b6b5d; }
+
+  /* Sequenced reveal: hidden until `.play` is set by script; fully visible without JS or with reduced motion. */
+  :global(.js) .wa:not(.play) .step { opacity: 0; }
+  .wa.play .step { animation: wa-in .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: var(--t); }
+  .wa.play .step-typing { animation: wa-typing 1.7s both; animation-delay: var(--t); }
+  .wa.play .wa__route { stroke-dasharray: 100; animation: wa-draw 1.4s 4.2s ease-out both; }
+  .wa__ping { animation: wa-ping 1.8s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+  @keyframes wa-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+  @keyframes wa-typing { 0% { opacity: 0; height: 0; margin-top: -7px; } 12%, 88% { opacity: 1; height: 28px; margin-top: 0; } 100% { opacity: 0; height: 0; margin-top: -7px; } }
+  @keyframes wa-draw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+  @keyframes wa-ping { from { transform: scale(1); opacity: .9; } to { transform: scale(3); opacity: 0; } }
+  @keyframes wa-dot { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-2px); } }
+  @media (prefers-reduced-motion: reduce) { :global(.js) .wa .step { opacity: 1 !important; animation: none !important; } .wa .typing { display: none; } }
+</style>
+
+<script>
+  import { initStandaloneDemos } from '../scripts/demo';
+  initStandaloneDemos();
+</script>

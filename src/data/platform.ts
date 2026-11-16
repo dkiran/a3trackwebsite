@@ -7,6 +7,58 @@ export interface PlatformPage {
 
 export const platformPages: PlatformPage[] = [
   {
+    slug: 'ai-agent', name: 'AI Agent: WhatsApp, Voice & Chat', icon: 'mic',
+    metaTitle: 'AI Fleet Agent on WhatsApp, Phone Call, Voice & Chat',
+    metaDescription: 'Ask the A3Track AI agent about your fleet on WhatsApp, by phone call, voice or chat. 24/7, in regional languages, with automated alert calls and escalation.',
+    h1: 'Ask your fleet anything. On WhatsApp, by call or chat.',
+    lead: 'The A3Track AI agents know your fleet. Message on WhatsApp, call the AI call centre or ask in the app, in your own language, and get the answer in seconds. They also call you when something needs attention.',
+    definition: { q: 'What is an AI fleet agent?', a: 'An AI fleet agent is a conversational assistant connected to a fleet’s live telematics data. Fleet managers, dispatchers and owners ask it questions on WhatsApp, by phone call, or by voice or chat in the app, such as where a vehicle is, which trucks are running late or how much fuel was used last week, and it replies immediately with an answer drawn from real-time and historical fleet data. It can also place automated alert calls when thresholds are crossed and carry out routine tasks on request.' },
+    sections: [
+      { title: 'Four ways to reach the agent', intro: 'Use whichever suits the moment. Every channel reaches the same agent and the same live fleet data.', items: [
+        { title: 'WhatsApp', text: 'Message the A3Track number on WhatsApp: “Where is my vehicle AP09CC2318?” The agent replies in the chat with the status and a live map. No app to install and no login to remember.' },
+        { title: 'Phone call', text: 'Dial the A3Track AI call centre and simply ask. The agent answers by voice with the location, speed, ETA or status of any vehicle you are authorised to see.' },
+        { title: 'Voice in the app', text: 'Tap the microphone in the A3Track app and speak. The agent replies aloud and on screen, so you can check on your fleet hands-free.' },
+        { title: 'Chat in the app', text: 'Type a question on the web dashboard or mobile app and get a clear written answer with charts, maps and links to the detail.' },
+      ] },
+      { title: 'The agent calls you when it matters', intro: 'Set a threshold once. The AI agent watches around the clock and phones the right person the moment it is crossed.', items: [
+        { title: 'Threshold alerts', text: 'Choose what matters: overspeeding, harsh driving, fuel drain, route deviation, temperature out of range, long stoppage, geofence exit or an SOS button.' },
+        { title: 'Automated voice calls', text: 'When a threshold is crossed, the agent places a phone call, explains what happened in plain language and answers follow-up questions on the spot.' },
+        { title: 'Escalation until answered', text: 'If the first person does not pick up or acknowledge, the agent calls the next contact in your escalation chain: driver, supervisor, fleet manager, owner.' },
+        { title: 'WhatsApp and SMS follow-up', text: 'Every alert call is followed by a message with the details and a live map link, so nothing depends on memory.' },
+        { title: 'Quiet hours and priorities', text: 'Decide which alerts may call at night and which wait for morning. Critical alerts always get through.' },
+        { title: 'Full audit trail', text: 'See who was called, when, who acknowledged and how long it took, for every alert.' },
+      ] },
+      { title: '24/7, in your language', intro: 'Fleets do not stop at 6 pm, and not everyone prefers English.', items: [
+        { title: 'Always available', text: 'The AI agents answer WhatsApp messages and phone calls instantly, day and night, including weekends and holidays.' },
+        { title: 'Regional languages', text: 'Speak or type in English or in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali. The agent replies in the same language.' },
+        { title: 'For owners, managers and drivers', text: 'Owners check on their vehicles, managers get the numbers, and drivers receive calls they can understand.' },
+        { title: 'A person when you need one', text: 'Ask for a human at any time and the agent hands the conversation to the A3Track support team with the full context.' },
+      ] },
+      { title: 'What you can ask', intro: 'If the data is in A3Track, the agent can find it.', items: [
+        { title: 'Where is it?', text: '“Where is my vehicle AP09CC2318?” “Which vehicle is closest to the Whitefield warehouse?”' },
+        { title: 'Is it on time?', text: '“Which deliveries are running late today?” “What is the ETA for the Chennai consignment?”' },
+        { title: 'What did it cost?', text: '“How much fuel did the fleet use last week?” “Which vehicles idled the most this month?”' },
+        { title: 'Is it safe?', text: '“Who had the most harsh-braking events yesterday?” “Show me this week’s safety score by depot.”' },
+        { title: 'Does it need attention?', text: '“Which vehicles are due for service?” “Are there any open fault codes or expiring documents?”' },
+        { title: 'Do it for me', text: '“Send the customer a tracking link.” “Create a service reminder for bus 77.” “Call me if any vehicle leaves the depot after 10 pm.”' },
+      ] },
+      { title: 'Answers you can rely on', intro: 'Built for decisions, not small talk.', items: [
+        { title: 'Grounded in your data', text: 'Answers come from your fleet’s own live and historical records, and each one links to the underlying trips, events or reports.' },
+        { title: 'Verified callers only', text: 'The agent recognises registered phone numbers and only shares each user the vehicles and information their role allows.' },
+        { title: 'Confirms before acting', text: 'Any action that changes something, such as sending a message or creating a rule, is confirmed with you first.' },
+        { title: 'Remembers the conversation', text: 'Ask “and yesterday?” or “show only the Pune depot” without starting again.' },
+      ] },
+    ],
+    faqs: [
+      { q: 'Can I check my vehicle on WhatsApp?', a: 'Yes. Send a message such as “Where is my vehicle AP09CC2318?” to the A3Track WhatsApp number from your registered phone. The AI agent replies in the chat with the vehicle’s status, location and a live map link.' },
+      { q: 'Can I call and talk to the AI agent?', a: 'Yes. Call the A3Track AI call-centre number from your registered phone and ask in your own words. The agent tells you the location, speed, ETA or status of your vehicles, 24 hours a day.' },
+      { q: 'Will the AI agent call me when there is an alert?', a: 'Yes. You set thresholds, for example overspeeding, fuel drain or a temperature limit. When one is crossed, the agent places an automated voice call to the responsible person and, if nobody answers or acknowledges, escalates to the next contact in the chain you define.' },
+      { q: 'Which languages does the AI agent support?', a: 'The agent works in English and in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali, and replies in the language you use. Ask our team for the current list.' },
+      { q: 'What kinds of questions can the AI agent answer?', a: 'Questions about anything recorded in A3Track: live vehicle location and status, trips and ETAs, fuel use and idling, driver safety events and scores, maintenance and fault codes, alerts, geofences and documents.' },
+      { q: 'Is it secure? Can anyone ask about my vehicles?', a: 'No. The agent only responds to registered phone numbers and applies the same roles and vehicle permissions as the rest of the platform, so people only hear and see what they are allowed to.' },
+    ],
+  },
+  {
     slug: 'ai-fleet-intelligence', name: 'AI Fleet Intelligence', icon: 'brain',
     metaTitle: 'AI Fleet Intelligence — AI for Fleet Management',
     metaDescription: 'A3Track AI turns fleet data into action: vision AI for driver safety, predictive maintenance, anomaly detection, route optimisation and a natural-language fleet assistant.',
@@ -27,7 +79,7 @@ export const platformPages: PlatformPage[] = [
         { title: 'Fair by design', text: 'Scores are normalised for distance, vehicle type and road conditions so drivers are compared fairly.' },
       ] },
       { title: 'Ask your fleet anything', intro: 'The A3Track assistant answers questions and automates routine work.', items: [
-        { title: 'Natural-language questions', text: '“Which trucks idled most last week?” Get an answer with a chart, not a report builder.' },
+        { title: 'Voice and chat agent', text: 'Speak or type “Which trucks idled most last week?” and the AI agent answers in seconds, with a chart, not a report builder.' },
         { title: 'Daily briefings', text: 'A short morning summary of what changed, what is at risk and what to do first.' },
         { title: 'Automated workflows', text: 'Turn any insight into an action: create a work order, assign coaching or notify a customer.' },
         { title: 'Always improving', text: 'Models are updated over the air, so the system you deploy today gets smarter every year.' },

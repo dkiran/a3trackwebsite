@@ -6,16 +6,30 @@ import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import { platformPages } from '../../data/platform';
 import { faqSchema } from '../../lib';
+import WhatsAppDemo from '../../components/WhatsAppDemo.astro';
+import CallDemo from '../../components/CallDemo.astro';
 export function getStaticPaths() { return platformPages.map((p) => ({ params: { slug: p.slug }, props: { p } })); }
 const { p } = Astro.props;
 const path = `/platform/${p.slug}/`;
 const crumbs = [{ name: 'Platform', href: '/platform/' }, { name: p.name, href: path }];
 const faqs = [p.definition, ...p.faqs];
-const tones = ['section--alt', 'section--light', ''];
+const tones = p.slug === 'ai-agent' ? ['', 'section--light', 'section--alt'] : ['section--alt', 'section--light', ''];
 ---
 <Base title={p.metaTitle} description={p.metaDescription} crumbs={crumbs} schema={[faqSchema(faqs)]}>
   <PageHero crumbs={crumbs} eyebrow={p.name} title={p.h1} lead={p.lead} />
   <section class="section section--tight"><div class="container"><div class="answer reveal"><h2>{p.definition.q}</h2><p>{p.definition.a}</p></div></div></section>
+  {p.slug === 'ai-agent' && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="head center reveal"><h2>See it in action</h2><p class="lead">A WhatsApp message gets a live map. A phone call gets a spoken answer. An alert gets a call that escalates until someone responds.</p></div>
+        <div class="demos">
+          <figure><WhatsAppDemo /><figcaption><strong>On WhatsApp</strong>Ask where your vehicle is and get the map in the chat.</figcaption></figure>
+          <figure><CallDemo /><figcaption><strong>On a phone call</strong>Ask for a status, or receive an alert call that escalates.</figcaption></figure>
+        </div>
+        <p class="center" style="color:var(--muted);font-size:.8rem;margin:24px 0 0">Illustrative conversations</p>
+      </div>
+    </section>
+  )}
   {p.sections.map((sec, si) => (
     <section class={`section ${tones[si % 3]}`}>
       <div class="container">
@@ -29,3 +43,9 @@ const tones = ['section--alt', 'section--light', ''];
   <section class="section section--alt"><div class="container"><div class="head center reveal"><span class="eyebrow">FAQ</span><h2>Common questions</h2></div><Faq items={p.faqs} /></div></section>
   <Cta />
 </Base>
+<style>
+  .demos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px 24px; max-width: 820px; margin-inline: auto; align-items: start; }
+  .demos figure { margin: 0; }
+  .demos figcaption { text-align: center; color: var(--muted); margin-top: 18px; font-size: .95rem; }
+  .demos figcaption strong { display: block; color: var(--text); font-size: 1.05rem; }
+</style>
