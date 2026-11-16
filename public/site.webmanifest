@@ -4,8 +4,8 @@
   "description": "AI-powered GPS telematics and fleet intelligence. Move Smarter.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0e14",
-  "theme_color": "#0b0e14",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
     { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
