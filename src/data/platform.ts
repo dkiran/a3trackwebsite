@@ -15,7 +15,7 @@ export const platformPages: PlatformPage[] = [
     definition: { q: 'What is an AI fleet agent?', a: 'An AI fleet agent is a conversational assistant connected to a fleet’s live telematics data. Fleet managers, dispatchers and owners ask it questions on WhatsApp, by phone call, or by voice or chat in the app, such as where a vehicle is, which trucks are running late or how much fuel was used last week, and it replies immediately with an answer drawn from real-time and historical fleet data. It can also place automated alert calls when thresholds are crossed and carry out routine tasks on request.' },
     sections: [
       { title: 'Four ways to reach the agent', intro: 'Use whichever suits the moment. Every channel reaches the same agent and the same live fleet data.', items: [
-        { title: 'WhatsApp', text: 'Message the A3Track number on WhatsApp: “Where is my vehicle AP09CC2318?” The agent replies in the chat with the status and a live map. No app to install and no login to remember.' },
+        { title: 'WhatsApp text and voice messages', text: 'Type “Where is my vehicle AP09CC2318?” or send a voice message, in English or your own language. The agent replies in the same language, by text or voice message, and shows the vehicle on a live map in the chat. No app to install and no login to remember.' },
         { title: 'Phone call', text: 'Dial the A3Track AI call centre and simply ask. The agent answers by voice with the location, speed, ETA or status of any vehicle you are authorised to see.' },
         { title: 'Voice in the app', text: 'Tap the microphone in the A3Track app and speak. The agent replies aloud and on screen, so you can check on your fleet hands-free.' },
         { title: 'Chat in the app', text: 'Type a question on the web dashboard or mobile app and get a clear written answer with charts, maps and links to the detail.' },
@@ -30,7 +30,7 @@ export const platformPages: PlatformPage[] = [
       ] },
       { title: '24/7, in your language', intro: 'Fleets do not stop at 6 pm, and not everyone prefers English.', items: [
         { title: 'Always available', text: 'The AI agents answer WhatsApp messages and phone calls instantly, day and night, including weekends and holidays.' },
-        { title: 'Regional languages', text: 'Speak or type in English or in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali. The agent replies in the same language.' },
+        { title: 'Regional languages', text: 'Speak or type in English or in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali. The agent understands, and replies in the same language, in text and in voice.' },
         { title: 'For owners, managers and drivers', text: 'Owners check on their vehicles, managers get the numbers, and drivers receive calls they can understand.' },
         { title: 'A person when you need one', text: 'Ask for a human at any time and the agent hands the conversation to the A3Track support team with the full context.' },
       ] },
@@ -50,7 +50,8 @@ export const platformPages: PlatformPage[] = [
       ] },
     ],
     faqs: [
-      { q: 'Can I check my vehicle on WhatsApp?', a: 'Yes. Send a message such as “Where is my vehicle AP09CC2318?” to the A3Track WhatsApp number from your registered phone. The AI agent replies in the chat with the vehicle’s status, location and a live map link.' },
+      { q: 'Can I check my vehicle on WhatsApp?', a: 'Yes. Send a text or a voice message such as “Where is my vehicle AP09CC2318?” to the A3Track WhatsApp number from your registered phone, in English or a regional language. The AI agent replies in the same language, by text or voice message, with the vehicle’s status, location and a live map.' },
+      { q: 'Can I send a voice message instead of typing?', a: 'Yes. Record a voice message on WhatsApp in your own language. The AI agent understands it, replies with a voice message you can listen to, and adds the map or the numbers on screen so you can see the answer as well as hear it.' },
       { q: 'Can I call and talk to the AI agent?', a: 'Yes. Call the A3Track AI call-centre number from your registered phone and ask in your own words. The agent tells you the location, speed, ETA or status of your vehicles, 24 hours a day.' },
       { q: 'Will the AI agent call me when there is an alert?', a: 'Yes. You set thresholds, for example overspeeding, fuel drain or a temperature limit. When one is crossed, the agent places an automated voice call to the responsible person and, if nobody answers or acknowledges, escalates to the next contact in the chain you define.' },
       { q: 'Which languages does the AI agent support?', a: 'The agent works in English and in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali, and replies in the language you use. Ask our team for the current list.' },

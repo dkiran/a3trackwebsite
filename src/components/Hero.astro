@@ -4,7 +4,7 @@ import WhatsAppDemo from './WhatsAppDemo.astro';
 import CallDemo from './CallDemo.astro';
 const slides = [
   { tab: 'Live map', title: 'One live view of your whole fleet', text: 'Track every vehicle, driver and asset in real time. AI flags risk, fuel waste and breakdowns as they happen.', href: '/platform/', cta: 'Explore the platform', ms: 8000 },
-  { tab: 'WhatsApp', title: 'Your fleet, on WhatsApp', text: 'Message “Where is my vehicle AP09CC2318?” and the AI agent replies with the live map, right in the chat. No app to install, no login to remember.', href: '/platform/ai-agent/', cta: 'See the AI agent', ms: 11000 },
+  { tab: 'WhatsApp', title: 'Your fleet, on WhatsApp', text: 'Type or send a voice message, in English or your own language: “Where is my vehicle AP09CC2318?” The AI agent answers in the same language, by text or voice, with the live map in the chat.', href: '/platform/ai-agent/', cta: 'See the AI agent', ms: 20000 },
   { tab: 'AI calls', title: 'Call the AI agent, 24/7', text: 'Dial our AI call centre for the status of any vehicle. When an alert crosses your threshold, the agent calls you and escalates until someone answers. In English and regional languages.', href: '/platform/ai-agent/', cta: 'How AI calls work', ms: 12000 },
 ];
 ---
@@ -139,7 +139,6 @@ const slides = [
     hero.querySelector('.hero__in')!.addEventListener('mouseleave', () => { hovering = false; schedule(); });
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.2 }).observe(hero);
     reduce.addEventListener('change', schedule);
-    hero.querySelectorAll('[data-demo]').forEach((d) => d.classList.add('play'));
     tabs[0].style.setProperty('--ms', `${tabs[0].dataset.ms}ms`);
     schedule();
   }
