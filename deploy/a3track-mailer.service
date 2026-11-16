@@ -1,0 +1,22 @@
+# systemd unit for the demo-form mail service.
+# Install: sudo cp deploy/a3track-mailer.service /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable --now a3track-mailer
+[Unit]
+Description=A3Track demo-request mailer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/a3track-mailer
+EnvironmentFile=/etc/a3track/mailer.env
+ExecStart=/usr/bin/node server.mjs
+Restart=always
+RestartSec=3
+User=www-data
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

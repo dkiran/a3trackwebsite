@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Cta from '../../components/Cta.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../config/site';
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date);
+const crumbs = [{ name: 'Blog', href: '/blog/' }];
+const schema = { '@context': 'https://schema.org', '@type': 'Blog', name: 'A3Track Blog', url: `${site.url}/blog/`, publisher: { '@id': `${site.url}/#organization` }, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: `${site.url}/blog/${p.id}/`, datePublished: p.data.date.toISOString() })) };
+---
+<Base title="Fleet Management & GPS Telematics Blog" description="Practical guides on GPS tracking, telematics, AI dash cams, fuel management, driver safety, compliance and fleet strategy from the A3Track team." crumbs={crumbs} schema={[schema]}>
+  <PageHero crumbs={crumbs} eyebrow="Blog" title="Guides for people who run fleets" lead="Clear, practical explanations of the technology and practices behind safer, leaner fleet operations." cta={false} />
+  <section class="section section--alt" style="padding-top:48px">
+    <div class="container grid g3">
+      {posts.map((p, i) => (
+        <a class="card reveal" style={`--d:${(i % 3) * 80}ms`} href={`/blog/${p.id}/`}>
+          <span class="chip" style="margin-bottom:16px;font-size:.78rem;padding:5px 11px">{p.data.category}</span>
+          <h2 style="font-size:1.25rem">{p.data.title}</h2><p>{p.data.description}</p>
+          <span class="more">{p.data.readMinutes} min read →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Cta />
+</Base>

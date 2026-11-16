@@ -1,0 +1,13 @@
+{
+  "name": "A3Track",
+  "short_name": "A3Track",
+  "description": "AI-powered GPS telematics and fleet intelligence. Move Smarter.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050a16",
+  "theme_color": "#050a16",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

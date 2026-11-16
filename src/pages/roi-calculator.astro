@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { faqSchema } from '../lib';
+import { site } from '../config/site';
+const crumbs = [{ name: 'ROI Calculator', href: '/roi-calculator/' }];
+const faqs = [
+  { q: 'How do you calculate the ROI of fleet telematics?', a: 'Add up the annual savings telematics is expected to deliver, mainly reduced fuel use, recovered productive time and lower maintenance and accident costs, then subtract the annual cost of the system. Divide the net saving by the cost to get the return on investment.' },
+  { q: 'Where do telematics savings come from?', a: 'The largest savings usually come from fuel (less idling, speeding, detours and theft), followed by productivity (more jobs or trips per vehicle), maintenance (fewer breakdowns and longer component life) and risk (fewer accidents and claims).' },
+  { q: 'Are these results guaranteed?', a: 'No. The calculator is an estimate based on the assumptions you enter. Actual results depend on your operation and how the system is used. Our team can help build a business case from your own data.' },
+];
+const app = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'A3Track Fleet Telematics ROI Calculator', url: `${site.url}/roi-calculator/`, applicationCategory: 'BusinessApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' } };
+const fields = [
+  { id: 'vehicles', label: 'Number of vehicles', v: 50, min: 1, max: 5000, step: 1 },
+  { id: 'fuel', label: 'Monthly fuel spend per vehicle', v: 40000, min: 0, max: 500000, step: 1000, cur: true },
+  { id: 'fuelPct', label: 'Expected fuel saving (%)', v: 10, min: 0, max: 30, step: 1 },
+  { id: 'maint', label: 'Monthly maintenance per vehicle', v: 8000, min: 0, max: 200000, step: 500, cur: true },
+  { id: 'maintPct', label: 'Expected maintenance saving (%)', v: 10, min: 0, max: 30, step: 1 },
+  { id: 'hours', label: 'Productive hours gained per vehicle / month', v: 6, min: 0, max: 60, step: 1 },
+  { id: 'rate', label: 'Value of one vehicle hour', v: 400, min: 0, max: 10000, step: 50, cur: true },
+  { id: 'cost', label: 'Telematics cost per vehicle / month', v: 600, min: 0, max: 10000, step: 50, cur: true },
+];
+---
+<Base title="Fleet Telematics ROI Calculator" description="Estimate the return on investment of GPS fleet tracking. Enter your fleet size, fuel and maintenance costs to see projected savings and return." crumbs={crumbs} schema={[app, faqSchema(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow="ROI calculator" title="What could A3Track save your fleet?" lead="Enter your own numbers. The calculator updates instantly. All assumptions are yours to adjust." cta={false} />
+  <section class="section section--alt" style="padding-top:40px">
+    <div class="container split" style="align-items:start">
+      <form class="card form reveal" id="roi" style="height:auto">
+        <div class="field"><label for="cur">Currency</label><select id="cur"><option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="AED">AED</option></select></div>
+        {fields.map((f) => (<div class="field"><label for={f.id}>{f.label}</label><input id={f.id} type="number" inputmode="decimal" value={f.v} min={f.min} max={f.max} step={f.step} /></div>))}
+      </form>
+      <div class="reveal out" style="--d:120ms" aria-live="polite">
+        <div class="card" style="height:auto">
+          <small>Estimated net annual saving</small>
+          <strong class="big grad-text" id="o-net">—</strong>
+          <div class="rows">
+            <div><span>Fuel saving / year</span><b id="o-fuel">—</b></div>
+            <div><span>Maintenance saving / year</span><b id="o-maint">—</b></div>
+            <div><span>Productivity gain / year</span><b id="o-prod">—</b></div>
+            <div><span>Telematics cost / year</span><b id="o-cost">—</b></div>
+            <div><span>Return on investment</span><b id="o-roi">—</b></div>
+            <div><span>Savings for every 1 spent</span><b id="o-pay">—</b></div>
+          </div>
+          <a class="btn btn--primary" style="width:100%;margin-top:22px" href="/contact/#demo">Get a quote for my fleet</a>
+          <p class="form__note" style="margin-top:14px">Estimates only, based on the assumptions you enter. Default values are illustrative starting points, not promises of performance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--light"><div class="container"><div class="head center reveal"><span class="eyebrow">FAQ</span><h2>About telematics ROI</h2></div><Faq items={faqs} /></div></section>
+  <Cta />
+</Base>
+<style>
+  .out small { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; }
+  .big { display: block; font: 700 clamp(2.2rem, 5vw, 3.4rem)/1.1 var(--display); margin: 6px 0 18px; }
+  .rows div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .96rem; }
+  .rows span { color: var(--muted); } .rows b { font-variant-numeric: tabular-nums; }
+  @media (min-width: 941px) { .out { position: sticky; top: 96px; } }
+</style>
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const n = (id: string) => Math.max(0, Number($(id).value) || 0);
+  const calc = () => {
+    const cur = ($('cur') as unknown as HTMLSelectElement).value;
+    const fmt = new Intl.NumberFormat(cur === 'INR' ? 'en-IN' : 'en', { style: 'currency', currency: cur, maximumFractionDigits: 0 });
+    const v = n('vehicles');
+    const fuel = v * n('fuel') * (n('fuelPct') / 100) * 12;
+    const maint = v * n('maint') * (n('maintPct') / 100) * 12;
+    const prod = v * n('hours') * n('rate') * 12;
+    const cost = v * n('cost') * 12;
+    const gross = fuel + maint + prod;
+    const net = gross - cost;
+    const set = (id: string, t: string) => (document.getElementById(id)!.textContent = t);
+    set('o-fuel', fmt.format(fuel)); set('o-maint', fmt.format(maint)); set('o-prod', fmt.format(prod)); set('o-cost', fmt.format(cost));
+    set('o-net', fmt.format(net));
+    set('o-roi', cost > 0 ? `${Math.round((net / cost) * 100)}%` : '—');
+    set('o-pay', gross > 0 && cost > 0 ? `${(gross / cost).toFixed(1)}×` : '—');
+  };
+  document.getElementById('roi')!.addEventListener('input', calc);
+  calc();
+</script>

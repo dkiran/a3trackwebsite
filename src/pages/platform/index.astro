@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { solutions } from '../../data/solutions';
+import { platformPages } from '../../data/platform';
+import { faqSchema } from '../../lib';
+const crumbs = [{ name: 'Platform', href: '/platform/' }];
+const faqs = [
+  { q: 'What is a fleet management platform?', a: 'A fleet management platform is software that brings together data from vehicles, drivers and assets, such as GPS location, video, fuel, engine diagnostics and sensor readings, so an organisation can monitor operations in real time, improve safety, control costs and meet compliance requirements from one place.' },
+  { q: 'Is A3Track cloud-based?', a: 'Yes. A3Track is delivered as a secure cloud service, accessible from any modern browser and from mobile apps for managers and drivers. There is no software to install or maintain on your servers.' },
+  { q: 'How many vehicles can A3Track handle?', a: 'The platform is designed to scale from small fleets of a few vehicles to large enterprise and government fleets with tens of thousands of vehicles and assets.' },
+  { q: 'Can different teams see different things?', a: 'Yes. Roles and vehicle groups control which vehicles, features and reports each user can access, so dispatch, safety, maintenance and finance each get the view they need.' },
+];
+const layers = [
+  { icon: 'chip', t: 'Connected devices', d: 'Trackers, AI cameras and sensors capture location, video, fuel, engine and environmental data.' },
+  { icon: 'globe', t: 'Secure cloud', d: 'Data is encrypted, processed in real time and stored on resilient, scalable infrastructure.' },
+  { icon: 'brain', t: 'AI engine', d: 'Models detect risk, predict failures, optimise routes and surface anomalies automatically.' },
+  { icon: 'chart', t: 'Apps and API', d: 'Web dashboard, manager and driver mobile apps, and an open API for your other systems.' },
+];
+---
+<Base title="Fleet Management Platform — One Connected Operations Cloud" description="The A3Track platform unifies GPS tracking, AI video, fuel, maintenance, routing and compliance in one secure cloud with web and mobile apps and an open API." crumbs={crumbs} schema={[faqSchema(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Platform" title="One intelligent platform for everything that moves" lead="A3Track brings your vehicles, drivers, assets and data together, so every team works from the same real-time picture." />
+  <section class="section section--tight"><div class="container"><div class="answer reveal"><h2>{faqs[0].q}</h2><p>{faqs[0].a}</p></div></div></section>
+  <section class="section section--alt">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">Architecture</span><h2>From the vehicle to the boardroom</h2></div>
+      <div class="grid g4">{layers.map((l, i) => (<div class="card reveal" style={`--d:${i * 80}ms`}><span class="ico"><Icon name={l.icon} /></span><h3>{l.t}</h3><p>{l.d}</p></div>))}</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">Explore the platform</span><h2>Built on four foundations</h2></div>
+      <div class="grid g2">{platformPages.map((p, i) => (<a class="card reveal" style={`--d:${(i % 2) * 80}ms`} href={`/platform/${p.slug}/`}><span class="ico"><Icon name={p.icon} /></span><h3>{p.name}</h3><p>{p.lead}</p><span class="more">Learn more →</span></a>))}</div>
+    </div>
+  </section>
+  <section class="section section--light">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">Solutions</span><h2>Modules that share one brain</h2><p class="lead">Turn on what you need. Everything works together from day one.</p></div>
+      <div class="chips reveal" style="justify-content:center">{solutions.map((s) => <a class="chip" style="color:var(--ink);border-color:#c5d2ec;background:#fff" href={`/solutions/${s.slug}/`}><Icon name={s.icon} size={16} />{s.name}</a>)}</div>
+    </div>
+  </section>
+  <section class="section"><div class="container"><div class="head center reveal"><span class="eyebrow">FAQ</span><h2>Platform questions</h2></div><Faq items={faqs.slice(1)} /></div></section>
+  <Cta />
+</Base>

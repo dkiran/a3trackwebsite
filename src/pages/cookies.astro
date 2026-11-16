@@ -1,0 +1,16 @@
+---
+import Legal from '../components/Legal.astro';
+import { site } from '../config/site';
+---
+<Legal title="Cookie Policy" description="How the A3Track website uses cookies and similar technologies." path="/cookies/">
+  <p>This policy explains how {site.legalName} uses cookies and similar technologies on this website.</p>
+  <h2>What are cookies?</h2>
+  <p>Cookies are small text files stored on your device by a website. They are used to make websites work, to remember preferences and to understand how a site is used.</p>
+  <h2>Cookies we use</h2>
+  <p>This website is designed to work without tracking cookies. It does not set advertising cookies. If we add analytics or other optional cookies in future, we will ask for your consent first where the law requires it and will list them here.</p>
+  <ul><li><strong>Strictly necessary:</strong> used only where needed for security or to deliver a feature you request, such as submitting a form.</li><li><strong>Analytics (optional):</strong> none set by default.</li><li><strong>Marketing (optional):</strong> none set by default.</li></ul>
+  <h2>Managing cookies</h2>
+  <p>You can block or delete cookies in your browser settings. Blocking strictly necessary cookies may affect how the website works.</p>
+  <h2>Contact</h2>
+  <p>Questions: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+</Legal>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { solutions } from '../../data/solutions';
+import { site } from '../../config/site';
+const crumbs = [{ name: 'Solutions', href: '/solutions/' }];
+const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'A3Track fleet solutions', itemListElement: solutions.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${site.url}/solutions/${s.slug}/` })) };
+---
+<Base title="Fleet Management Solutions — GPS, AI Video, Fuel & More" description="Explore A3Track fleet solutions: GPS tracking, AI dash cams, driver safety, fuel management, asset tracking, predictive maintenance, routing, compliance and cold chain." crumbs={crumbs} schema={[list]}>
+  <PageHero crumbs={crumbs} eyebrow="Solutions" title="One platform. Nine ways to move smarter." lead="Pick the capabilities you need today and add more as your operation grows. Every solution shares the same live data, the same AI and the same simple interface." />
+  <section class="section section--alt">
+    <div class="container grid g3">
+      {solutions.map((s, i) => (
+        <a class="card reveal" style={`--d:${(i % 3) * 80}ms`} href={`/solutions/${s.slug}/`}>
+          <span class="ico"><Icon name={s.icon} /></span><h2 style="font-size:1.25rem">{s.name}</h2><p>{s.short}</p><span class="more">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Cta />
+</Base>

@@ -1,0 +1,53 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { solutions } from '../data/solutions';
+import { industries } from '../data/industries';
+import { nav } from '../config/site';
+const caret = '<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1.5 3.5L5 7l3.5-3.5"/></svg>';
+---
+<header class="header">
+  <div class="container header__in">
+    <a class="logo" href="/" aria-label="A3Track home"><Logo /><span>A3<b>Track</b></span></a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <div class="nav__item">
+        <button class="nav__link" aria-expanded="false" aria-haspopup="true">Solutions <Fragment set:html={caret} /></button>
+        <div class="mega mega--wide">
+          {solutions.map((s) => (
+            <a href={`/solutions/${s.slug}/`}><span class="ico"><Icon name={s.icon} /></span><span><strong>{s.name}</strong><small>{s.short}</small></span></a>
+          ))}
+          <a class="mega__all" href="/solutions/"><span><strong>All solutions →</strong></span></a>
+        </div>
+      </div>
+      <div class="nav__item">
+        <button class="nav__link" aria-expanded="false" aria-haspopup="true">Industries <Fragment set:html={caret} /></button>
+        <div class="mega mega--wide">
+          {industries.map((s) => (
+            <a href={`/industries/${s.slug}/`}><span class="ico"><Icon name={s.icon} /></span><span><strong>{s.name}</strong><small>{s.short}</small></span></a>
+          ))}
+          <a class="mega__all" href="/industries/"><span><strong>All industries →</strong></span></a>
+        </div>
+      </div>
+      <div class="nav__item">
+        <button class="nav__link" aria-expanded="false" aria-haspopup="true">Platform <Fragment set:html={caret} /></button>
+        <div class="mega">
+          {nav.platform.map((l) => <a href={l.href}><span><strong>{l.label}</strong><small>{l.desc}</small></span></a>)}
+        </div>
+      </div>
+      <div class="nav__item">
+        <button class="nav__link" aria-expanded="false" aria-haspopup="true">Resources <Fragment set:html={caret} /></button>
+        <div class="mega">
+          {nav.resources.map((l) => <a href={l.href}><span><strong>{l.label}</strong><small>{l.desc}</small></span></a>)}
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="/pricing/">Pricing</a></div>
+    </nav>
+    <div class="header__cta">
+      <a class="btn btn--ghost btn--sm" href="/contact/">Contact</a>
+      <a class="btn btn--primary btn--sm" href="/contact/#demo">Request a demo</a>
+      <button class="burger" aria-label="Menu" aria-controls="nav" aria-expanded="false">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg>
+      </button>
+    </div>
+  </div>
+</header>

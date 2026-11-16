@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { faqSchema } from '../lib';
+const crumbs = [{ name: 'Pricing', href: '/pricing/' }];
+const plans = [
+  { name: 'Track', for: 'Visibility for any fleet', items: ['Real-time GPS tracking', 'Trip history and playback', 'Geofences and alerts', 'Standard reports', 'Manager mobile app', 'Email and chat support'] },
+  { name: 'Protect', for: 'Safety and cost control', hot: true, items: ['Everything in Track', 'Driver safety scoring and coaching', 'AI dash cams and video', 'Fuel monitoring and theft alerts', 'Maintenance and diagnostics', 'Driver app and inspections'] },
+  { name: 'Intelligence', for: 'Enterprise operations', items: ['Everything in Protect', 'AI assistant and predictive insights', 'Route optimisation and dispatch', 'Open API, webhooks and SSO', 'Custom roles, reports and data residency', 'Dedicated success manager and SLA'] },
+];
+const faqs = [
+  { q: 'How much does GPS fleet tracking cost?', a: 'GPS fleet tracking is normally priced as a monthly subscription per vehicle, plus the cost of the tracking device. The total depends on the hardware chosen, the features enabled, the contract term and the number of vehicles. A3Track provides an itemised quote based on your fleet.' },
+  { q: 'Is hardware included in the price?', a: 'Hardware can be purchased upfront or bundled into the monthly subscription, depending on your preference. Your quote will show both options.' },
+  { q: 'Is there a minimum fleet size or contract?', a: 'No minimum fleet size. Contract terms are flexible and are discussed as part of your quote.' },
+  { q: 'Can I change plans later?', a: 'Yes. You can add vehicles, devices and modules at any time as your needs change.' },
+];
+---
+<Base title="Pricing — GPS Fleet Tracking & Telematics Plans" description="A3Track pricing: simple per-vehicle plans for GPS tracking, AI video safety, fuel, maintenance and enterprise fleet intelligence. Request a tailored quote." crumbs={crumbs} schema={[faqSchema(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Pricing" title="Simple plans. Pay per vehicle." lead="Choose the plan that fits today and upgrade whenever you are ready. Every quote is itemised, with no hidden fees." cta={false} />
+  <section class="section section--alt" style="padding-top:40px">
+    <div class="container grid g3">
+      {plans.map((p, i) => (
+        <div class={`card reveal plan ${p.hot ? 'plan--hot' : ''}`} style={`--d:${i * 90}ms`}>
+          {p.hot && <span class="plan__tag">Most popular</span>}
+          <h2 style="font-size:1.6rem;margin-bottom:4px">{p.name}</h2>
+          <p style="margin-bottom:18px">{p.for}</p>
+          <p class="plan__price">Custom quote <small>per vehicle / month</small></p>
+          <ul class="checks" style="margin:22px 0 26px">{p.items.map((x) => <li>{x}</li>)}</ul>
+          <a class={`btn ${p.hot ? 'btn--primary' : 'btn--ghost'}`} style="width:100%" href="/contact/#demo">Get a quote</a>
+        </div>
+      ))}
+    </div>
+  </section>
+  <section class="section"><div class="container center reveal"><h2>Want to estimate the return first?</h2><p class="lead">Use the ROI calculator to model fuel, productivity and maintenance savings with your own numbers.</p><p style="margin-top:22px"><a class="btn btn--ghost" href="/roi-calculator/">Open the ROI calculator</a></p></div></section>
+  <section class="section section--light"><div class="container"><div class="head center reveal"><span class="eyebrow">FAQ</span><h2>Pricing questions</h2></div><Faq items={faqs} /></div></section>
+  <Cta />
+</Base>
+<style>
+  .plan { display: flex; flex-direction: column; }
+  .plan .btn { margin-top: auto; }
+  .plan--hot { border-color: rgba(30, 230, 193, 0.6); box-shadow: 0 30px 80px -40px rgba(30, 230, 193, 0.6); }
+  .plan__tag { position: absolute; top: -12px; right: 20px; font: 700 0.7rem/1 var(--font); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; background: var(--grad); color: #041022; }
+  .plan__price { font: 700 1.7rem/1.2 var(--display); color: var(--text) !important; }
+  .plan__price small { display: block; font: 400 0.85rem var(--font); color: var(--muted); }
+  .plan :global(.checks li) { font-size: 0.95rem; color: var(--text); }
+</style>

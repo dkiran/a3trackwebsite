@@ -1,0 +1,10 @@
+{
+  "name": "a3track-mailer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tiny mail service: receives demo requests from the website and emails them to the sales team.",
+  "scripts": { "start": "node server.mjs" },
+  "dependencies": { "nodemailer": "^10.6.0" },
+  "engines": { "node": ">=20" }
+}

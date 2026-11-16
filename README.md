@@ -1,0 +1,97 @@
+# A3Track website
+
+Marketing website for **A3Track** (a3track.com) — AI-powered GPS telematics and fleet intelligence. *Move Smarter.*
+
+Static site built with [Astro](https://astro.build): every page is pre-rendered HTML/CSS with minimal JavaScript, served by nginx.
+
+## Commands
+
+```bash
+npm install        # install dependencies
+npm run dev        # local dev server at http://localhost:4321
+npm run build      # build to ./dist
+npm run preview    # preview the production build
+```
+
+## Where things live
+
+| What | Where |
+|---|---|
+| Company details (name, address, phone, emails, social, Search Console code) | `src/config/site.ts` |
+| Solutions (9 pages) | `src/data/solutions.ts` |
+| Industries (14 pages) | `src/data/industries.ts` |
+| Platform pages | `src/data/platform.ts` |
+| Glossary terms | `src/data/glossary.ts` |
+| FAQs | `src/data/faqs.ts` |
+| Blog articles (Markdown) | `src/content/blog/*.md` |
+| Design tokens and global styles | `src/styles/global.css` |
+| Animated hero | `src/components/Hero.astro` |
+| SEO head, structured data | `src/layouts/Base.astro`, `src/lib.ts` |
+| robots.txt, icons, social image | `public/` |
+| Demo-form mail service | `server/` |
+| nginx, systemd, deploy script | `deploy/` |
+
+To add a blog post, drop a new `.md` file in `src/content/blog/` with the same front matter as the existing ones. To add a solution or industry, add an entry to the data file; the page, navigation, sitemap and `llms.txt` update automatically.
+
+## Before launch checklist
+
+- [ ] Replace every value marked `DUMMY` in `src/config/site.ts`.
+- [ ] Review product claims (features, AIS-140 support, hardware) against what A3Track actually ships.
+- [ ] Have the legal pages (`privacy`, `terms`, `cookies`) reviewed by counsel and remove the template notice in `src/components/Legal.astro`.
+- [ ] Replace `public/og-image.png`, `public/logo.png` and `public/favicon.svg` if you have final brand assets.
+- [ ] Configure SMTP for the mail service (below) and send a test demo request.
+
+## SEO / AEO / GEO
+
+- `sitemap-index.xml` is generated at build time and referenced in `robots.txt`.
+- Every page has a unique title, description, canonical URL, Open Graph/Twitter tags and JSON-LD (Organization, WebSite, BreadcrumbList, plus Service / FAQPage / BlogPosting / DefinedTermSet / SoftwareApplication where relevant).
+- `llms.txt` is generated at build time for AI assistants; `robots.txt` explicitly allows major AI crawlers.
+- `rss.xml` lists blog posts.
+
+### Google Search Console
+
+1. Add the property `a3track.com` at <https://search.google.com/search-console>. Prefer **Domain** verification with a DNS TXT record.
+2. Alternatively choose **HTML tag**, copy the `content` value into `googleSiteVerification` in `src/config/site.ts`, rebuild and deploy.
+3. Submit the sitemap: `https://a3track.com/sitemap-index.xml`.
+4. Repeat in Bing Webmaster Tools (`bingSiteVerification`), which also feeds several AI search products.
+
+## Deploying to AWS EC2 (Ubuntu)
+
+One-time server setup:
+
+```bash
+sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx rsync
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs
+sudo mkdir -p /var/www/a3track /opt/a3track-mailer /etc/a3track
+```
+
+Point the DNS A records for `a3track.com` and `www.a3track.com` at the instance, open ports 80 and 443 in the security group, then:
+
+```bash
+sudo certbot certonly --nginx -d a3track.com -d www.a3track.com
+sudo cp deploy/nginx.conf /etc/nginx/sites-available/a3track.com
+sudo ln -s /etc/nginx/sites-available/a3track.com /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Deploy (from your machine or CI):
+
+```bash
+DEPLOY_HOST=ubuntu@your-ec2-host WITH_MAILER=1 ./deploy/deploy.sh
+```
+
+### Demo-form email
+
+The contact form posts to `/api/demo`, which nginx proxies to a small Node service (`server/server.mjs`) that emails the request to your sales inbox. It includes a honeypot, input validation, origin check and per-IP rate limiting.
+
+1. In Amazon SES (region `ap-south-1` suggested), verify the `a3track.com` domain, request production access and create SMTP credentials. Any SMTP provider works.
+2. On the server, copy `server/.env.example` to `/etc/a3track/mailer.env`, fill it in and `sudo chmod 600` it.
+3. Install and start the service:
+
+```bash
+sudo cp deploy/a3track-mailer.service /etc/systemd/system/
+sudo systemctl daemon-reload && sudo systemctl enable --now a3track-mailer
+curl http://127.0.0.1:8787/api/health
+```
+
+Local test without sending mail: `cd server && npm install && DRY_RUN=1 node server.mjs`.

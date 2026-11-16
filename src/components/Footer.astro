@@ -1,0 +1,32 @@
+---
+import Logo from './Logo.astro';
+import { solutions } from '../data/solutions';
+import { industries } from '../data/industries';
+import { site, nav } from '../config/site';
+const a = site.address;
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="/" aria-label="A3Track home"><Logo /><span>A3<b>Track</b></span></a>
+        <p style="margin:16px 0 14px;max-width:34ch">AI-powered GPS telematics and fleet intelligence. {site.tagline}</p>
+        <address>
+          {a.street}<br />{a.city}, {a.region} {a.postalCode}, {a.countryName}<br />
+          <a href={`tel:${site.phoneHref}`}>{site.phone}</a> · <a href={`mailto:${site.email}`}>{site.email}</a>
+        </address>
+      </div>
+      <nav aria-label="Solutions"><h2>Solutions</h2><ul>{solutions.map((s) => <li><a href={`/solutions/${s.slug}/`}>{s.name}</a></li>)}</ul></nav>
+      <nav aria-label="Industries"><h2>Industries</h2><ul>{industries.slice(0, 9).map((s) => <li><a href={`/industries/${s.slug}/`}>{s.name}</a></li>)}<li><a href="/industries/">All industries →</a></li></ul></nav>
+      <nav aria-label="Platform"><h2>Platform</h2><ul>{nav.platform.map((l) => <li><a href={l.href}>{l.label}</a></li>)}<li><a href="/pricing/">Pricing</a></li></ul></nav>
+      <nav aria-label="Company"><h2>Company</h2><ul>{nav.resources.map((l) => <li><a href={l.href}>{l.label}</a></li>)}<li><a href="/contact/">Contact</a></li><li><a href="/contact/#demo">Request a demo</a></li></ul></nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> {site.legalName} All rights reserved.</span>
+      <ul>
+        <li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="/sitemap-index.xml">Sitemap</a></li>
+        <li><a href={site.social.linkedin} rel="noopener">LinkedIn</a></li><li><a href={site.social.x} rel="noopener">X</a></li><li><a href={site.social.youtube} rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

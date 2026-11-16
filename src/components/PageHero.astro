@@ -1,0 +1,23 @@
+---
+const { eyebrow, title, lead, crumbs = [], cta = true } = Astro.props;
+---
+<section class="phero">
+  <div class="container">
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb"><ol class="crumbs" style="list-style:none;padding:0;margin:0 0 22px">
+        <li><a href="/">Home</a></li>
+        {crumbs.map((c: any, i: number) => <li>{i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <a href={c.href}>{c.name}</a>}</li>)}
+      </ol></nav>
+    )}
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    {cta && (
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact/#demo">Request a demo</a>
+        <a class="btn btn--ghost" href="/pricing/">See pricing</a>
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

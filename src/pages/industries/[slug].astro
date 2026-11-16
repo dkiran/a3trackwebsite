@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { industries } from '../../data/industries';
+import { getSolution } from '../../data/solutions';
+import { faqSchema, serviceSchema } from '../../lib';
+
+export function getStaticPaths() {
+  return industries.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const path = `/industries/${s.slug}/`;
+const crumbs = [{ name: 'Industries', href: '/industries/' }, { name: s.name, href: path }];
+const others = industries.filter((x) => x.slug !== s.slug);
+const idx = industries.findIndex((x) => x.slug === s.slug);
+const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
+---
+<Base title={s.metaTitle} description={s.metaDescription} crumbs={crumbs} schema={[serviceSchema(`A3Track for ${s.name}`, s.metaDescription, path, `GPS telematics for ${s.name}`), faqSchema(s.faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow={s.name} title={s.h1} lead={s.lead} />
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">The challenge</span><h2>What {s.name.toLowerCase()} fleets are up against</h2></div>
+      <div class="grid g3">
+        {s.challenges.map((c, i) => (<div class="card reveal" style={`--d:${i * 80}ms`}><span class="num">0{i + 1}</span><h3>{c.title}</h3><p>{c.text}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">The A3Track answer</span><h2>How A3Track helps</h2></div>
+      <div class="grid g2">
+        {s.capabilities.map((c, i) => { const sol = getSolution(c.solution); return (
+          <a class="card reveal" style={`--d:${(i % 2) * 80}ms`} href={`/solutions/${sol.slug}/`}>
+            <span class="ico"><Icon name={sol.icon} /></span><h3>{c.title}</h3><p>{c.text}</p><span class="more">{sol.name} →</span>
+          </a>
+        ); })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Use cases</span>
+        <h2>Common ways {s.name.toLowerCase()} teams use A3Track</h2>
+        <p>Every deployment is configured around your operation. These are the workflows customers in this sector ask for most often.</p>
+      </div>
+      <ul class="checks reveal" style="--d:100ms">{s.useCases.map((u) => <li>{u}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">FAQ</span><h2>{s.name}: common questions</h2></div>
+      <Faq items={s.faqs} />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="head reveal"><h2>Other industries</h2></div>
+      <div class="grid g3">
+        {related.map((o) => (<a class="card" href={`/industries/${o.slug}/`}><span class="ico"><Icon name={o.icon} /></span><h3>{o.name}</h3><p>{o.short}</p><span class="more">Explore →</span></a>))}
+      </div>
+    </div>
+  </section>
+  <Cta title={`See A3Track for ${s.name.toLowerCase()}`} />
+</Base>

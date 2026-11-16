@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Cta from '../components/Cta.astro';
+import { site } from '../config/site';
+const crumbs = [{ name: 'About', href: '/about/' }];
+const values = [
+  { icon: 'shield', t: 'Safety first', d: 'Every feature is judged by one question: does it help someone get home safely?' },
+  { icon: 'chart', t: 'Clarity over complexity', d: 'We turn data into decisions. If a screen needs a manual, we redesign the screen.' },
+  { icon: 'lock', t: 'Trust is earned', d: 'Your data is yours. We protect it, never sell it and are transparent about how it is used.' },
+  { icon: 'leaf', t: 'Built to last', d: 'Durable hardware, stable APIs and software that improves over time. Efficiency is sustainability.' },
+];
+const about = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About A3Track', url: `${site.url}/about/`, mainEntity: { '@id': `${site.url}/#organization` } };
+---
+<Base title="About A3Track — Our Mission to Help the World Move Smarter" description="A3Track builds AI-powered GPS telematics and fleet intelligence software. Learn about our mission, values and the team helping fleets move smarter." crumbs={crumbs} schema={[about]}>
+  <PageHero crumbs={crumbs} eyebrow="About A3Track" title="We help the world move smarter" lead="A3Track exists to make every journey safer, cleaner and more efficient, by giving the people who run fleets the intelligence they need, when they need it." cta={false} />
+  <section class="section section--alt">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Our story</span>
+        <h2>Fleets run the real economy. They deserve better tools.</h2>
+        <p>Everything you eat, wear, build with and rely on reached you on a vehicle. Yet many of the people who run those vehicles still manage them with phone calls, paper and guesswork.</p>
+        <p>A3Track was founded to change that. We combine precise GPS tracking, connected sensors and applied AI in one platform that is powerful enough for the largest enterprise fleet and simple enough for a five-vehicle business.</p>
+        <p>We are headquartered in India, one of the most demanding fleet environments in the world, and we are building for fleets everywhere.</p>
+      </div>
+      <div class="reveal" style="--d:120ms">
+        <div class="card"><h3>Our mission</h3><p style="font-size:1.1rem;color:var(--text)">To make the movement of people and goods safer, more efficient and more sustainable through intelligent, trustworthy technology.</p></div>
+        <div class="card" style="margin-top:20px;height:auto"><h3>Our name</h3><p>A3Track stands for tracking <strong>Anything, Anywhere, Anytime</strong>: three A's and one simple promise.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">Values</span><h2>What we stand for</h2></div>
+      <div class="grid g4">{values.map((v, i) => (<div class="card reveal" style={`--d:${i * 80}ms`}><span class="ico"><Icon name={v.icon} /></span><h3>{v.t}</h3><p>{v.d}</p></div>))}</div>
+    </div>
+  </section>
+  <section class="section section--light">
+    <div class="container split">
+      <div class="reveal"><span class="eyebrow">Where we work</span><h2>Rooted in India, built for the world</h2><p>We serve fleets across India today and are expanding to international markets. The platform is multi-language, multi-currency and multi-regulation by design.</p></div>
+      <div class="reveal card" style="--d:100ms">
+        <h3>{site.legalName}</h3>
+        <p>{site.address.street}<br />{site.address.city}, {site.address.region} {site.address.postalCode}<br />{site.address.countryName}</p>
+        <p style="margin-top:12px"><a href={`tel:${site.phoneHref}`}>{site.phone}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      </div>
+    </div>
+  </section>
+  <Cta title="Let us show you what A3Track can do" />
+</Base>

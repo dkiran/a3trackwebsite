@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { solutions } from '../../data/solutions';
+import { getIndustry } from '../../data/industries';
+import { faqSchema, serviceSchema } from '../../lib';
+
+export function getStaticPaths() {
+  return solutions.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const path = `/solutions/${s.slug}/`;
+const crumbs = [{ name: 'Solutions', href: '/solutions/' }, { name: s.name, href: path }];
+const faqs = [s.definition, ...s.faqs];
+const others = solutions.filter((x) => x.slug !== s.slug).slice(0, 3);
+---
+<Base title={s.metaTitle} description={s.metaDescription} crumbs={crumbs} schema={[serviceSchema(s.name, s.metaDescription, path, s.name), faqSchema(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow={s.name} title={s.h1} lead={s.lead} />
+
+  <section class="section section--tight">
+    <div class="container"><div class="answer reveal"><h2>{s.definition.q}</h2><p>{s.definition.a}</p></div></div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">Capabilities</span><h2>What you get with A3Track {s.name}</h2></div>
+      <div class="grid g3">
+        {s.features.map((f, i) => (
+          <div class="card reveal" style={`--d:${(i % 3) * 80}ms`}><span class="ico"><Icon name={s.icon} /></span><h3>{f.title}</h3><p>{f.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">Outcomes</span><h2>The results fleets look for</h2></div>
+      <div class="grid g3">
+        {s.outcomes.map((o, i) => (<div class="card reveal" style={`--d:${i * 80}ms`}><h3>{o.title}</h3><p>{o.text}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">How it works</span><h2>Three steps from data to decision</h2></div>
+      <div class="grid g3">
+        {s.steps.map((o, i) => (<div class="card reveal" style={`--d:${i * 100}ms`}><span class="num">0{i + 1}</span><h3>{o.title}</h3><p>{o.text}</p></div>))}
+      </div>
+      <div class="reveal" style="margin-top:56px">
+        <h2 style="font-size:1.3rem">Popular in these industries</h2>
+        <div class="chips">
+          {s.industries.map((slug) => { const ind = getIndustry(slug); return <a class="chip" href={`/industries/${slug}/`}><Icon name={ind.icon} size={16} />{ind.name}</a>; })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">FAQ</span><h2>{s.name}: common questions</h2></div>
+      <Faq items={s.faqs} />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="head reveal"><h2>Related solutions</h2></div>
+      <div class="grid g3">
+        {others.map((o) => (<a class="card" href={`/solutions/${o.slug}/`}><span class="ico"><Icon name={o.icon} /></span><h3>{o.name}</h3><p>{o.short}</p><span class="more">Learn more →</span></a>))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

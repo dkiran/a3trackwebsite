@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { platformPages } from '../../data/platform';
+import { faqSchema } from '../../lib';
+export function getStaticPaths() { return platformPages.map((p) => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props;
+const path = `/platform/${p.slug}/`;
+const crumbs = [{ name: 'Platform', href: '/platform/' }, { name: p.name, href: path }];
+const faqs = [p.definition, ...p.faqs];
+const tones = ['section--alt', 'section--light', ''];
+---
+<Base title={p.metaTitle} description={p.metaDescription} crumbs={crumbs} schema={[faqSchema(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow={p.name} title={p.h1} lead={p.lead} />
+  <section class="section section--tight"><div class="container"><div class="answer reveal"><h2>{p.definition.q}</h2><p>{p.definition.a}</p></div></div></section>
+  {p.sections.map((sec, si) => (
+    <section class={`section ${tones[si % 3]}`}>
+      <div class="container">
+        <div class="head reveal"><h2>{sec.title}</h2><p class="lead">{sec.intro}</p></div>
+        <div class={`grid ${sec.items.length % 3 === 0 ? 'g3' : 'g2'}`}>
+          {sec.items.map((it, i) => (<div class="card reveal" style={`--d:${(i % 3) * 80}ms`}><span class="ico"><Icon name={p.icon} /></span><h3>{it.title}</h3><p>{it.text}</p></div>))}
+        </div>
+      </div>
+    </section>
+  ))}
+  <section class="section section--alt"><div class="container"><div class="head center reveal"><span class="eyebrow">FAQ</span><h2>Common questions</h2></div><Faq items={p.faqs} /></div></section>
+  <Cta />
+</Base>

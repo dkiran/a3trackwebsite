@@ -1,0 +1,15 @@
+---
+const { title = 'Ready to move smarter?', text = 'See A3Track on your own fleet. Get a personalised walkthrough and a tailored quote from our team.' } = Astro.props;
+---
+<section class="section section--tight">
+  <div class="container">
+    <div class="cta reveal">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn--primary" href="/contact/#demo">Request a demo</a>
+        <a class="btn btn--ghost" href="/roi-calculator/">Estimate your savings</a>
+      </div>
+    </div>
+  </div>
+</section>

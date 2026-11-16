@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { getCollection, render } from 'astro:content';
+import { site } from '../../config/site';
+import { faqSchema } from '../../lib';
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+const { post, posts } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const path = `/blog/${post.id}/`;
+const crumbs = [{ name: 'Blog', href: '/blog/' }, { name: d.title, href: path }];
+const article = {
+  '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.description,
+  datePublished: d.date.toISOString(), dateModified: (d.updated ?? d.date).toISOString(),
+  mainEntityOfPage: `${site.url}${path}`, image: `${site.url}/og-image.png`, articleSection: d.category, inLanguage: 'en',
+  author: { '@type': 'Organization', name: `${site.name} Editorial Team`, url: `${site.url}/about/` },
+  publisher: { '@id': `${site.url}/#organization` },
+};
+const more = posts.filter((p) => p.id !== post.id).sort((a, b) => Number(b.data.category === d.category) - Number(a.data.category === d.category)).slice(0, 3);
+---
+<Base title={d.title} description={d.description} crumbs={crumbs} ogType="article" schema={[article, ...(d.faqs.length ? [faqSchema(d.faqs)] : [])]}>
+  <PageHero crumbs={crumbs} eyebrow={d.category} title={d.title} lead={d.description} cta={false}>
+    <p style="color:var(--muted);font-size:.9rem;margin:0">By the A3Track Editorial Team · {d.readMinutes} min read</p>
+  </PageHero>
+  <article class="section section--alt" style="padding-top:48px">
+    <div class="container prose"><Content /></div>
+    {d.faqs.length > 0 && (
+      <div class="container" style="margin-top:64px"><div class="faq"><h2>Frequently asked questions</h2></div><Faq items={d.faqs} /></div>
+    )}
+  </article>
+  <section class="section">
+    <div class="container">
+      <div class="head"><h2>Keep reading</h2></div>
+      <div class="grid g3">{more.map((p) => (<a class="card" href={`/blog/${p.id}/`}><span class="chip" style="margin-bottom:16px;font-size:.78rem;padding:5px 11px">{p.data.category}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></a>))}</div>
+    </div>
+  </section>
+  <Cta />
+</Base>

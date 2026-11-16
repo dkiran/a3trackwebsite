@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import { glossary } from '../data/glossary';
+import { site } from '../config/site';
+const crumbs = [{ name: 'Glossary', href: '/glossary/' }];
+const letters = [...new Set(glossary.map((t) => t.term[0].toUpperCase()))];
+const schema = {
+  '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${site.url}/glossary/`, name: 'A3Track Telematics Glossary',
+  hasDefinedTerm: glossary.map((t) => ({ '@type': 'DefinedTerm', name: t.term, description: t.def, url: `${site.url}/glossary/#${t.id}`, inDefinedTermSet: `${site.url}/glossary/` })),
+};
+---
+<Base title="Telematics & Fleet Management Glossary" description="Plain-English definitions of GPS, telematics and fleet management terms: AIS-140, CAN bus, geofence, ADAS, DMS, ELD, OBD-II, video telematics and more." crumbs={crumbs} schema={[schema]}>
+  <PageHero crumbs={crumbs} eyebrow="Glossary" title="Telematics terms, plainly explained" lead={`${glossary.length} essential GPS, telematics and fleet management terms, defined in clear language.`} cta={false}>
+    <nav class="chips" aria-label="Jump to letter">{letters.map((l) => <a class="chip" href={`#letter-${l}`}>{l}</a>)}</nav>
+  </PageHero>
+  <section class="section section--alt" style="padding-top:48px">
+    <div class="container" style="max-width:900px">
+      {letters.map((l) => (
+        <div class="gl" id={`letter-${l}`}>
+          <h2 class="gl__l" aria-label={`Terms starting with ${l}`}>{l}</h2>
+          <dl>
+            {glossary.filter((t) => t.term[0].toUpperCase() === l).map((t) => (
+              <div class="gl__t" id={t.id}>
+                <dt><h3>{t.term}</h3></dt>
+                <dd>{t.def} {t.link && <a class="arrow-link" href={t.link}>Learn more</a>}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .gl { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .gl__l { font-size: 2.6rem; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0; }
+  dl { margin: 0; } dd { margin: 0; color: var(--muted); }
+  .gl__t { padding: 10px 0 18px; scroll-margin-top: 90px; } .gl__t h3 { margin-bottom: 6px; }
+  .gl__t:target { background: rgba(30, 230, 193, 0.07); border-radius: 12px; padding-inline: 14px; margin-inline: -14px; }
+  @media (max-width: 560px) { .gl { grid-template-columns: 1fr; } }
+</style>

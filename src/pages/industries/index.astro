@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { industries } from '../../data/industries';
+import { site } from '../../config/site';
+const crumbs = [{ name: 'Industries', href: '/industries/' }];
+const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Industries served by A3Track', itemListElement: industries.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${site.url}/industries/${s.slug}/` })) };
+---
+<Base title="GPS Tracking & Telematics Solutions by Industry" description="A3Track GPS telematics by industry: logistics, construction, mining, oil and gas, agriculture, public transport, school buses, delivery, rental, government and more." crumbs={crumbs} schema={[list]}>
+  <PageHero crumbs={crumbs} eyebrow="Industries" title="GPS telematics for every industry that moves" lead="The same intelligent platform, configured for the realities of your sector, from highway freight to mine sites, school runs to cash vans." />
+  <section class="section section--alt">
+    <div class="container grid g3">
+      {industries.map((s, i) => (
+        <a class="card reveal" style={`--d:${(i % 3) * 80}ms`} href={`/industries/${s.slug}/`}>
+          <span class="ico"><Icon name={s.icon} /></span><h2 style="font-size:1.25rem">{s.name}</h2><p>{s.short}</p><span class="more">Explore →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Cta title="Do not see your industry?" text="If it moves, A3Track can track it. Tell us about your operation and we will show you how." />
+</Base>
