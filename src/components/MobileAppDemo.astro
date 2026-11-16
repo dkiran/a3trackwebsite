@@ -1,0 +1,163 @@
+---
+// Animated A3Track mobile app (Android & iOS): cycles through four screens — live map, trip playback, alerts, reports.
+const { plate = 'AP09CC2318' } = Astro.props;
+const T = 4300; // ms per screen
+const screens = ['Map', 'Trips', 'Alerts', 'Reports'];
+const at = (i: number) => ({ 'data-at': i * T, ...(i < screens.length - 1 ? { 'data-off': (i + 1) * T } : {}) });
+const alerts = [
+  { tone: 'red', t: 'Overspeed · 92 km/h', s: `${plate} · ORR · 2 min ago` },
+  { tone: 'amber', t: 'Left Depot geofence', s: 'TS08UB4471 · 14 min ago' },
+  { tone: 'red', t: 'Fuel drain · 22 L', s: 'KA01MJ9025 · while parked' },
+  { tone: 'sky', t: 'Service due in 3 days', s: 'MH12QW7730 · 40,000 km' },
+];
+const bars = [46, 62, 54, 78, 66, 88, 72];
+---
+<div class="app" data-demo="18000" role="img" aria-label="Illustration of the A3Track mobile app for Android and iOS, cycling through four screens: a live map with a moving vehicle, a trip history playback, a list of alerts, and a reports dashboard.">
+  <div class="phone">
+    <div class="phone__screen">
+      <div class="app__status"><span>9:41</span><i></i></div>
+      <div class="app__head"><b>A3</b><strong>A3Track</strong><span class="app__title">{screens.map((s, i) => <em {...at(i)}>{s}</em>)}</span></div>
+      <div class="app__views">
+        <!-- 1. Live map -->
+        <div class="screen" {...at(0)}>
+          <svg viewBox="0 0 260 330" preserveAspectRatio="xMidYMid slice" class="map" aria-hidden="true">
+            <rect width="260" height="330" fill="#eaf0f7" />
+            <g fill="#d7ead3"><rect x="150" y="20" width="80" height="54" rx="8" /><rect x="14" y="238" width="70" height="46" rx="8" /></g>
+            <g fill="#dde6f1"><rect x="20" y="30" width="70" height="50" rx="8" /><rect x="170" y="210" width="72" height="56" rx="8" /></g>
+            <g fill="none" stroke-linecap="round">
+              <g stroke="#fff" stroke-width="9"><path d="M-10 110 H270" /><path d="M120 -10 V340" /><path d="M-10 300 L270 170" /></g>
+              <path d="M-10 250 C 50 240, 70 180, 120 170 S 200 150, 270 60" stroke="#c9d4e3" stroke-width="13" />
+              <path id="app-r1" d="M-10 250 C 50 240, 70 180, 120 170 S 200 150, 270 60" stroke="#fff" stroke-width="9" />
+              <path d="M-10 250 C 50 240, 70 180, 120 170 S 200 150, 270 60" stroke="#2563eb" stroke-width="4" class="flow" />
+            </g>
+            <g><circle r="11" fill="none" stroke="#2563eb" stroke-width="2" class="halo" /><circle r="10" fill="#fff" stroke="#2563eb" stroke-width="3.5" /><path d="M-3 -3.6 L4.2 0 L-3 3.6 Z" fill="#2563eb" /><animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#app-r1" /></animateMotion></g>
+            <g transform="translate(120 110)"><circle r="8" fill="#fff" stroke="#d99a1c" stroke-width="3" /></g>
+            <g transform="translate(200 250)"><circle r="8" fill="#fff" stroke="#94a3b8" stroke-width="3" /></g>
+          </svg>
+          <div class="sheet">
+            <div class="sheet__top"><strong>{plate}</strong><span class="pill pill--ok">Moving</span></div>
+            <small>ORR, Gachibowli · updated just now</small>
+            <div class="sheet__stats"><span><small>Speed</small><b>46 km/h</b></span><span><small>Fuel</small><b>62%</b></span><span><small>ETA</small><b>25 min</b></span></div>
+          </div>
+        </div>
+        <!-- 2. Trip playback -->
+        <div class="screen" {...at(1)}>
+          <svg viewBox="0 0 260 220" preserveAspectRatio="xMidYMid slice" class="map map--short" aria-hidden="true">
+            <rect width="260" height="220" fill="#eaf0f7" />
+            <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"><path d="M-10 60 H270" /><path d="M70 -10 V230" /><path d="M190 -10 V230" /><path d="M-10 190 L270 120" /></g>
+            <path d="M24 186 C 60 150, 60 100, 100 96 S 150 130, 180 90 S 210 40, 240 30" fill="none" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round" />
+            <path class="trip" d="M24 186 C 60 150, 60 100, 100 96 S 150 130, 180 90 S 210 40, 240 30" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" pathLength="100" />
+            <circle cx="24" cy="186" r="6" fill="#1f9d6e" stroke="#fff" stroke-width="2.5" /><circle cx="240" cy="30" r="6" fill="#0f172a" stroke="#fff" stroke-width="2.5" />
+            <circle cx="100" cy="96" r="4" fill="#d99a1c" stroke="#fff" stroke-width="2" /><circle cx="180" cy="90" r="4" fill="#d99a1c" stroke="#fff" stroke-width="2" />
+          </svg>
+          <div class="trip__panel">
+            <div class="sheet__top"><strong>Trip playback</strong><span class="pill">2×</span></div>
+            <div class="scrub"><i></i></div>
+            <div class="sheet__stats"><span><small>Distance</small><b>128 km</b></span><span><small>Duration</small><b>3 h 12 m</b></span><span><small>Stops</small><b>2</b></span></div>
+            <ul class="trip__log"><li><i class="d d--ok"></i>Depot · departed 06:10</li><li><i class="d d--amber"></i>Fuel stop · 14 min</li><li><i class="d"></i>Customer site · arrived 09:22</li></ul>
+          </div>
+        </div>
+        <!-- 3. Alerts -->
+        <div class="screen screen--pad" {...at(2)}>
+          <div class="seg"><span class="is-on">All</span><span>Safety</span><span>Fuel</span><span>Service</span></div>
+          <ul class="alerts">
+            {alerts.map((a, i) => (<li style={`--i:${i}`}><i class={`d d--${a.tone}`}></i><div><strong>{a.t}</strong><small>{a.s}</small></div></li>))}
+          </ul>
+        </div>
+        <!-- 4. Reports -->
+        <div class="screen screen--pad" {...at(3)}>
+          <div class="tiles"><div><small>Distance today</small><b>4,812 km</b></div><div><small>Fuel used</small><b>1,340 L</b></div><div><small>Safety score</small><b class="ok">92</b></div><div><small>Idle time</small><b>6 h 20 m</b></div></div>
+          <div class="chart"><small>Distance · last 7 days</small><div class="chart__bars">{bars.map((h, i) => <i style={`--h:${h}%;--i:${i}`}></i>)}</div></div>
+        </div>
+      </div>
+      <div class="app__nav">{screens.map((s, i) => <span {...at(i)}><i></i>{s}</span>)}</div>
+    </div>
+  </div>
+  <div class="stores"><span>Android</span><span>iOS</span></div>
+</div>
+
+<style>
+  .app { display: grid; justify-items: center; gap: 14px; letter-spacing: 0; }
+  .phone { width: min(100%, 300px); border-radius: 38px; padding: 9px; background: #0f172a; box-shadow: 0 40px 80px -40px rgba(15, 23, 42, 0.7), 0 0 0 1px rgba(15, 23, 42, 0.9); }
+  .phone__screen { border-radius: 30px; overflow: hidden; background: #fff; display: flex; flex-direction: column; color: #0f172a; font-size: 0.8rem; line-height: 1.35; }
+  .app__status { display: flex; justify-content: space-between; align-items: center; padding: 9px 18px 2px; font: 600 0.68rem/1 var(--font); }
+  .app__status i { width: 22px; height: 10px; border-radius: 3px; border: 1.5px solid #0f172a; position: relative; }
+  .app__status i::after { content: ''; position: absolute; inset: 1.5px; right: 5px; background: #0f172a; border-radius: 1px; }
+  .app__head { display: flex; align-items: center; gap: 8px; padding: 8px 14px 10px; border-bottom: 1px solid #e2e8f0; }
+  .app__head b { width: 24px; height: 24px; border-radius: 7px; background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: #fff; display: grid; place-items: center; font: 700 0.56rem/1 var(--font); }
+  .app__head strong { font-size: 0.9rem; }
+  .app__title { margin-left: auto; display: grid; color: #64748b; font-size: 0.74rem; }
+  .app__title em { grid-area: 1 / 1; font-style: normal; text-align: right; opacity: 0; transition: opacity .3s; }
+  .app__title em.on { opacity: 1; }
+  .app__views { position: relative; height: 400px; background: #f8fafc; }
+  .screen { position: absolute; inset: 0; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateX(26px); transition: opacity .45s, transform .45s cubic-bezier(.2, .8, .2, 1), visibility .45s; }
+  .screen.on { opacity: 1; visibility: visible; transform: none; }
+  .screen--pad { padding: 12px; gap: 10px; }
+  .map { flex: 1; min-height: 0; width: 100%; display: block; }
+  .map--short { flex: none; height: 190px; }
+  .flow { stroke-dasharray: 12 18; animation: app-flow 1s linear infinite; }
+  .halo { animation: app-halo 1.6s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+  .sheet, .trip__panel { background: #fff; padding: 12px 14px; border-top: 1px solid #e2e8f0; }
+  .sheet { border-radius: 16px 16px 0 0; margin-top: -14px; position: relative; box-shadow: 0 -10px 24px -16px rgba(15, 23, 42, 0.4); }
+  .screen.on .sheet { animation: app-up .6s .25s cubic-bezier(.2, .8, .2, 1) both; }
+  .trip__panel { flex: 1; }
+  .sheet__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .sheet__top strong { font-size: 0.92rem; }
+  .sheet small, .trip__panel small { color: #64748b; font-size: 0.66rem; }
+  .sheet__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
+  .sheet__stats span { background: #f1f5f9; border-radius: 9px; padding: 6px 8px; }
+  .sheet__stats small { display: block; }
+  .sheet__stats b { font-size: 0.8rem; white-space: nowrap; }
+  .pill { font: 600 0.62rem/1 var(--font); padding: 4px 8px; border-radius: 999px; background: #e2e8f0; color: #334155; }
+  .pill--ok { background: #dcfce7; color: #166534; }
+  .trip { stroke-dasharray: 100; stroke-dashoffset: 100; }
+  .screen.on .trip { animation: app-draw 3.2s .4s linear forwards; }
+  .scrub { height: 4px; border-radius: 4px; background: #e2e8f0; margin-top: 10px; overflow: hidden; }
+  .scrub i { display: block; height: 100%; width: 0; background: #2563eb; border-radius: 4px; }
+  .screen.on .scrub i { animation: app-fill 3.2s .4s linear forwards; }
+  .trip__log { margin-top: 10px; display: grid; gap: 6px; font-size: 0.72rem; color: #334155; }
+  .trip__log li { display: flex; align-items: center; gap: 8px; }
+  .d { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #94a3b8; display: inline-block; }
+  .d--ok { background: #1f9d6e; } .d--amber { background: #d99a1c; } .d--red { background: #e5484d; } .d--sky { background: #3b82f6; }
+  .seg { display: flex; gap: 6px; }
+  .seg span { font-size: 0.68rem; padding: 5px 10px; border-radius: 999px; background: #e2e8f0; color: #475569; }
+  .seg .is-on { background: #0f172a; color: #fff; }
+  .alerts { display: grid; gap: 8px; }
+  .alerts li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 12px; opacity: 0; }
+  .screen.on .alerts li { animation: app-in .5s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 280ms + 300ms); }
+  .alerts strong { display: block; font-size: 0.8rem; font-weight: 600; }
+  .alerts small { color: #64748b; font-size: 0.66rem; }
+  .alerts .d { width: 10px; height: 10px; box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.2); }
+  .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tiles div { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 12px; }
+  .tiles small, .chart small { display: block; color: #64748b; font-size: 0.64rem; }
+  .tiles b { font-size: 1rem; } .tiles b.ok { color: #15803d; }
+  .chart { flex: 1; min-height: 0; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; }
+  .chart__bars { flex: 1; display: flex; align-items: flex-end; gap: 8px; margin-top: 8px; }
+  .chart__bars i { flex: 1; height: var(--h); border-radius: 5px 5px 2px 2px; background: linear-gradient(180deg, #3b82f6, #1d4ed8); transform: scaleY(0); transform-origin: bottom; }
+  .screen.on .chart__bars i { animation: app-grow .7s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(var(--i) * 90ms + 300ms); }
+  .app__nav { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #e2e8f0; padding: 8px 6px 12px; background: #fff; }
+  .app__nav span { display: grid; justify-items: center; gap: 4px; font-size: 0.62rem; color: #94a3b8; transition: color .3s; }
+  .app__nav i { width: 18px; height: 18px; border-radius: 6px; background: #cbd5e1; transition: background .3s, transform .3s; }
+  .app__nav span.on { color: #1d4ed8; font-weight: 600; }
+  .app__nav span.on i { background: #2563eb; transform: translateY(-2px); }
+  .stores { display: flex; gap: 8px; }
+  .stores span { font: 500 0.78rem/1 var(--font); padding: 8px 14px; border-radius: 999px; background: #0f172a; color: #fff; }
+
+  /* Without JavaScript, show the first screen. */
+  :global(html:not(.js)) .screen:first-child, :global(html:not(.js)) .app__title em:first-child { opacity: 1; visibility: visible; transform: none; }
+
+  @keyframes app-flow { to { stroke-dashoffset: -30; } }
+  @keyframes app-halo { from { transform: scale(1); opacity: .9; } to { transform: scale(2.6); opacity: 0; } }
+  @keyframes app-up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes app-draw { to { stroke-dashoffset: 0; } }
+  @keyframes app-fill { to { width: 100%; } }
+  @keyframes app-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes app-grow { to { transform: scaleY(1); } }
+  @media (prefers-reduced-motion: reduce) { .alerts li { opacity: 1; } .chart__bars i { transform: none; } .trip { stroke-dashoffset: 0; } }
+</style>
+
+<script>
+  import { initStandaloneDemos } from '../scripts/demo';
+  initStandaloneDemos();
+</script>

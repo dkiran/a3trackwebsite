@@ -1,13 +1,15 @@
 ---
 // Animated ChatGPT integration: (1) install and connect the A3Track app, (2) ask fleet questions inside ChatGPT.
 const { plate = 'AP09CC2318' } = Astro.props;
-const late = [
-  { plate, route: 'Hyderabad → Vijayawada', delay: '+18 min' },
-  { plate: 'TS08UB4471', route: 'Hyderabad → Warangal', delay: '+32 min' },
-  { plate: 'KA01MJ9025', route: 'Bengaluru → Mysuru', delay: '+11 min' },
+const fuel = [
+  { plate, litres: '1,842', km: '6,263', kmpl: '3.4', fill: 'Today' },
+  { plate: 'TS08UB4471', litres: '1,695', km: '6,102', kmpl: '3.6', fill: 'Yesterday' },
+  { plate: 'MH12QW7730', litres: '1,580', km: '5,372', kmpl: '3.4', fill: '2 days ago' },
+  { plate: 'KA01MJ9025', litres: '1,412', km: '5,507', kmpl: '3.9', fill: 'Today' },
+  { plate: 'TN22BX1184', litres: '1,366', km: '5,601', kmpl: '4.1', fill: '3 days ago' },
 ];
 ---
-<div class="gpt" data-demo="22000" role="img" aria-label={`Illustration of the A3Track integration for ChatGPT. First the A3Track app is installed and connected in ChatGPT. Then the user asks ChatGPT which vehicles are running late and where ${plate} is, and ChatGPT answers with live fleet data and a map from A3Track.`}>
+<div class="gpt" data-demo="25000" role="img" aria-label={`Illustration of the A3Track integration for ChatGPT. First the A3Track app is installed and connected in ChatGPT. Then the user asks ChatGPT for the vehicle that consumed the most fuel this month, and ChatGPT replies with the top five vehicles, their fuel used, distance, mileage and last refill. The user then asks to see ${plate} on the map, and ChatGPT shows it with its fuel level.`}>
   <div class="gpt__bar"><span></span><span></span><span></span><em>ChatGPT</em><b data-at="3000"><i></i>A3Track connected</b></div>
   <div class="gpt__body">
     <!-- Step 1: install -->
@@ -35,20 +37,23 @@ const late = [
     <!-- Step 2: ask -->
     <div class="view chat" data-at="5600">
       <div class="chat__scroll">
-        <div class="row row--out" data-at="6300"><div class="q">Which of my vehicles are running late today?</div></div>
+        <div class="row row--out" data-at="6300"><div class="q">Get me the most fuel consumed vehicle this month.</div></div>
         <div class="row" data-at="7100" data-off="8700"><div class="tool"><i></i>Using A3Track…</div></div>
         <div class="row" data-at="8800">
           <div class="a">
-            <span class="a__src"><b>A3</b>A3Track · live data</span>
-            <p>3 of your 42 trips are running late:</p>
+            <span class="a__src"><b>A3</b>A3Track · live data · this month to date</span>
+            <p><strong>{plate}</strong> used the most fuel this month: 1,842 L over 6,263 km. Here are your top 5:</p>
             <table>
-              {late.map((r) => <tr><td><strong>{r.plate}</strong></td><td>{r.route}</td><td class="late">{r.delay}</td></tr>)}
+              <thead><tr><th>#</th><th>Vehicle</th><th>Fuel</th><th>Distance</th><th>Mileage</th><th class="hide-s">Last refill</th></tr></thead>
+              <tbody>
+                {fuel.map((r, i) => <tr style={`--i:${i}`}><td>{i + 1}</td><td><strong>{r.plate}</strong></td><td>{r.litres} L</td><td>{r.km} km</td><td>{r.kmpl} km/L</td><td class="hide-s">{r.fill}</td></tr>)}
+              </tbody>
             </table>
           </div>
         </div>
-        <div class="row row--out" data-at="12000"><div class="q">Show {plate} on the map with its fuel level.</div></div>
-        <div class="row" data-at="12800" data-off="14300"><div class="tool"><i></i>Using A3Track…</div></div>
-        <div class="row" data-at="14400">
+        <div class="row row--out" data-at="14600"><div class="q">Show {plate} on the map with its fuel level.</div></div>
+        <div class="row" data-at="15400" data-off="16900"><div class="tool"><i></i>Using A3Track…</div></div>
+        <div class="row" data-at="17000">
           <div class="a">
             <span class="a__src"><b>A3</b>A3Track · live data</span>
             <div class="mapcard">
@@ -120,10 +125,15 @@ const late = [
   .a p { margin: 6px 0 0; }
   .a__src { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; color: #6b7280; }
   .a__src b { width: 18px; height: 18px; border-radius: 5px; background: #2563eb; color: #fff; display: grid; place-items: center; font: 700 0.5rem/1 var(--font); }
-  .a table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.76rem; }
-  .a td { padding: 6px 4px; border-top: 1px solid #e5e7eb; white-space: nowrap; }
-  .a td:nth-child(2) { color: #6b7280; overflow: hidden; text-overflow: ellipsis; max-width: 0; width: 100%; }
-  .a td.late { color: #b45309; font-weight: 600; text-align: right; }
+  .a table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+  .a th { text-align: left; font-weight: 500; color: #6b7280; padding: 4px 4px; font-size: 0.64rem; white-space: nowrap; }
+  .a td { padding: 5px 4px; border-top: 1px solid #e5e7eb; white-space: nowrap; }
+  .a th:nth-child(n + 3), .a td:nth-child(n + 3) { text-align: right; }
+  .a td:first-child, .a th:first-child { color: #9ca3af; width: 1%; }
+  .a tbody tr:first-child td { background: #eff6ff; }
+  .row.on tbody tr { animation: gpt-in .4s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 140ms + 350ms); }
+  .row.on { max-height: 360px; }
+  @media (max-width: 480px) { .hide-s { display: none; } .a table { font-size: 0.66rem; } }
   .tool { display: inline-flex; align-items: center; gap: 8px; color: #6b7280; font-size: 0.76rem; }
   .tool i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #d1d5db; border-top-color: #2563eb; animation: gpt-spin .8s linear infinite; }
   .mapcard { margin-top: 6px; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }

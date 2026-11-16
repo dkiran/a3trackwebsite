@@ -22,7 +22,7 @@ export const platformPages: PlatformPage[] = [
       ] },
       { title: 'ChatGPT integration', intro: 'Already use ChatGPT? Bring your fleet into it. Install once, then ask fleet questions in the same place you ask everything else.', items: [
         { title: 'Install in a minute', text: 'Add the A3Track integration from inside ChatGPT, sign in to your A3Track account and approve what it may read. That is the whole setup.' },
-        { title: 'Ask in ChatGPT', text: '“Which of my vehicles are running late today?” ChatGPT calls A3Track, fetches the live data and answers in the conversation.' },
+        { title: 'Ask in ChatGPT', text: '“Get me the most fuel consumed vehicle this month.” ChatGPT calls A3Track and replies with your top vehicles, their fuel used, distance, mileage and last refill.' },
         { title: 'Maps, tables and numbers', text: 'Answers come back as a map of the vehicle, a table of trips or a short summary, whichever fits the question.' },
         { title: 'Combine with everything else', text: 'Ask ChatGPT to turn the week’s fleet data into an email to a customer, a summary for your manager or a plan for tomorrow.' },
         { title: 'Your permissions apply', text: 'ChatGPT sees only what your A3Track login is allowed to see, and you can disconnect it at any time.' },
