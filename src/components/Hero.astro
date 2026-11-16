@@ -1,11 +1,13 @@
 ---
 import LiveMapDemo from './LiveMapDemo.astro';
 import WhatsAppDemo from './WhatsAppDemo.astro';
+import ChatGPTDemo from './ChatGPTDemo.astro';
 import CallDemo from './CallDemo.astro';
 const slides = [
   { tab: 'Live map', title: 'One live view of your whole fleet', text: 'Track every vehicle, driver and asset in real time. AI flags risk, fuel waste and breakdowns as they happen.', href: '/platform/', cta: 'Explore the platform', ms: 8000 },
   { tab: 'WhatsApp', title: 'Your fleet, on WhatsApp', text: 'Type or send a voice message, in English or your own language: “Where is my vehicle AP09CC2318?” The AI agent answers in the same language, by text or voice, with the live map in the chat.', href: '/platform/ai-agent/', cta: 'See the AI agent', ms: 20000 },
-  { tab: 'AI calls', title: 'Call the AI agent, 24/7', text: 'Dial our AI call centre for the status of any vehicle. When an alert crosses your threshold, the agent calls you and escalates until someone answers. In English and regional languages.', href: '/platform/ai-agent/', cta: 'How AI calls work', ms: 12000 },
+  { tab: '24/7 AI agent', title: 'AI support agents, 24/7', text: 'Dial our AI call centre for the status of any vehicle. When an alert crosses your threshold, the agent calls you and escalates until someone answers. In English and regional languages.', href: '/platform/ai-agent/', cta: 'How AI calls work', ms: 12000 },
+  { tab: 'ChatGPT', title: 'Your fleet, inside ChatGPT', text: 'Install the A3Track integration for ChatGPT, sign in once, and ask in plain words. ChatGPT answers with your live fleet data: late trips, locations on the map, fuel, alerts and more.', href: '/platform/ai-agent/', cta: 'See the ChatGPT integration', ms: 21000 },
 ];
 ---
 <section class="hero" data-carousel>
@@ -41,6 +43,7 @@ const slides = [
         </div>
         <div class="slide" data-slide="1"><WhatsAppDemo /><p class="viz__note" style="text-align:center">Illustrative conversation</p></div>
         <div class="slide" data-slide="2"><CallDemo /><p class="viz__note" style="text-align:center">Illustrative call</p></div>
+        <div class="slide" data-slide="3"><ChatGPTDemo /><p class="viz__note">Illustrative. ChatGPT is a trademark of OpenAI.</p></div>
       </div>
     </div>
   </div>
@@ -67,6 +70,7 @@ const slides = [
   .cap h2 { font-size: clamp(1.3rem, 2.2vw, 1.75rem); margin-bottom: 8px; }
   .cap p { color: var(--muted); font-size: clamp(1.02rem, 1.4vw, 1.15rem); line-height: 1.45; max-width: 52ch; margin: 0; }
   .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  .tab { white-space: nowrap; }
   .tab { position: relative; overflow: hidden; border: 1px solid var(--line-strong); background: #fff; color: var(--muted); font: 500 0.9rem/1 var(--font); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, border-color .2s; }
   .tab:hover { color: var(--text); }
   .tab.is-active { color: #1d4ed8; border-color: #2563eb; }

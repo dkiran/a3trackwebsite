@@ -7,18 +7,26 @@ export interface PlatformPage {
 
 export const platformPages: PlatformPage[] = [
   {
-    slug: 'ai-agent', name: 'AI Agent: WhatsApp, Voice & Chat', icon: 'mic',
-    metaTitle: 'AI Fleet Agent on WhatsApp, Phone Call, Voice & Chat',
-    metaDescription: 'Ask the A3Track AI agent about your fleet on WhatsApp, by phone call, voice or chat. 24/7, in regional languages, with automated alert calls and escalation.',
+    slug: 'ai-agent', name: 'AI Agents: WhatsApp, Calls & ChatGPT', icon: 'mic',
+    metaTitle: 'AI Fleet Agent on WhatsApp, Phone Call & ChatGPT',
+    metaDescription: 'Ask about your fleet on WhatsApp, by phone call, in ChatGPT or in the app. A3Track AI agents answer 24/7 in regional languages and call you on alerts.',
     h1: 'Ask your fleet anything. On WhatsApp, by call or chat.',
     lead: 'The A3Track AI agents know your fleet. Message on WhatsApp, call the AI call centre or ask in the app, in your own language, and get the answer in seconds. They also call you when something needs attention.',
     definition: { q: 'What is an AI fleet agent?', a: 'An AI fleet agent is a conversational assistant connected to a fleet’s live telematics data. Fleet managers, dispatchers and owners ask it questions on WhatsApp, by phone call, or by voice or chat in the app, such as where a vehicle is, which trucks are running late or how much fuel was used last week, and it replies immediately with an answer drawn from real-time and historical fleet data. It can also place automated alert calls when thresholds are crossed and carry out routine tasks on request.' },
     sections: [
-      { title: 'Four ways to reach the agent', intro: 'Use whichever suits the moment. Every channel reaches the same agent and the same live fleet data.', items: [
+      { title: 'Four ways to reach the agent', intro: 'Use whichever suits the moment, or ask from inside ChatGPT. Every channel reaches the same live fleet data.', items: [
         { title: 'WhatsApp text and voice messages', text: 'Type “Where is my vehicle AP09CC2318?” or send a voice message, in English or your own language. The agent replies in the same language, by text or voice message, and shows the vehicle on a live map in the chat. No app to install and no login to remember.' },
         { title: 'Phone call', text: 'Dial the A3Track AI call centre and simply ask. The agent answers by voice with the location, speed, ETA or status of any vehicle you are authorised to see.' },
         { title: 'Voice in the app', text: 'Tap the microphone in the A3Track app and speak. The agent replies aloud and on screen, so you can check on your fleet hands-free.' },
         { title: 'Chat in the app', text: 'Type a question on the web dashboard or mobile app and get a clear written answer with charts, maps and links to the detail.' },
+      ] },
+      { title: 'ChatGPT integration', intro: 'Already use ChatGPT? Bring your fleet into it. Install once, then ask fleet questions in the same place you ask everything else.', items: [
+        { title: 'Install in a minute', text: 'Add the A3Track integration from inside ChatGPT, sign in to your A3Track account and approve what it may read. That is the whole setup.' },
+        { title: 'Ask in ChatGPT', text: '“Which of my vehicles are running late today?” ChatGPT calls A3Track, fetches the live data and answers in the conversation.' },
+        { title: 'Maps, tables and numbers', text: 'Answers come back as a map of the vehicle, a table of trips or a short summary, whichever fits the question.' },
+        { title: 'Combine with everything else', text: 'Ask ChatGPT to turn the week’s fleet data into an email to a customer, a summary for your manager or a plan for tomorrow.' },
+        { title: 'Your permissions apply', text: 'ChatGPT sees only what your A3Track login is allowed to see, and you can disconnect it at any time.' },
+        { title: 'Read-only by default', text: 'The integration reads fleet information. Any action that changes something asks for your confirmation first.' },
       ] },
       { title: 'The agent calls you when it matters', intro: 'Set a threshold once. The AI agent watches around the clock and phones the right person the moment it is crossed.', items: [
         { title: 'Threshold alerts', text: 'Choose what matters: overspeeding, harsh driving, fuel drain, route deviation, temperature out of range, long stoppage, geofence exit or an SOS button.' },
@@ -54,6 +62,7 @@ export const platformPages: PlatformPage[] = [
       { q: 'Can I send a voice message instead of typing?', a: 'Yes. Record a voice message on WhatsApp in your own language. The AI agent understands it, replies with a voice message you can listen to, and adds the map or the numbers on screen so you can see the answer as well as hear it.' },
       { q: 'Can I call and talk to the AI agent?', a: 'Yes. Call the A3Track AI call-centre number from your registered phone and ask in your own words. The agent tells you the location, speed, ETA or status of your vehicles, 24 hours a day.' },
       { q: 'Will the AI agent call me when there is an alert?', a: 'Yes. You set thresholds, for example overspeeding, fuel drain or a temperature limit. When one is crossed, the agent places an automated voice call to the responsible person and, if nobody answers or acknowledges, escalates to the next contact in the chain you define.' },
+      { q: 'Does A3Track work with ChatGPT?', a: 'Yes. Install the A3Track integration inside ChatGPT, sign in to your A3Track account and ask fleet questions in plain language, for example which vehicles are late, where a vehicle is or how much fuel was used. ChatGPT retrieves the answer from your live A3Track data and shows it in the conversation, including maps and tables.' },
       { q: 'Which languages does the AI agent support?', a: 'The agent works in English and in Indian regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali, and replies in the language you use. Ask our team for the current list.' },
       { q: 'What kinds of questions can the AI agent answer?', a: 'Questions about anything recorded in A3Track: live vehicle location and status, trips and ETAs, fuel use and idling, driver safety events and scores, maintenance and fault codes, alerts, geofences and documents.' },
       { q: 'Is it secure? Can anyone ask about my vehicles?', a: 'No. The agent only responds to registered phone numbers and applies the same roles and vehicle permissions as the rest of the platform, so people only hear and see what they are allowed to.' },
@@ -134,7 +143,7 @@ export const platformPages: PlatformPage[] = [
         { title: 'Webhooks', text: 'Receive events such as geofence entry, harsh braking or fault codes the moment they happen.' },
         { title: 'Data streaming and exports', text: 'Scheduled exports and streaming to your data warehouse for BI and data science.' },
         { title: 'Single sign-on', text: 'SAML and OpenID Connect for central identity and access control.' },
-        { title: 'Embeddable maps and links', text: 'Add live tracking to your customer portal or share secure tracking links.' },
+                { title: 'ChatGPT integration', text: 'Install A3Track inside ChatGPT and ask fleet questions in plain language, answered from your live data.' },
         { title: 'Developer tools', text: 'Sandbox environment, API keys with scopes, and clear documentation with examples.' },
       ] },
       { title: 'Common integrations', intro: 'What customers connect most often.', items: [

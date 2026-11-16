@@ -1,0 +1,161 @@
+---
+// Animated ChatGPT integration: (1) install and connect the A3Track app, (2) ask fleet questions inside ChatGPT.
+const { plate = 'AP09CC2318' } = Astro.props;
+const late = [
+  { plate, route: 'Hyderabad → Vijayawada', delay: '+18 min' },
+  { plate: 'TS08UB4471', route: 'Hyderabad → Warangal', delay: '+32 min' },
+  { plate: 'KA01MJ9025', route: 'Bengaluru → Mysuru', delay: '+11 min' },
+];
+---
+<div class="gpt" data-demo="22000" role="img" aria-label={`Illustration of the A3Track integration for ChatGPT. First the A3Track app is installed and connected in ChatGPT. Then the user asks ChatGPT which vehicles are running late and where ${plate} is, and ChatGPT answers with live fleet data and a map from A3Track.`}>
+  <div class="gpt__bar"><span></span><span></span><span></span><em>ChatGPT</em><b data-at="3000"><i></i>A3Track connected</b></div>
+  <div class="gpt__body">
+    <!-- Step 1: install -->
+    <div class="view install" data-at="0" data-off="5600">
+      <small class="install__crumb">Apps &amp; connectors</small>
+      <div class="install__card">
+        <span class="install__logo">A3</span>
+        <div class="install__meta"><strong>A3Track</strong><small>Fleet tracking and intelligence, inside ChatGPT</small></div>
+        <span class="install__btn">
+          <span data-at="0" data-off="1300">Install</span>
+          <span class="is-busy" data-at="1300" data-off="3000">Connecting…</span>
+          <span class="is-done" data-at="3000">Connected ✓</span>
+        </span>
+      </div>
+      <div class="install__progress" data-at="1300" data-off="3000"><i></i></div>
+      <ul class="install__perms">
+        <li data-at="1700"><i></i>Sign in to your A3Track account</li>
+        <li data-at="2200"><i></i>Read live vehicle location, trips and ETAs</li>
+        <li data-at="2700"><i></i>Read fuel, driver safety, maintenance and alerts</li>
+      </ul>
+      <p class="install__ok" data-at="3400">Ready. Ask ChatGPT anything about your fleet.</p>
+      <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8-6 1.5-2.5 6z" fill="#0f172a" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" /></svg>
+    </div>
+
+    <!-- Step 2: ask -->
+    <div class="view chat" data-at="5600">
+      <div class="chat__scroll">
+        <div class="row row--out" data-at="6300"><div class="q">Which of my vehicles are running late today?</div></div>
+        <div class="row" data-at="7100" data-off="8700"><div class="tool"><i></i>Using A3Track…</div></div>
+        <div class="row" data-at="8800">
+          <div class="a">
+            <span class="a__src"><b>A3</b>A3Track · live data</span>
+            <p>3 of your 42 trips are running late:</p>
+            <table>
+              {late.map((r) => <tr><td><strong>{r.plate}</strong></td><td>{r.route}</td><td class="late">{r.delay}</td></tr>)}
+            </table>
+          </div>
+        </div>
+        <div class="row row--out" data-at="12000"><div class="q">Show {plate} on the map with its fuel level.</div></div>
+        <div class="row" data-at="12800" data-off="14300"><div class="tool"><i></i>Using A3Track…</div></div>
+        <div class="row" data-at="14400">
+          <div class="a">
+            <span class="a__src"><b>A3</b>A3Track · live data</span>
+            <div class="mapcard">
+              <svg viewBox="0 0 300 96" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="300" height="96" fill="#e8eef5" />
+                <g stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"><path d="M-10 70 H310" /><path d="M90 -10 V110" /><path d="M220 -10 V110" /><path d="M-10 8 L310 56" /></g>
+                <g fill="#d5e6d3"><rect x="104" y="4" width="70" height="20" rx="4" /><rect x="236" y="78" width="54" height="14" rx="4" /></g>
+                <g fill="#dbe4f0"><rect x="10" y="26" width="60" height="28" rx="4" /></g>
+                <path class="gpt__route" d="M-6 70 H90 V30 L220 50 V70" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="100" />
+                <g transform="translate(220 70)"><circle class="gpt__ping" r="7" fill="none" stroke="#2563eb" stroke-width="2" /><circle r="7" fill="#2563eb" stroke="#fff" stroke-width="3" /></g>
+              </svg>
+              <div class="mapcard__stats"><span><small>Speed</small><b>46 km/h</b></span><span><small>Fuel</small><b>62%</b></span><span><small>ETA</small><b>25 min</b></span></div>
+            </div>
+            <p>{plate} is near Gachibowli, Hyderabad, moving at 46 km/h with 62% fuel (148 L).</p>
+          </div>
+        </div>
+      </div>
+      <div class="composer"><span>Ask anything</span><i></i></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gpt { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid rgba(15, 23, 42, 0.16); box-shadow: 0 50px 100px -50px rgba(15, 23, 42, 0.6), 0 12px 30px -18px rgba(15, 23, 42, 0.3); letter-spacing: 0; color: #0f172a; font-size: 0.84rem; line-height: 1.4; }
+  .gpt__bar { display: flex; align-items: center; gap: 6px; padding: 11px 14px; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
+  .gpt__bar span { width: 9px; height: 9px; border-radius: 50%; background: #d1d5db; }
+  .gpt__bar em { margin-left: 10px; font: 600 0.86rem/1 var(--font); font-style: normal; color: #111827; }
+  .gpt__bar b { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 500 0.68rem/1 var(--font); color: #166534; background: #dcfce7; padding: 5px 9px; border-radius: 999px; opacity: 0; transform: translateY(-4px); transition: opacity .4s, transform .4s; }
+  .gpt__bar b.on { opacity: 1; transform: none; }
+  .gpt__bar b i { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
+  .gpt__body { position: relative; height: 430px; }
+  .view { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
+  .view.on { opacity: 1; visibility: visible; }
+
+  .install { padding: 26px clamp(16px, 5%, 34px); }
+  .install__crumb { display: block; color: #6b7280; font-size: 0.72rem; margin-bottom: 12px; }
+  .install__card { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 14px; box-shadow: 0 10px 24px -18px rgba(15, 23, 42, 0.5); }
+  .install__logo { flex: none; width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: #fff; display: grid; place-items: center; font: 700 0.9rem/1 var(--font); }
+  .install__meta { flex: 1; min-width: 0; }
+  .install__meta strong { display: block; font-size: 0.98rem; }
+  .install__meta small { display: block; color: #6b7280; font-size: 0.72rem; }
+  .install__btn { flex: none; display: grid; }
+  .install__btn span { grid-area: 1 / 1; padding: 9px 16px; border-radius: 999px; background: #111827; color: #fff; font: 500 0.8rem/1 var(--font); white-space: nowrap; text-align: center; opacity: 0; visibility: hidden; }
+  .install__btn span.on { opacity: 1; visibility: visible; }
+  .install__btn .is-busy { background: #e5e7eb; color: #374151; }
+  .install__btn .is-done { background: #dcfce7; color: #166534; }
+  .install__progress { height: 4px; border-radius: 4px; background: #e5e7eb; margin: 14px 2px 0; overflow: hidden; opacity: 0; }
+  .install__progress.on { opacity: 1; }
+  .install__progress i { display: block; height: 100%; width: 0; background: #2563eb; border-radius: 4px; }
+  .install__progress.on i { animation: gpt-fill 1.6s ease-out forwards; }
+  .install__perms { margin: 18px 2px 0; display: grid; gap: 10px; }
+  .install__perms li { display: flex; align-items: center; gap: 10px; color: #374151; font-size: 0.8rem; opacity: 0; transform: translateX(-8px); transition: opacity .4s, transform .4s; }
+  .install__perms li.on { opacity: 1; transform: none; }
+  .install__perms i { flex: none; width: 16px; height: 16px; border-radius: 50%; background: #16a34a; position: relative; }
+  .install__perms i::after { content: ''; position: absolute; left: 5.5px; top: 3px; width: 4px; height: 7px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .install__ok { margin: 20px 2px 0; font-weight: 600; opacity: 0; transition: opacity .5s; }
+  .install__ok.on { opacity: 1; }
+  .cursor { position: absolute; width: 22px; height: 22px; right: 22%; top: 62%; opacity: 0; }
+  .gpt.play .cursor { animation: gpt-cursor 1.9s ease-in-out forwards; }
+
+  .chat { display: flex; flex-direction: column; }
+  .chat__scroll { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 clamp(12px, 4%, 22px) 6px; }
+  .row { display: flex; flex: none; overflow: hidden; max-height: 0; opacity: 0; }
+  .row--out { justify-content: flex-end; }
+  .row.on { max-height: 320px; opacity: 1; padding-top: 10px; transition: max-height .5s cubic-bezier(.2, .8, .2, 1), opacity .35s .1s, padding-top .3s; }
+  .row.on > * { animation: gpt-in .45s cubic-bezier(.2, .8, .2, 1) both; }
+  .q { max-width: 82%; background: #f3f4f6; padding: 9px 14px; border-radius: 18px; }
+  .a { width: 100%; }
+  .a p { margin: 6px 0 0; }
+  .a__src { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; color: #6b7280; }
+  .a__src b { width: 18px; height: 18px; border-radius: 5px; background: #2563eb; color: #fff; display: grid; place-items: center; font: 700 0.5rem/1 var(--font); }
+  .a table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.76rem; }
+  .a td { padding: 6px 4px; border-top: 1px solid #e5e7eb; white-space: nowrap; }
+  .a td:nth-child(2) { color: #6b7280; overflow: hidden; text-overflow: ellipsis; max-width: 0; width: 100%; }
+  .a td.late { color: #b45309; font-weight: 600; text-align: right; }
+  .tool { display: inline-flex; align-items: center; gap: 8px; color: #6b7280; font-size: 0.76rem; }
+  .tool i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #d1d5db; border-top-color: #2563eb; animation: gpt-spin .8s linear infinite; }
+  .mapcard { margin-top: 6px; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+  .mapcard svg { display: block; width: 100%; height: 104px; }
+  .mapcard__stats { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .mapcard__stats span { padding: 7px 10px; border-left: 1px solid #e5e7eb; }
+  .mapcard__stats span:first-child { border-left: 0; }
+  .mapcard__stats small { display: block; font-size: 0.62rem; color: #6b7280; }
+  .mapcard__stats b { font-size: 0.82rem; }
+  .composer { flex: none; display: flex; align-items: center; gap: 8px; margin: 6px clamp(12px, 4%, 22px) 14px; padding: 8px 8px 8px 16px; border: 1px solid #e5e7eb; border-radius: 999px; box-shadow: 0 6px 16px -12px rgba(15, 23, 42, 0.5); color: #9ca3af; }
+  .composer span { flex: 1; }
+  .composer i { width: 28px; height: 28px; border-radius: 50%; background: #111827; }
+  .gpt__route { stroke-dasharray: 100; stroke-dashoffset: 100; }
+  .row.on .gpt__route { animation: gpt-draw 1.4s .3s ease-out forwards; }
+  .gpt__ping { animation: gpt-ping 1.8s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+
+  /* Without JavaScript, show the finished chat. */
+  :global(html:not(.js)) .chat { opacity: 1; visibility: visible; }
+  :global(html:not(.js)) .row:not([data-off]) { max-height: none; opacity: 1; padding-top: 10px; }
+  :global(html:not(.js)) .gpt__route { stroke-dashoffset: 0; }
+  :global(html:not(.js)) .gpt__bar b { opacity: 1; transform: none; }
+
+  @keyframes gpt-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes gpt-fill { to { width: 100%; } }
+  @keyframes gpt-spin { to { transform: rotate(360deg); } }
+  @keyframes gpt-draw { to { stroke-dashoffset: 0; } }
+  @keyframes gpt-ping { from { transform: scale(1); opacity: .9; } to { transform: scale(3); opacity: 0; } }
+  @keyframes gpt-cursor { 0% { opacity: 0; right: 22%; top: 62%; } 15% { opacity: 1; } 55% { right: 9%; top: 24%; transform: scale(1); } 63% { transform: scale(.82); } 72% { transform: scale(1); opacity: 1; right: 9%; top: 24%; } 100% { opacity: 0; right: 9%; top: 24%; } }
+  @media (prefers-reduced-motion: reduce) { .gpt__route { stroke-dashoffset: 0; } .cursor { display: none; } }
+</style>
+
+<script>
+  import { initStandaloneDemos } from '../scripts/demo';
+  initStandaloneDemos();
+</script>

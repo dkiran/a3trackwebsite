@@ -43,7 +43,7 @@ export const site = {
 export const nav = {
   platform: [
     { href: '/platform/', label: 'Platform overview', desc: 'One connected operations cloud' },
-    { href: '/platform/ai-agent/', label: 'AI agents: WhatsApp, call & chat', desc: 'Ask your fleet anything, 24/7' },
+    { href: '/platform/ai-agent/', label: 'AI agents: WhatsApp, calls & ChatGPT', desc: 'Ask your fleet anything, 24/7' },
     { href: '/platform/ai-fleet-intelligence/', label: 'AI fleet intelligence', desc: 'Predict, prioritise, automate' },
     { href: '/platform/hardware/', label: 'Hardware & devices', desc: 'Trackers, dash cams, sensors' },
     { href: '/platform/integrations/', label: 'Integrations & API', desc: 'Connect ERP, TMS and more' },
