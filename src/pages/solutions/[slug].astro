@@ -26,7 +26,7 @@ const others = solutions.filter((x) => x.slug !== s.slug).slice(0, 3);
 
   <section class="section section--alt">
     <div class="container">
-      <div class="head reveal"><span class="eyebrow">Capabilities</span><h2>What you get with A3Track {s.name}</h2></div>
+      <div class="head reveal"><span class="eyebrow">Capabilities</span><h2>What you get with Veyro {s.name}</h2></div>
       <div class="grid g3">
         {s.features.map((f, i) => (
           <div class="card reveal" style={`--d:${(i % 3) * 80}ms`}><span class="ico"><Icon name={s.icon} /></span><h3>{f.title}</h3><p>{f.text}</p></div>

@@ -59,4 +59,4 @@ The battery is the most valuable component of an EV. Monitoring charging habits 
 
 Compare energy cost per kilometre, maintenance cost and downtime between electric and conventional vehicles using the same reports. Emissions avoided can be calculated from distance and fuel data for sustainability reporting.
 
-A3Track supports electric, hybrid and conventional vehicles on one platform. Explore [fuel and energy management](/solutions/fuel-management/) or [last-mile delivery](/industries/last-mile-delivery/).
+Veyro supports electric, hybrid and conventional vehicles on one platform. Explore [fuel and energy management](/solutions/fuel-management/) or [last-mile delivery](/industries/last-mile-delivery/).

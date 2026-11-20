@@ -3,15 +3,15 @@
 // ⚠ Everything marked DUMMY is placeholder data — replace before launch.
 // ─────────────────────────────────────────────────────────────────────────
 export const site = {
-  name: 'A3Track',
-  legalName: 'A3Track Technologies Pvt. Ltd.', // DUMMY
-  url: 'https://a3track.com',
+  name: 'Veyro',
+  legalName: 'Veyro Technologies Pvt. Ltd.', // DUMMY
+  url: 'https://veyro.com',
   tagline: 'Move Smarter.',
   description:
-    'A3Track is an AI-powered GPS telematics and fleet intelligence platform. Track vehicles and assets in real time, improve driver safety, cut fuel costs and automate compliance, with AI agents on WhatsApp, phone call and chat, 24/7 in regional languages.',
-  email: 'hello@a3track.com', // DUMMY
-  salesEmail: 'sales@a3track.com', // DUMMY
-  supportEmail: 'support@a3track.com', // DUMMY
+    'Veyro is an AI-powered GPS telematics and fleet intelligence platform. Track vehicles and assets in real time, improve driver safety, cut fuel costs and automate compliance, with AI agents on WhatsApp, phone call and chat, 24/7 in regional languages.',
+  email: 'hello@veyro.com', // DUMMY
+  salesEmail: 'sales@veyro.com', // DUMMY
+  supportEmail: 'support@veyro.com', // DUMMY
   phone: '+91 80 0000 0000', // DUMMY
   phoneHref: '+918000000000', // DUMMY
   aiCallNumber: '1800 000 0000', // DUMMY — AI agent call-centre number
@@ -29,9 +29,9 @@ export const site = {
   },
   social: {
     // DUMMY — replace with real profiles (used in Organization schema "sameAs")
-    linkedin: 'https://www.linkedin.com/company/a3track',
-    x: 'https://x.com/a3track',
-    youtube: 'https://www.youtube.com/@a3track',
+    linkedin: 'https://www.linkedin.com/company/veyro',
+    x: 'https://x.com/veyro',
+    youtube: 'https://www.youtube.com/@veyro',
   },
   // Paste the Google Search Console HTML-tag verification code here (content value only).
   googleSiteVerification: '',
@@ -54,6 +54,6 @@ export const nav = {
     { href: '/glossary/', label: 'Telematics glossary', desc: 'Every term, plainly explained' },
     { href: '/roi-calculator/', label: 'ROI calculator', desc: 'Estimate your savings' },
     { href: '/faq/', label: 'FAQ', desc: 'Quick answers' },
-    { href: '/about/', label: 'About A3Track', desc: 'Our mission' },
+    { href: '/about/', label: 'About Veyro', desc: 'Our mission' },
   ],
 };

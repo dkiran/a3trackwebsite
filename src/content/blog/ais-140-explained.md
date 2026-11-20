@@ -47,6 +47,6 @@ A device must be tested and certified by an authorised testing agency, and the d
 
 ## Turning compliance into value
 
-A device fitted only for compliance is a cost. The same data can power live tracking, driver safety scoring, fuel analysis and maintenance planning. A3Track is designed to work with AIS-140 devices so that operators get full fleet intelligence from hardware they are already required to install.
+A device fitted only for compliance is a cost. The same data can power live tracking, driver safety scoring, fuel analysis and maintenance planning. Veyro is designed to work with AIS-140 devices so that operators get full fleet intelligence from hardware they are already required to install.
 
-Learn more about [compliance with A3Track](/solutions/compliance/) or see how we support [public transport](/industries/public-transport/) and [school bus](/industries/school-buses/) fleets.
+Learn more about [compliance with Veyro](/solutions/compliance/) or see how we support [public transport](/industries/public-transport/) and [school bus](/industries/school-buses/) fleets.

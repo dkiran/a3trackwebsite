@@ -6,9 +6,9 @@ import Cta from '../../components/Cta.astro';
 import { industries } from '../../data/industries';
 import { site } from '../../config/site';
 const crumbs = [{ name: 'Industries', href: '/industries/' }];
-const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Industries served by A3Track', itemListElement: industries.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${site.url}/industries/${s.slug}/` })) };
+const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Industries served by Veyro', itemListElement: industries.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${site.url}/industries/${s.slug}/` })) };
 ---
-<Base title="GPS Tracking & Telematics Solutions by Industry" description="A3Track GPS telematics by industry: logistics, construction, mining, oil and gas, agriculture, public transport, school buses, delivery, rental, government and more." crumbs={crumbs} schema={[list]}>
+<Base title="GPS Tracking & Telematics Solutions by Industry" description="Veyro GPS telematics by industry: logistics, construction, mining, oil and gas, agriculture, public transport, school buses, delivery, rental, government and more." crumbs={crumbs} schema={[list]}>
   <PageHero crumbs={crumbs} eyebrow="Industries" title="GPS telematics for every industry that moves" lead="The same intelligent platform, configured for the realities of your sector, from highway freight to mine sites, school runs to cash vans." />
   <section class="section section--alt">
     <div class="container grid g3">
@@ -19,5 +19,5 @@ const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Ind
       ))}
     </div>
   </section>
-  <Cta title="Do not see your industry?" text="If it moves, A3Track can track it. Tell us about your operation and we will show you how." />
+  <Cta title="Do not see your industry?" text="If it moves, Veyro can track it. Tell us about your operation and we will show you how." />
 </Base>

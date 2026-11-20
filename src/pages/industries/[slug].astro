@@ -18,7 +18,7 @@ const others = industries.filter((x) => x.slug !== s.slug);
 const idx = industries.findIndex((x) => x.slug === s.slug);
 const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
 ---
-<Base title={s.metaTitle} description={s.metaDescription} crumbs={crumbs} schema={[serviceSchema(`A3Track for ${s.name}`, s.metaDescription, path, `GPS telematics for ${s.name}`), faqSchema(s.faqs)]}>
+<Base title={s.metaTitle} description={s.metaDescription} crumbs={crumbs} schema={[serviceSchema(`Veyro for ${s.name}`, s.metaDescription, path, `GPS telematics for ${s.name}`), faqSchema(s.faqs)]}>
   <PageHero crumbs={crumbs} eyebrow={s.name} title={s.h1} lead={s.lead} />
 
   <section class="section section--alt">
@@ -32,7 +32,7 @@ const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
 
   <section class="section">
     <div class="container">
-      <div class="head reveal"><span class="eyebrow">The A3Track answer</span><h2>How A3Track helps</h2></div>
+      <div class="head reveal"><span class="eyebrow">The Veyro answer</span><h2>How Veyro helps</h2></div>
       <div class="grid g2">
         {s.capabilities.map((c, i) => { const sol = getSolution(c.solution); return (
           <a class="card reveal" style={`--d:${(i % 2) * 80}ms`} href={`/solutions/${sol.slug}/`}>
@@ -47,7 +47,7 @@ const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
     <div class="container split">
       <div class="reveal">
         <span class="eyebrow">Use cases</span>
-        <h2>Common ways teams in this industry use A3Track</h2>
+        <h2>Common ways teams in this industry use Veyro</h2>
         <p>Every deployment is configured around your operation. These are the workflows customers in this sector ask for most often.</p>
       </div>
       <ul class="checks reveal" style="--d:100ms">{s.useCases.map((u) => <li>{u}</li>)}</ul>
@@ -69,5 +69,5 @@ const related = [0, 1, 2].map((k) => others[(idx + k) % others.length]);
       </div>
     </div>
   </section>
-  <Cta title="See A3Track for your industry" />
+  <Cta title="See Veyro for your industry" />
 </Base>

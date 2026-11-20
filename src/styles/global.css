@@ -99,7 +99,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--text); font: 600 1.35rem/1 var(--display); letter-spacing: -0.03em; }
 .logo:hover { color: var(--text); }
 .logo svg { width: 34px; height: 34px; }
-.logo b { font-weight: 600; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.logo__text { display: grid; gap: 3px; }
+.logo__name { font: 650 1.4rem/1 var(--display); letter-spacing: -0.035em; }
+.logo__tag { font: 600 0.62rem/1 var(--font); letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-2); }
+.footer .logo__tag { color: var(--teal); }
+@media (max-width: 420px) { .header .logo__tag { display: none; } }
 .nav { display: flex; align-items: center; gap: 4px; }
 .nav__item { position: relative; }
 .nav__link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; color: var(--text); font-weight: 500; font-size: 0.95rem; background: none; border: 0; cursor: pointer; font-family: inherit; border-radius: 8px; }

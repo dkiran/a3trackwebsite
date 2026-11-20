@@ -65,4 +65,4 @@ Cameras work best with driver support. Explain the purpose openly, emphasise exo
 - Over-the-air updates for AI models
 - Support for additional cameras where needed
 
-See how A3Track approaches [AI dash cams and video telematics](/solutions/ai-dash-cams/) and [driver safety](/solutions/driver-safety/).
+See how Veyro approaches [AI dash cams and video telematics](/solutions/ai-dash-cams/) and [driver safety](/solutions/driver-safety/).

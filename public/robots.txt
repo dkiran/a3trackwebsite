@@ -1,4 +1,4 @@
-# A3Track — https://a3track.com
+# Veyro — https://veyro.com
 User-agent: *
 Allow: /
 Disallow: /api/
@@ -20,4 +20,4 @@ User-agent: Bingbot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://a3track.com/sitemap-index.xml
+Sitemap: https://veyro.com/sitemap-index.xml

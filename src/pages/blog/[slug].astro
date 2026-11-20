@@ -26,7 +26,7 @@ const more = posts.filter((p) => p.id !== post.id).sort((a, b) => Number(b.data.
 ---
 <Base title={d.title} description={d.description} crumbs={crumbs} ogType="article" schema={[article, ...(d.faqs.length ? [faqSchema(d.faqs)] : [])]}>
   <PageHero crumbs={crumbs} eyebrow={d.category} title={d.title} lead={d.description} cta={false}>
-    <p style="color:var(--muted);font-size:.9rem;margin:0">By the A3Track Editorial Team · {d.readMinutes} min read</p>
+    <p style="color:var(--muted);font-size:.9rem;margin:0">By the Veyro Editorial Team · {d.readMinutes} min read</p>
   </PageHero>
   <article class="section section--alt" style="padding-top:48px">
     <div class="container prose"><Content /></div>

@@ -15,7 +15,7 @@ const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.dat
 const software = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'A3Track Fleet Intelligence Platform',
+  name: 'Veyro Fleet Intelligence Platform',
   applicationCategory: 'BusinessApplication',
   applicationSubCategory: 'Fleet management and GPS telematics software',
   operatingSystem: 'Web, iOS, Android',
@@ -25,9 +25,9 @@ const software = {
   featureList: solutions.map((s) => s.name),
 };
 const why = [
-  { icon: 'brain', title: 'AI at the core', text: 'Not dashboards to dig through. A3Track surfaces the few things that need attention today and recommends the next step.' },
+  { icon: 'brain', title: 'AI at the core', text: 'Not dashboards to dig through. Veyro surfaces the few things that need attention today and recommends the next step.' },
   { icon: 'globe', title: 'One platform, every asset', text: 'Vehicles, trailers, machines, cameras and sensors in one place, with one login and one data model.' },
-  { icon: 'plug', title: 'Open by design', text: 'A documented API and webhooks connect A3Track to your ERP, TMS and BI tools. Your data stays yours.' },
+  { icon: 'plug', title: 'Open by design', text: 'A documented API and webhooks connect Veyro to your ERP, TMS and BI tools. Your data stays yours.' },
   { icon: 'lock', title: 'Enterprise-grade security', text: 'Encryption in transit and at rest, single sign-on, granular roles and complete audit trails.' },
   { icon: 'chip', title: 'Hardware that lasts', text: 'Rugged, certified devices with over-the-air updates, so the fleet you install today keeps improving.' },
   { icon: 'users', title: 'People who pick up', text: 'Guided onboarding, training and responsive support from specialists who understand fleet operations.' },
@@ -39,7 +39,7 @@ const nums = [
   { n: 24, s: '/7', label: 'live visibility on web and mobile' },
 ];
 ---
-<Base fullTitle title="A3Track — AI-Powered GPS Telematics & Fleet Management Platform" description="A3Track is the AI-powered GPS telematics platform for fleets. Real-time vehicle tracking, AI dash cams, fuel monitoring, maintenance and compliance. Move Smarter." schema={[software, faqSchema(homeFaqs)]}>
+<Base fullTitle title="Veyro — Move Smarter. AI GPS Telematics & Fleet Management" description="Veyro is the AI-powered GPS telematics platform for fleets. Real-time vehicle tracking, AI dash cams, fuel monitoring, maintenance and compliance. Move Smarter." schema={[software, faqSchema(homeFaqs)]}>
   <Hero />
 
   <section class="strip" aria-label="Industries served">
@@ -55,9 +55,9 @@ const nums = [
   <section class="section">
     <div class="container">
       <div class="answer reveal">
-        <h2>What is A3Track?</h2>
+        <h2>What is Veyro?</h2>
         <p>
-          A3Track is an AI-powered GPS telematics and fleet intelligence platform. It connects GPS trackers, AI dash cams
+          Veyro is an AI-powered GPS telematics and fleet intelligence platform. It connects GPS trackers, AI dash cams
           and sensors in your vehicles and assets to cloud software that shows where everything is in real time, detects
           risk and waste automatically, and helps your team dispatch faster, drive safer, spend less on fuel and
           maintenance and stay compliant. Built-in AI agents answer questions about your fleet instantly on WhatsApp, by phone call, voice or chat,
@@ -92,19 +92,19 @@ const nums = [
       <div class="reveal">
         <span class="eyebrow">AI agents: WhatsApp, calls and ChatGPT</span>
         <h2>Ask your fleet anything. Just message, call or talk.</h2>
-        <p class="lead">No reports to build, no menus to learn. A3Track AI agents answer in seconds from your live fleet data, 24/7, in English and regional languages.</p>
+        <p class="lead">No reports to build, no menus to learn. Veyro AI agents answer in seconds from your live fleet data, 24/7, in English and regional languages.</p>
         <ul class="checks" style="margin:24px 0 28px">
           <li><strong>WhatsApp.</strong> Type or send a voice message, in your own language: “Where is my vehicle AP09CC2318?” Get the answer by text, voice and live map.</li>
           <li><strong>Phone call.</strong> Dial the AI call centre and ask for the status of any vehicle. The agent answers by voice.</li>
           <li><strong>Alert calls that escalate.</strong> When a threshold you set is crossed, the agent calls the right person and escalates until someone answers.</li>
-          <li><strong>ChatGPT integration.</strong> Install A3Track in ChatGPT and ask about late trips, locations, fuel and alerts without leaving it.</li>
+          <li><strong>ChatGPT integration.</strong> Install Veyro in ChatGPT and ask about late trips, locations, fuel and alerts without leaving it.</li>
         </ul>
-        <div class="btn-row"><a class="btn btn--primary" href="/platform/ai-agent/">Meet the AI agent</a><a class="btn btn--ghost" href="/platform/ai-fleet-intelligence/">How A3Track AI works</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="/platform/ai-agent/">Meet the AI agent</a><a class="btn btn--ghost" href="/platform/ai-fleet-intelligence/">How Veyro AI works</a></div>
       </div>
       <div class="aipanel reveal" style="--d:120ms" aria-hidden="true" translate="no">
         <div class="aipanel__q"><span>You</span>Which vehicles need attention this week?</div>
         <div class="aipanel__a">
-          <span class="aipanel__tag">A3Track AI</span>
+          <span class="aipanel__tag">Veyro AI</span>
           <p>Three vehicles need attention:</p>
           <ul>
             <li><i style="--c:var(--red)"></i><div><strong>Bus 77</strong><small>Battery voltage trending down. Service within 5 days.</small></div><b>High</b></li>
@@ -128,7 +128,7 @@ const nums = [
       <div class="head center reveal">
         <span class="eyebrow">Industries</span>
         <h2>Built for the way your industry moves</h2>
-        <p class="lead">Every sector runs its fleet differently. A3Track ships with workflows, reports and alerts tuned to yours.</p>
+        <p class="lead">Every sector runs its fleet differently. Veyro ships with workflows, reports and alerts tuned to yours.</p>
       </div>
       <div class="grid g4">
         {industries.map((s, i) => (
@@ -148,7 +148,7 @@ const nums = [
         {nums.map((x) => (<div><strong><span data-count={x.n}>{x.n}</span>{x.s}</strong><span>{x.label}</span></div>))}
       </div>
       <div class="head center reveal" style="margin-top:clamp(56px,8vw,96px)">
-        <span class="eyebrow">Why A3Track</span>
+        <span class="eyebrow">Why Veyro</span>
         <h2>A platform you will not outgrow</h2>
         <p class="lead">Designed for the next decade of fleet operations: electric, connected, automated and accountable.</p>
       </div>
@@ -170,7 +170,7 @@ const nums = [
       </div>
       <div class="grid g3">
         {[
-          ['Connect', 'Install A3Track devices in your vehicles and assets, or connect compatible hardware you already own.'],
+          ['Connect', 'Install Veyro devices in your vehicles and assets, or connect compatible hardware you already own.'],
           ['See', 'Location, video, fuel, engine and sensor data stream to one secure cloud platform on web and mobile.'],
           ['Act', 'AI-prioritised alerts, reports and automations help every team make better decisions, every day.'],
         ].map(([t, d], i) => (

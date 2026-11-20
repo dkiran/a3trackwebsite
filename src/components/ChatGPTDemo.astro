@@ -1,5 +1,5 @@
 ---
-// Animated ChatGPT integration: (1) install and connect the A3Track app, (2) ask fleet questions inside ChatGPT.
+// Animated ChatGPT integration: (1) install and connect the Veyro app, (2) ask fleet questions inside ChatGPT.
 const { plate = 'AP09CC2318' } = Astro.props;
 const fuel = [
   { plate, litres: '1,842', km: '6,263', kmpl: '3.4', fill: 'Today' },
@@ -9,15 +9,15 @@ const fuel = [
   { plate: 'TN22BX1184', litres: '1,366', km: '5,601', kmpl: '4.1', fill: '3 days ago' },
 ];
 ---
-<div translate="no" class="gpt" data-demo="25000" role="img" aria-label={`Illustration of the A3Track integration for ChatGPT. First the A3Track app is installed and connected in ChatGPT. Then the user asks ChatGPT for the vehicle that consumed the most fuel this month, and ChatGPT replies with the top five vehicles, their fuel used, distance, mileage and last refill. The user then asks to see ${plate} on the map, and ChatGPT shows it with its fuel level.`}>
-  <div class="gpt__bar"><span></span><span></span><span></span><em>ChatGPT</em><b data-at="3000"><i></i>A3Track connected</b></div>
+<div translate="no" class="gpt" data-demo="25000" role="img" aria-label={`Illustration of the Veyro integration for ChatGPT. First the Veyro app is installed and connected in ChatGPT. Then the user asks ChatGPT for the vehicle that consumed the most fuel this month, and ChatGPT replies with the top five vehicles, their fuel used, distance, mileage and last refill. The user then asks to see ${plate} on the map, and ChatGPT shows it with its fuel level.`}>
+  <div class="gpt__bar"><span></span><span></span><span></span><em>ChatGPT</em><b data-at="3000"><i></i>Veyro connected</b></div>
   <div class="gpt__body">
     <!-- Step 1: install -->
     <div class="view install" data-at="0" data-off="5600">
       <small class="install__crumb">Apps &amp; connectors</small>
       <div class="install__card">
-        <span class="install__logo">A3</span>
-        <div class="install__meta"><strong>A3Track</strong><small>Fleet tracking and intelligence, inside ChatGPT</small></div>
+        <span class="install__logo">V</span>
+        <div class="install__meta"><strong>Veyro</strong><small>Fleet tracking and intelligence, inside ChatGPT</small></div>
         <span class="install__btn">
           <span data-at="0" data-off="1300">Install</span>
           <span class="is-busy" data-at="1300" data-off="3000">Connecting…</span>
@@ -26,7 +26,7 @@ const fuel = [
       </div>
       <div class="install__progress" data-at="1300" data-off="3000"><i></i></div>
       <ul class="install__perms">
-        <li data-at="1700"><i></i>Sign in to your A3Track account</li>
+        <li data-at="1700"><i></i>Sign in to your Veyro account</li>
         <li data-at="2200"><i></i>Read live vehicle location, trips and ETAs</li>
         <li data-at="2700"><i></i>Read fuel, driver safety, maintenance and alerts</li>
       </ul>
@@ -38,10 +38,10 @@ const fuel = [
     <div class="view chat" data-at="5600">
       <div class="chat__scroll">
         <div class="row row--out" data-at="6300"><div class="q">Get me the most fuel consumed vehicle this month.</div></div>
-        <div class="row" data-at="7100" data-off="8700"><div class="tool"><i></i>Using A3Track…</div></div>
+        <div class="row" data-at="7100" data-off="8700"><div class="tool"><i></i>Using Veyro…</div></div>
         <div class="row" data-at="8800">
           <div class="a">
-            <span class="a__src"><b>A3</b>A3Track · live data · this month to date</span>
+            <span class="a__src"><b>V</b>Veyro · live data · this month to date</span>
             <p><strong>{plate}</strong> used the most fuel this month: 1,842 L over 6,263 km. Here are your top 5:</p>
             <table>
               <thead><tr><th>#</th><th>Vehicle</th><th>Fuel</th><th>Distance</th><th>Mileage</th><th class="hide-s">Last refill</th></tr></thead>
@@ -52,10 +52,10 @@ const fuel = [
           </div>
         </div>
         <div class="row row--out" data-at="14600"><div class="q">Show {plate} on the map with its fuel level.</div></div>
-        <div class="row" data-at="15400" data-off="16900"><div class="tool"><i></i>Using A3Track…</div></div>
+        <div class="row" data-at="15400" data-off="16900"><div class="tool"><i></i>Using Veyro…</div></div>
         <div class="row" data-at="17000">
           <div class="a">
-            <span class="a__src"><b>A3</b>A3Track · live data</span>
+            <span class="a__src"><b>V</b>Veyro · live data</span>
             <div class="mapcard">
               <svg viewBox="0 0 300 96" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="300" height="96" fill="#e8eef5" />

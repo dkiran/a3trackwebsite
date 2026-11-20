@@ -66,4 +66,4 @@ Track a small set of indicators monthly: events per 1,000 km, collisions, coachi
 
 Telematics and AI video make the programme measurable and scalable. They show where risk is concentrated, automate alerts and document progress for customers and insurers. They do not replace leadership.
 
-Explore [A3Track driver safety](/solutions/driver-safety/) and [AI dash cams](/solutions/ai-dash-cams/).
+Explore [Veyro driver safety](/solutions/driver-safety/) and [AI dash cams](/solutions/ai-dash-cams/).

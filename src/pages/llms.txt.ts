@@ -29,7 +29,7 @@ ${posts.map((p) => `- [${p.data.title}](${u(`/blog/${p.id}/`)}): ${p.data.descri
 
 ## Reference
 - [Telematics glossary](${u('/glossary/')}): Definitions of GPS, telematics and fleet management terms.
-- [FAQ](${u('/faq/')}): Answers to common questions about A3Track and GPS fleet tracking.
+- [FAQ](${u('/faq/')}): Answers to common questions about Veyro and GPS fleet tracking.
 - [ROI calculator](${u('/roi-calculator/')}): Estimate savings from fleet telematics.
 - [Pricing](${u('/pricing/')}): Per-vehicle subscription plans; quote on request.
 

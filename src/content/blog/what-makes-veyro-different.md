@@ -1,23 +1,23 @@
 ---
-title: "What Makes A3Track Different: 6 Things Most GPS Tracking Systems Do Not Do"
-description: "Six ways A3Track goes beyond a typical GPS tracking system: WhatsApp and voice AI agents, regional languages, alert calls that escalate, ChatGPT access and more."
+title: "What Makes Veyro Different: 6 Things Most GPS Tracking Systems Do Not Do"
+description: "Six ways Veyro goes beyond a typical GPS tracking system: WhatsApp and voice AI agents, regional languages, alert calls that escalate, ChatGPT access and more."
 category: "Comparisons"
 date: 2026-11-15
 readMinutes: 5
 faqs:
-  - q: "How is A3Track different from a normal GPS tracking system?"
-    a: "A typical GPS tracking system shows vehicles on a map and sends app notifications. A3Track adds AI agents you can reach on WhatsApp, by phone call, in ChatGPT and in the app, in regional languages, and the agents call you and escalate when an alert threshold is crossed."
+  - q: "How is Veyro different from a normal GPS tracking system?"
+    a: "A typical GPS tracking system shows vehicles on a map and sends app notifications. Veyro adds AI agents you can reach on WhatsApp, by phone call, in ChatGPT and in the app, in regional languages, and the agents call you and escalate when an alert threshold is crossed."
   - q: "Do I still get a normal dashboard and mobile app?"
-    a: "Yes. A3Track includes a full web dashboard and mobile apps for Android and iOS. The AI agents are an additional, faster way to get the same information."
+    a: "Yes. Veyro includes a full web dashboard and mobile apps for Android and iOS. The AI agents are an additional, faster way to get the same information."
 ---
 
-**A typical GPS tracking system gives you a map, some reports and app notifications. A3Track gives you those too, and then removes the need to open them: you ask an AI agent, in your own language, on the channel you already use.**
+**A typical GPS tracking system gives you a map, some reports and app notifications. Veyro gives you those too, and then removes the need to open them: you ask an AI agent, in your own language, on the channel you already use.**
 
 Here is what that means in practice.
 
-## A typical GPS tracking system compared with A3Track
+## A typical GPS tracking system compared with Veyro
 
-| What you want | Typical GPS tracking system | A3Track |
+| What you want | Typical GPS tracking system | Veyro |
 |---|---|---|
 | Find a vehicle | Open the app, search, read the map | Message or say "Where is my vehicle?" and get the map back |
 | Ask a question | Build or find a report | Ask in plain words on WhatsApp, a call, ChatGPT or the app |
@@ -40,7 +40,7 @@ Type or speak in English or in regional languages such as Hindi, Telugu, Tamil, 
 
 ## 4. You can phone it
 
-Call the A3Track AI call centre and ask for any vehicle's status. The agent recognises your registered number, checks what you are allowed to see and answers by voice, at any hour.
+Call the Veyro AI call centre and ask for any vehicle's status. The agent recognises your registered number, checks what you are allowed to see and answers by voice, at any hour.
 
 ## 5. It calls you when something is wrong
 
@@ -48,11 +48,11 @@ Set thresholds for what matters: overspeeding, fuel drain, route deviation, temp
 
 ## 6. It works inside ChatGPT
 
-If you already use ChatGPT, install the A3Track integration and ask there: "Get me the most fuel consumed vehicle this month." ChatGPT replies with your top vehicles, fuel used, distance and mileage from your live data.
+If you already use ChatGPT, install the Veyro integration and ask there: "Get me the most fuel consumed vehicle this month." ChatGPT replies with your top vehicles, fuel used, distance and mileage from your live data.
 
 ## What has not changed
 
-The foundations still matter, and A3Track covers them: accurate real-time tracking, AI dash cams, fuel monitoring, maintenance, compliance, a full dashboard, Android and iOS apps and an open API. The difference is that you no longer have to go looking for the answer.
+The foundations still matter, and Veyro covers them: accurate real-time tracking, AI dash cams, fuel monitoring, maintenance, compliance, a full dashboard, Android and iOS apps and an open API. The difference is that you no longer have to go looking for the answer.
 
 ## How to check any vendor's claims, including ours
 
@@ -61,4 +61,4 @@ The foundations still matter, and A3Track covers them: accurate real-time tracki
 - Test in the language your team actually uses.
 - Trigger a test alert and see who gets called.
 
-Want to compare with specific vendors? Read [A3Track vs Samsara vs Geotab](/blog/a3track-vs-samsara-vs-geotab/). Or see the [AI agents](/platform/ai-agent/) and [request a demo](/contact/#demo).
+Want to compare with specific vendors? Read [Veyro vs Samsara vs Geotab](/blog/veyro-vs-samsara-vs-geotab/). Or see the [AI agents](/platform/ai-agent/) and [request a demo](/contact/#demo).

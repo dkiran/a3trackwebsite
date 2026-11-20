@@ -62,4 +62,4 @@ Test on a small, representative group of vehicles for a few weeks. Involve the p
 
 Fleets are becoming electric, connected and increasingly automated. Choose a platform with an open API, regular updates and AI at its core, so it can grow with you.
 
-See what the [A3Track platform](/platform/) includes, review [pricing](/pricing/) or [request a demo](/contact/#demo).
+See what the [Veyro platform](/platform/) includes, review [pricing](/pricing/) or [request a demo](/contact/#demo).

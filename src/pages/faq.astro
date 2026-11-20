@@ -9,8 +9,8 @@ const crumbs = [{ name: 'FAQ', href: '/faq/' }];
 const seen = new Set<string>();
 const all = faqGroups.flatMap((g) => g.items).filter((f) => !seen.has(f.q) && seen.add(f.q));
 ---
-<Base title="GPS Tracking & Telematics FAQ" description="Answers to common questions about A3Track, GPS fleet tracking, AI in fleet management, hardware, deployment, pricing, security and privacy." crumbs={crumbs} schema={[faqSchema(all)]}>
-  <PageHero crumbs={crumbs} eyebrow="FAQ" title="Questions, answered plainly" lead="Everything people ask us about GPS telematics and A3Track. Cannot find your answer? Our team is one message away." cta={false} />
+<Base title="GPS Tracking & Telematics FAQ" description="Answers to common questions about Veyro, GPS fleet tracking, AI in fleet management, hardware, deployment, pricing, security and privacy." crumbs={crumbs} schema={[faqSchema(all)]}>
+  <PageHero crumbs={crumbs} eyebrow="FAQ" title="Questions, answered plainly" lead="Everything people ask us about GPS telematics and Veyro. Cannot find your answer? Our team is one message away." cta={false} />
   {faqGroups.map((g, i) => (
     <section class={`section section--tight ${i % 2 ? '' : 'section--alt'}`}>
       <div class="container"><div class="faq" style="margin-bottom:8px"><h2 class="reveal">{g.title}</h2></div><Faq items={g.items} /></div>

@@ -1,4 +1,4 @@
-// A3Track demo-request mailer.
+// Veyro demo-request mailer.
 // Listens on 127.0.0.1 only; nginx proxies POST /api/demo to it.
 // Configure with environment variables (see .env.example).
 import http from 'node:http';
@@ -8,7 +8,7 @@ const env = process.env;
 const PORT = Number(env.PORT || 8787);
 const MAIL_TO = env.MAIL_TO;
 const MAIL_FROM = env.MAIL_FROM;
-const ALLOWED_ORIGINS = (env.ALLOWED_ORIGINS || 'https://a3track.com,https://www.a3track.com').split(',').map((s) => s.trim());
+const ALLOWED_ORIGINS = (env.ALLOWED_ORIGINS || 'https://veyro.com,https://www.veyro.com').split(',').map((s) => s.trim());
 const DRY_RUN = env.DRY_RUN === '1'; // log instead of sending (local testing)
 
 if (!DRY_RUN && (!MAIL_TO || !MAIL_FROM || !env.SMTP_HOST)) {
@@ -73,7 +73,7 @@ const server = http.createServer((req, res) => {
       from: MAIL_FROM, to: MAIL_TO, replyTo: f.email,
       subject: `New demo request: ${f.company} (${f.fleetSize || 'fleet size n/a'})`,
       text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
-      html: `<h2>New A3Track demo request</h2><table cellpadding="6" style="border-collapse:collapse">${rows.map(([k, v]) => `<tr><td style="border:1px solid #ddd"><b>${k}</b></td><td style="border:1px solid #ddd">${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table>`,
+      html: `<h2>New Veyro demo request</h2><table cellpadding="6" style="border-collapse:collapse">${rows.map(([k, v]) => `<tr><td style="border:1px solid #ddd"><b>${k}</b></td><td style="border:1px solid #ddd">${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table>`,
     };
     try {
       if (DRY_RUN) console.log('[DRY_RUN] would send:', mail.subject, '\n' + mail.text);

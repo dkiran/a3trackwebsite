@@ -56,4 +56,4 @@ AI models learn what is normal for each vehicle and flag deviations, giving the 
 
 Use preventive maintenance as the baseline and add predictive alerts where the data supports it. The combination delivers the fewest surprises at the lowest cost.
 
-Learn about [A3Track predictive maintenance](/solutions/predictive-maintenance/).
+Learn about [Veyro predictive maintenance](/solutions/predictive-maintenance/).

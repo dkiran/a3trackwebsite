@@ -7,7 +7,7 @@ import { site } from '../config/site';
 const crumbs = [{ name: 'Glossary', href: '/glossary/' }];
 const letters = [...new Set(glossary.map((t) => t.term[0].toUpperCase()))];
 const schema = {
-  '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${site.url}/glossary/`, name: 'A3Track Telematics Glossary',
+  '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': `${site.url}/glossary/`, name: 'Veyro Telematics Glossary',
   hasDefinedTerm: glossary.map((t) => ({ '@type': 'DefinedTerm', name: t.term, description: t.def, url: `${site.url}/glossary/#${t.id}`, inDefinedTermSet: `${site.url}/glossary/` })),
 };
 ---

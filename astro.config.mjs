@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://a3track.com',
+  site: 'https://veyro.com',
   trailingSlash: 'always',
   build: { format: 'directory', inlineStylesheets: 'auto' },
   integrations: [

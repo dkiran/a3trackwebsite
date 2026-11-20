@@ -24,9 +24,9 @@ export const solutions: Solution[] = [
     short: 'Live location, trips and status for every vehicle on one map.',
     metaTitle: 'GPS Fleet Tracking Software — Real-Time Vehicle Tracking',
     metaDescription:
-      'Real-time GPS fleet tracking from A3Track: live vehicle location, trip history, geofences and instant alerts on one map. Built for fleets of 5 to 50,000.',
+      'Real-time GPS fleet tracking from Veyro: live vehicle location, trip history, geofences and instant alerts on one map. Built for fleets of 5 to 50,000.',
     h1: 'Real-time GPS fleet tracking that tells you what to do next',
-    lead: 'See every vehicle, driver and job on a single live map. A3Track turns raw GPS data into clear answers: who is closest, who is late, who is idling and why.',
+    lead: 'See every vehicle, driver and job on a single live map. Veyro turns raw GPS data into clear answers: who is closest, who is late, who is idling and why.',
     definition: {
       q: 'What is GPS fleet tracking?',
       a: 'GPS fleet tracking is the use of satellite-positioning devices installed in vehicles, combined with cloud software, to show where each vehicle is, where it has been and how it is being driven. Fleet managers use it to dispatch faster, reduce fuel and idle time, prevent unauthorised use and prove service delivery.',
@@ -46,14 +46,14 @@ export const solutions: Solution[] = [
     ],
     steps: [
       { title: 'Install', text: 'Plug-in or wired trackers go into each vehicle, usually in minutes.' },
-      { title: 'Connect', text: 'Devices send position, ignition and sensor data over the mobile network to the A3Track cloud.' },
+      { title: 'Connect', text: 'Devices send position, ignition and sensor data over the mobile network to the Veyro cloud.' },
       { title: 'Act', text: 'Dashboards, alerts and AI recommendations turn that data into decisions on web and mobile.' },
     ],
     faqs: [
-      { q: 'How accurate is GPS vehicle tracking?', a: 'Modern multi-constellation trackers are typically accurate to within a few metres under open sky. Accuracy can drop in tunnels, underground parking and dense urban canyons, where A3Track devices use motion sensors and last-known position to fill gaps.' },
+      { q: 'How accurate is GPS vehicle tracking?', a: 'Modern multi-constellation trackers are typically accurate to within a few metres under open sky. Accuracy can drop in tunnels, underground parking and dense urban canyons, where Veyro devices use motion sensors and last-known position to fill gaps.' },
       { q: 'Does GPS tracking work without mobile network coverage?', a: 'Yes. The tracker keeps recording positions to its internal memory when there is no network and uploads them automatically once coverage returns, so trip history stays complete.' },
       { q: 'How often does the vehicle location update?', a: 'Update frequency is configurable. Moving vehicles typically report every few seconds, with additional updates on turns, harsh events and ignition changes so routes are drawn precisely.' },
-      { q: 'Can I track cars, trucks, bikes and equipment together?', a: 'Yes. A3Track supports mixed fleets, including two-wheelers, cars, vans, trucks, buses, trailers and powered or unpowered equipment, on the same map and reports.' },
+      { q: 'Can I track cars, trucks, bikes and equipment together?', a: 'Yes. Veyro supports mixed fleets, including two-wheelers, cars, vans, trucks, buses, trailers and powered or unpowered equipment, on the same map and reports.' },
     ],
     industries: ['transportation-logistics', 'last-mile-delivery', 'field-services', 'car-rental-leasing'],
   },
@@ -64,7 +64,7 @@ export const solutions: Solution[] = [
     short: 'Road and driver-facing AI cameras that detect risk and capture evidence.',
     metaTitle: 'AI Dash Cams & Video Telematics for Fleets',
     metaDescription:
-      'A3Track AI dash cams detect distraction, drowsiness, tailgating and collisions in real time, coach drivers in-cab and upload video evidence automatically.',
+      'Veyro AI dash cams detect distraction, drowsiness, tailgating and collisions in real time, coach drivers in-cab and upload video evidence automatically.',
     h1: 'AI dash cams that prevent incidents, not just record them',
     lead: 'On-device AI watches the road and the cab, warns the driver in the moment and sends you only the clips that matter, matched to GPS and vehicle data.',
     definition: {
@@ -92,7 +92,7 @@ export const solutions: Solution[] = [
     faqs: [
       { q: 'Do AI dash cams record all the time?', a: 'They record continuously to local storage while the vehicle is on, but only upload short clips around detected events or when a manager requests footage. This keeps data costs low and protects privacy.' },
       { q: 'Do AI dash cams work at night?', a: 'Yes. Driver-facing cameras use infrared illumination to see the cab in darkness, and road-facing cameras use wide-dynamic-range sensors for low-light and headlight glare.' },
-      { q: 'Will drivers accept in-cab cameras?', a: 'Acceptance is highest when the programme is explained as protection for drivers, privacy settings are clear and footage is used for fair coaching and exoneration rather than punishment. A3Track includes configurable privacy modes to support that approach.' },
+      { q: 'Will drivers accept in-cab cameras?', a: 'Acceptance is highest when the programme is explained as protection for drivers, privacy settings are clear and footage is used for fair coaching and exoneration rather than punishment. Veyro includes configurable privacy modes to support that approach.' },
     ],
     industries: ['transportation-logistics', 'public-transport', 'school-buses', 'security-cash-in-transit'],
   },
@@ -103,9 +103,9 @@ export const solutions: Solution[] = [
     short: 'Driver scorecards, in-cab alerts and coaching workflows that reduce risk.',
     metaTitle: 'Driver Safety & Behaviour Monitoring Software',
     metaDescription:
-      'Reduce accidents with A3Track driver safety: behaviour scoring for speeding, harsh braking and distraction, real-time in-cab alerts and guided coaching.',
+      'Reduce accidents with Veyro driver safety: behaviour scoring for speeding, harsh braking and distraction, real-time in-cab alerts and guided coaching.',
     h1: 'Build a safety culture drivers actually buy into',
-    lead: 'Measure driving behaviour fairly, coach in the moment and recognise your best drivers. A3Track turns safety from a quarterly report into a daily habit.',
+    lead: 'Measure driving behaviour fairly, coach in the moment and recognise your best drivers. Veyro turns safety from a quarterly report into a daily habit.',
     definition: {
       q: 'What is driver behaviour monitoring?',
       a: 'Driver behaviour monitoring uses telematics sensors and AI cameras to measure how a vehicle is driven: speeding, harsh braking, harsh acceleration, sharp cornering, idling, seat-belt use and distraction. The data is combined into a driver safety score used for coaching, recognition and risk management.',
@@ -129,8 +129,8 @@ export const solutions: Solution[] = [
       { title: 'Improve', text: 'Automated nudges and manager-led coaching close the loop.' },
     ],
     faqs: [
-      { q: 'How is a driver safety score calculated?', a: 'A3Track counts risky events such as speeding, harsh braking and distraction, weights them by severity and divides by distance driven. The result is a 0–100 score that can be compared across drivers, vehicles and depots.' },
-      { q: 'Can drivers see their own scores?', a: 'Yes. The A3Track driver app shows each driver their score, recent events and tips, which encourages self-correction without a manager needing to intervene.' },
+      { q: 'How is a driver safety score calculated?', a: 'Veyro counts risky events such as speeding, harsh braking and distraction, weights them by severity and divides by distance driven. The result is a 0–100 score that can be compared across drivers, vehicles and depots.' },
+      { q: 'Can drivers see their own scores?', a: 'Yes. The Veyro driver app shows each driver their score, recent events and tips, which encourages self-correction without a manager needing to intervene.' },
       { q: 'Does driver monitoring really reduce accidents?', a: 'Fleets that combine real-time in-cab alerts with regular, constructive coaching consistently report fewer risky events and collisions. Results depend on programme design and management follow-through.' },
     ],
     industries: ['transportation-logistics', 'school-buses', 'oil-gas', 'mining'],
@@ -142,9 +142,9 @@ export const solutions: Solution[] = [
     short: 'Monitor fuel level, consumption, theft and idling across the fleet.',
     metaTitle: 'Fuel Management System & Fuel Monitoring for Fleets',
     metaDescription:
-      'A3Track fuel management tracks fuel level, refills, drains, mileage and idling in real time. Detect fuel theft and cut fuel costs with AI-driven insights.',
+      'Veyro fuel management tracks fuel level, refills, drains, mileage and idling in real time. Detect fuel theft and cut fuel costs with AI-driven insights.',
     h1: 'Stop guessing where your fuel goes',
-    lead: 'Fuel is usually the largest controllable cost in a fleet. A3Track measures every litre, from tank to trip, and flags theft, leaks and waste as they happen.',
+    lead: 'Fuel is usually the largest controllable cost in a fleet. Veyro measures every litre, from tank to trip, and flags theft, leaks and waste as they happen.',
     definition: {
       q: 'What is a fleet fuel management system?',
       a: 'A fleet fuel management system uses fuel-level sensors, engine data and GPS to measure how much fuel each vehicle receives and consumes. It detects refills and sudden drops, calculates true mileage, highlights idling and inefficient driving, and reconciles fuel purchases against what actually reached the tank.',
@@ -170,7 +170,7 @@ export const solutions: Solution[] = [
     faqs: [
       { q: 'How does a fuel monitoring system detect fuel theft?', a: 'A sensor in the tank reports the fuel level continuously. When the level falls faster than the engine could burn it, especially while the vehicle is stationary, the system flags a drain event with the volume, time and GPS location.' },
       { q: 'How accurate are fuel level sensors?', a: 'Well-calibrated capacitive or ultrasonic sensors are typically accurate to within about one to two percent of tank volume. Accuracy depends on correct installation and tank calibration.' },
-      { q: 'Can I monitor fuel without installing a sensor?', a: 'Often, yes. Many modern vehicles expose fuel level and consumption through the CAN bus or OBD-II port, which A3Track can read directly. Dedicated sensors are recommended where the highest precision is needed.' },
+      { q: 'Can I monitor fuel without installing a sensor?', a: 'Often, yes. Many modern vehicles expose fuel level and consumption through the CAN bus or OBD-II port, which Veyro can read directly. Dedicated sensors are recommended where the highest precision is needed.' },
     ],
     industries: ['transportation-logistics', 'construction', 'mining', 'agriculture'],
   },
@@ -181,9 +181,9 @@ export const solutions: Solution[] = [
     short: 'Long-life trackers for trailers, containers, equipment and tools.',
     metaTitle: 'Asset Tracking & Trailer Tracking with GPS',
     metaDescription:
-      'Track trailers, containers, generators and equipment with A3Track asset tracking. Multi-year battery trackers, utilisation reports and theft recovery alerts.',
+      'Track trailers, containers, generators and equipment with Veyro asset tracking. Multi-year battery trackers, utilisation reports and theft recovery alerts.',
     h1: 'Know where every asset is, and whether it is earning',
-    lead: 'From trailers and containers to generators and tools, A3Track tracks powered and unpowered assets with rugged devices that last for years on a single battery.',
+    lead: 'From trailers and containers to generators and tools, Veyro tracks powered and unpowered assets with rugged devices that last for years on a single battery.',
     definition: {
       q: 'What is GPS asset tracking?',
       a: 'GPS asset tracking uses compact, often battery-powered devices to report the location and status of non-vehicle assets such as trailers, containers, machinery and tools. It helps businesses prevent loss and theft, increase utilisation and find equipment quickly.',
@@ -220,9 +220,9 @@ export const solutions: Solution[] = [
     short: 'Engine diagnostics and AI that catch breakdowns before they happen.',
     metaTitle: 'Predictive Fleet Maintenance Software & Vehicle Diagnostics',
     metaDescription:
-      'Prevent breakdowns with A3Track predictive maintenance: remote engine diagnostics, fault-code alerts, service schedules and AI failure prediction.',
+      'Prevent breakdowns with Veyro predictive maintenance: remote engine diagnostics, fault-code alerts, service schedules and AI failure prediction.',
     h1: 'Fix it before it fails',
-    lead: 'A3Track reads engine health directly from the vehicle, schedules service by real usage and uses AI to warn you about failures days before a breakdown.',
+    lead: 'Veyro reads engine health directly from the vehicle, schedules service by real usage and uses AI to warn you about failures days before a breakdown.',
     definition: {
       q: 'What is predictive fleet maintenance?',
       a: 'Predictive fleet maintenance uses live vehicle data, such as fault codes, battery voltage, coolant temperature and engine hours, together with machine-learning models to forecast when a component is likely to fail. Maintenance is then carried out just before failure, rather than on a fixed calendar or after a breakdown.',
@@ -247,8 +247,8 @@ export const solutions: Solution[] = [
     ],
     faqs: [
       { q: 'What is the difference between preventive and predictive maintenance?', a: 'Preventive maintenance follows a fixed schedule based on time or distance. Predictive maintenance uses real-time vehicle data and analytics to service a component only when signs of wear or failure appear, reducing both breakdowns and unnecessary servicing.' },
-      { q: 'Which vehicle data is used for diagnostics?', a: 'A3Track reads diagnostic trouble codes, odometer, engine hours, RPM, coolant temperature, battery voltage, fuel data and more, depending on what the vehicle exposes over OBD-II or CAN bus.' },
-      { q: 'Does it work with mixed makes and models?', a: 'Yes. A3Track supports standard light-vehicle and heavy-vehicle protocols, so cars, vans, trucks, buses and many machines can be managed together.' },
+      { q: 'Which vehicle data is used for diagnostics?', a: 'Veyro reads diagnostic trouble codes, odometer, engine hours, RPM, coolant temperature, battery voltage, fuel data and more, depending on what the vehicle exposes over OBD-II or CAN bus.' },
+      { q: 'Does it work with mixed makes and models?', a: 'Yes. Veyro supports standard light-vehicle and heavy-vehicle protocols, so cars, vans, trucks, buses and many machines can be managed together.' },
     ],
     industries: ['transportation-logistics', 'public-transport', 'construction', 'mining'],
   },
@@ -259,9 +259,9 @@ export const solutions: Solution[] = [
     short: 'AI route planning, live dispatch and accurate ETAs.',
     metaTitle: 'Route Optimization Software & Dispatch Management',
     metaDescription:
-      'Plan efficient multi-stop routes in seconds with A3Track route optimization. AI dispatch, live ETAs, proof of delivery and automatic re-routing.',
+      'Plan efficient multi-stop routes in seconds with Veyro route optimization. AI dispatch, live ETAs, proof of delivery and automatic re-routing.',
     h1: 'More stops, fewer kilometres',
-    lead: 'A3Track plans the best route for every vehicle, taking into account time windows, capacity and traffic, then keeps the plan on track as the day changes.',
+    lead: 'Veyro plans the best route for every vehicle, taking into account time windows, capacity and traffic, then keeps the plan on track as the day changes.',
     definition: {
       q: 'What is route optimization?',
       a: 'Route optimization is the process of calculating the most efficient sequence of stops for one or many vehicles while respecting constraints such as delivery time windows, vehicle capacity, driver hours and traffic. It reduces distance and fuel, increases stops per day and improves on-time performance.',
@@ -281,12 +281,12 @@ export const solutions: Solution[] = [
     ],
     steps: [
       { title: 'Import', text: 'Bring in orders from a spreadsheet, API or your ERP/TMS.' },
-      { title: 'Optimise', text: 'A3Track assigns and sequences stops across vehicles automatically.' },
+      { title: 'Optimise', text: 'Veyro assigns and sequences stops across vehicles automatically.' },
       { title: 'Execute', text: 'Drivers follow the plan in the app while you watch progress live.' },
     ],
     faqs: [
       { q: 'How is route optimization different from navigation apps?', a: 'A navigation app finds the best path from A to B. Route optimization decides which vehicle should visit which stops and in what order across many stops and constraints, and then hands each driver a navigable route.' },
-      { q: 'Can routes be changed during the day?', a: 'Yes. Dispatchers can add, remove or reassign jobs, and A3Track re-optimises the remaining stops and updates driver apps and customer ETAs automatically.' },
+      { q: 'Can routes be changed during the day?', a: 'Yes. Dispatchers can add, remove or reassign jobs, and Veyro re-optimises the remaining stops and updates driver apps and customer ETAs automatically.' },
       { q: 'Does it include proof of delivery?', a: 'Yes. Drivers capture signatures, photos, notes and barcodes in the app. Each record is time- and location-stamped and available instantly in the dashboard.' },
     ],
     industries: ['last-mile-delivery', 'field-services', 'food-beverage', 'transportation-logistics'],
@@ -298,9 +298,9 @@ export const solutions: Solution[] = [
     short: 'Automated records, regulatory device support and audit-ready reports.',
     metaTitle: 'Fleet Compliance Software — AIS-140, Driver Hours & Reports',
     metaDescription:
-      'Simplify fleet compliance with A3Track: support for AIS-140 tracking requirements in Bharat, driver hours, inspections, document renewals and audit-ready reports.',
+      'Simplify fleet compliance with Veyro: support for AIS-140 tracking requirements in Bharat, driver hours, inspections, document renewals and audit-ready reports.',
     h1: 'Compliance that runs itself',
-    lead: 'Regulations differ by country and vehicle type, but the need is the same: accurate records, on time. A3Track captures them automatically and keeps you audit-ready.',
+    lead: 'Regulations differ by country and vehicle type, but the need is the same: accurate records, on time. Veyro captures them automatically and keeps you audit-ready.',
     definition: {
       q: 'What is fleet compliance management?',
       a: 'Fleet compliance management is the practice of making sure vehicles, drivers and operations meet legal and contractual requirements. This includes mandated tracking devices, driver working hours, vehicle inspections, permits and insurance, speed governance and data-retention rules. Telematics automates the record-keeping.',
@@ -325,7 +325,7 @@ export const solutions: Solution[] = [
     ],
     faqs: [
       { q: 'What is AIS-140?', a: 'AIS-140 is an Automotive Industry Standard published in Bharat that specifies requirements for vehicle location tracking devices and emergency (panic) buttons in public service and certain commercial vehicles. It covers device features, communication with government back-end systems and testing requirements.' },
-      { q: 'Which regulations does A3Track support?', a: 'A3Track is designed around configurable rule sets, so it can support different regional requirements, for example vehicle tracking mandates in Bharat and driver-hours rules in other markets. Speak to our team about the specific regulations that apply to your fleet.' },
+      { q: 'Which regulations does Veyro support?', a: 'Veyro is designed around configurable rule sets, so it can support different regional requirements, for example vehicle tracking mandates in Bharat and driver-hours rules in other markets. Speak to our team about the specific regulations that apply to your fleet.' },
       { q: 'How long is compliance data stored?', a: 'Retention periods are configurable to meet the requirements of your regulators and contracts. Data can be exported at any time in standard formats.' },
     ],
     industries: ['public-transport', 'school-buses', 'government', 'oil-gas'],
@@ -337,7 +337,7 @@ export const solutions: Solution[] = [
     short: 'Temperature, humidity and door monitoring for sensitive cargo.',
     metaTitle: 'Cold Chain Monitoring & Reefer Temperature Tracking',
     metaDescription:
-      'Protect temperature-sensitive cargo with A3Track cold chain monitoring: real-time temperature, humidity and door sensors, alerts and compliance reports.',
+      'Protect temperature-sensitive cargo with Veyro cold chain monitoring: real-time temperature, humidity and door sensors, alerts and compliance reports.',
     h1: 'Protect every degree of the journey',
     lead: 'Monitor temperature, humidity and door activity in real time for food, pharmaceuticals and other sensitive goods, with a complete record for every consignment.',
     definition: {

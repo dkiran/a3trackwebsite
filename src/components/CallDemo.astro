@@ -3,11 +3,11 @@
 const { plate = 'AP09CC2318' } = Astro.props;
 const langs = ['English', 'हिन्दी', 'తెలుగు', 'தமிழ்', 'ಕನ್ನಡ', 'मराठी', 'বাংলা', 'മലയാളം'];
 ---
-<div translate="no" class="phone call" data-demo="13000" role="img" aria-label={`Illustration of a phone call with the A3Track AI agent. The caller asks for the status of ${plate} and the agent answers. Then an automated alert call for overspeeding goes unanswered by the driver and is escalated to the fleet manager.`}>
+<div translate="no" class="phone call" data-demo="13000" role="img" aria-label={`Illustration of a phone call with the Veyro AI agent. The caller asks for the status of ${plate} and the agent answers. Then an automated alert call for overspeeding goes unanswered by the driver and is escalated to the fleet manager.`}>
   <div class="phone__screen">
     <div class="call__top">
       <span class="call__av"><i></i><i></i>AI</span>
-      <strong>A3Track AI Agent</strong>
+      <strong>Veyro AI Agent</strong>
       <small>Voice call · 24/7</small>
       <div class="call__wave">{Array.from({ length: 18 }).map((_, i) => <i style={`--i:${i}`}></i>)}</div>
     </div>

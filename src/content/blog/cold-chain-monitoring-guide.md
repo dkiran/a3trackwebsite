@@ -57,4 +57,4 @@ Always follow the range specified for the particular product.
 
 The same sensors can monitor cold rooms and warehouses, giving one continuous record from storage to doorstep.
 
-See [A3Track cold chain monitoring](/solutions/cold-chain-monitoring/) and our solutions for [food and beverage distribution](/industries/food-beverage/).
+See [Veyro cold chain monitoring](/solutions/cold-chain-monitoring/) and our solutions for [food and beverage distribution](/industries/food-beverage/).

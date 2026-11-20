@@ -6,9 +6,9 @@ import { getCollection } from 'astro:content';
 import { site } from '../../config/site';
 const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date);
 const crumbs = [{ name: 'Blog', href: '/blog/' }];
-const schema = { '@context': 'https://schema.org', '@type': 'Blog', name: 'A3Track Blog', url: `${site.url}/blog/`, publisher: { '@id': `${site.url}/#organization` }, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: `${site.url}/blog/${p.id}/`, datePublished: p.data.date.toISOString() })) };
+const schema = { '@context': 'https://schema.org', '@type': 'Blog', name: 'Veyro Blog', url: `${site.url}/blog/`, publisher: { '@id': `${site.url}/#organization` }, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: `${site.url}/blog/${p.id}/`, datePublished: p.data.date.toISOString() })) };
 ---
-<Base title="Fleet Management & GPS Telematics Blog" description="Practical guides on GPS tracking, telematics, AI dash cams, fuel management, driver safety, compliance and fleet strategy from the A3Track team." crumbs={crumbs} schema={[schema]}>
+<Base title="Fleet Management & GPS Telematics Blog" description="Practical guides on GPS tracking, telematics, AI dash cams, fuel management, driver safety, compliance and fleet strategy from the Veyro team." crumbs={crumbs} schema={[schema]}>
   <PageHero crumbs={crumbs} eyebrow="Blog" title="Guides for people who run fleets" lead="Clear, practical explanations of the technology and practices behind safer, leaner fleet operations." cta={false} />
   <section class="section section--alt" style="padding-top:48px">
     <div class="container grid g3">

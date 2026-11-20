@@ -2,7 +2,7 @@
 # Install: sudo cp deploy/a3track-mailer.service /etc/systemd/system/
 #          sudo systemctl daemon-reload && sudo systemctl enable --now a3track-mailer
 [Unit]
-Description=A3Track demo-request mailer
+Description=Veyro demo-request mailer
 After=network-online.target
 Wants=network-online.target
 

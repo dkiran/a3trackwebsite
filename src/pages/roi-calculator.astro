@@ -11,7 +11,7 @@ const faqs = [
   { q: 'Where do telematics savings come from?', a: 'The largest savings usually come from fuel (less idling, speeding, detours and theft), followed by productivity (more jobs or trips per vehicle), maintenance (fewer breakdowns and longer component life) and risk (fewer accidents and claims).' },
   { q: 'Are these results guaranteed?', a: 'No. The calculator is an estimate based on the assumptions you enter. Actual results depend on your operation and how the system is used. Our team can help build a business case from your own data.' },
 ];
-const app = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'A3Track Fleet Telematics ROI Calculator', url: `${site.url}/roi-calculator/`, applicationCategory: 'BusinessApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' } };
+const app = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Veyro Fleet Telematics ROI Calculator', url: `${site.url}/roi-calculator/`, applicationCategory: 'BusinessApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' } };
 const fields = [
   { id: 'vehicles', label: 'Number of vehicles', v: 50, min: 1, max: 5000, step: 1 },
   { id: 'fuel', label: 'Monthly fuel spend per vehicle', v: 40000, min: 0, max: 500000, step: 1000, cur: true },
@@ -24,7 +24,7 @@ const fields = [
 ];
 ---
 <Base title="Fleet Telematics ROI Calculator" description="Estimate the return on investment of GPS fleet tracking. Enter your fleet size, fuel and maintenance costs to see projected savings and return." crumbs={crumbs} schema={[app, faqSchema(faqs)]}>
-  <PageHero crumbs={crumbs} eyebrow="ROI calculator" title="What could A3Track save your fleet?" lead="Enter your own numbers. The calculator updates instantly. All assumptions are yours to adjust." cta={false} />
+  <PageHero crumbs={crumbs} eyebrow="ROI calculator" title="What could Veyro save your fleet?" lead="Enter your own numbers. The calculator updates instantly. All assumptions are yours to adjust." cta={false} />
   <section class="section section--alt" style="padding-top:40px">
     <div class="container split" style="align-items:start">
       <form class="card form reveal" id="roi" style="height:auto">

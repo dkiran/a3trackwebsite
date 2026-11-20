@@ -11,8 +11,8 @@ import MobileAppDemo from '../../components/MobileAppDemo.astro';
 const crumbs = [{ name: 'Platform', href: '/platform/' }];
 const faqs = [
   { q: 'What is a fleet management platform?', a: 'A fleet management platform is software that brings together data from vehicles, drivers and assets, such as GPS location, video, fuel, engine diagnostics and sensor readings, so an organisation can monitor operations in real time, improve safety, control costs and meet compliance requirements from one place.' },
-  { q: 'Is A3Track cloud-based?', a: 'Yes. A3Track is delivered as a secure cloud service, accessible from any modern browser and from mobile apps for managers and drivers. There is no software to install or maintain on your servers.' },
-  { q: 'How many vehicles can A3Track handle?', a: 'The platform is designed to scale from small fleets of a few vehicles to large enterprise and government fleets with tens of thousands of vehicles and assets.' },
+  { q: 'Is Veyro cloud-based?', a: 'Yes. Veyro is delivered as a secure cloud service, accessible from any modern browser and from mobile apps for managers and drivers. There is no software to install or maintain on your servers.' },
+  { q: 'How many vehicles can Veyro handle?', a: 'The platform is designed to scale from small fleets of a few vehicles to large enterprise and government fleets with tens of thousands of vehicles and assets.' },
   { q: 'Can different teams see different things?', a: 'Yes. Roles and vehicle groups control which vehicles, features and reports each user can access, so dispatch, safety, maintenance and finance each get the view they need.' },
 ];
 const layers = [
@@ -22,8 +22,8 @@ const layers = [
   { icon: 'chart', t: 'Apps and API', d: 'Web dashboard, manager and driver mobile apps, and an open API for your other systems.' },
 ];
 ---
-<Base title="Fleet Management Platform — One Connected Operations Cloud" description="The A3Track platform unifies GPS tracking, AI video, fuel, maintenance, routing and compliance in one secure cloud with web and mobile apps and an open API." crumbs={crumbs} schema={[faqSchema(faqs)]}>
-  <PageHero crumbs={crumbs} eyebrow="Platform" title="One intelligent platform for everything that moves" lead="A3Track brings your vehicles, drivers, assets and data together, so every team works from the same real-time picture." />
+<Base title="Fleet Management Platform — One Connected Operations Cloud" description="The Veyro platform unifies GPS tracking, AI video, fuel, maintenance, routing and compliance in one secure cloud with web and mobile apps and an open API." crumbs={crumbs} schema={[faqSchema(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Platform" title="One intelligent platform for everything that moves" lead="Veyro brings your vehicles, drivers, assets and data together, so every team works from the same real-time picture." />
   <section class="section section--tight"><div class="container"><div class="answer reveal"><h2>{faqs[0].q}</h2><p>{faqs[0].a}</p></div></div></section>
   <section class="section section--alt">
     <div class="container">
@@ -41,7 +41,7 @@ const layers = [
     <div class="container split">
       <div class="reveal">
         <span class="eyebrow">Mobile app</span>
-        <h2>A3Track mobile app for Android and iOS</h2>
+        <h2>Veyro mobile app for Android and iOS</h2>
         <p class="lead">Everything you need from the platform, built for a phone. Check on your fleet from the yard, the road or home.</p>
         <ul class="checks" style="margin:24px 0 0">
           <li><strong>Live map.</strong> Follow every vehicle in real time, with speed, fuel and ETA one tap away.</li>

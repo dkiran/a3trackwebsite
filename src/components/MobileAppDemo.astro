@@ -1,5 +1,5 @@
 ---
-// Animated A3Track mobile app (Android & iOS): cycles through four screens — live map, trip playback, alerts, reports.
+// Animated Veyro mobile app (Android & iOS): cycles through four screens — live map, trip playback, alerts, reports.
 const { plate = 'AP09CC2318' } = Astro.props;
 const T = 4300; // ms per screen
 const screens = ['Map', 'Trips', 'Alerts', 'Reports'];
@@ -12,11 +12,11 @@ const alerts = [
 ];
 const bars = [46, 62, 54, 78, 66, 88, 72];
 ---
-<div translate="no" class="app" data-demo="18000" role="img" aria-label="Illustration of the A3Track mobile app for Android and iOS, cycling through four screens: a live map with a moving vehicle, a trip history playback, a list of alerts, and a reports dashboard.">
+<div translate="no" class="app" data-demo="18000" role="img" aria-label="Illustration of the Veyro mobile app for Android and iOS, cycling through four screens: a live map with a moving vehicle, a trip history playback, a list of alerts, and a reports dashboard.">
   <div class="phone">
     <div class="phone__screen">
       <div class="app__status"><span>9:41</span><i></i></div>
-      <div class="app__head"><b>A3</b><strong>A3Track</strong><span class="app__title">{screens.map((s, i) => <em {...at(i)}>{s}</em>)}</span></div>
+      <div class="app__head"><b>V</b><strong>Veyro</strong><span class="app__title">{screens.map((s, i) => <em {...at(i)}>{s}</em>)}</span></div>
       <div class="app__views">
         <!-- 1. Live map -->
         <div class="screen" {...at(0)}>
