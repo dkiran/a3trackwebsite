@@ -73,6 +73,18 @@ English is the source language. Other languages are produced at build time by `s
 3. Submit the sitemap: `https://veyro.com/sitemap-index.xml`.
 4. Repeat in Bing Webmaster Tools (`bingSiteVerification`), which also feeds several AI search products.
 
+## Publishing on a new server (quick start)
+
+On a fresh Amazon Linux 2023 or Ubuntu EC2 instance, with inbound port 80 open in the security group:
+
+```bash
+sudo dnf install -y git || sudo apt-get install -y git
+git clone -b claude/gifted-einstein-cd6zqn https://github.com/dkiran/a3trackwebsite.git veyro-website
+cd veyro-website && bash deploy/setup-server.sh
+```
+
+The script installs nginx and Node.js 22, builds the site, copies it to `/var/www/veyro` and serves it on port 80 at the server's IP address (marked `noindex` until the domain is live). To publish later changes: `bash deploy/update-site.sh`. When the domain is ready, follow the HTTPS steps below.
+
 ## Deploying to AWS EC2 (Ubuntu)
 
 One-time server setup:
