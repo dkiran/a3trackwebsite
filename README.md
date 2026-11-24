@@ -75,7 +75,7 @@ English is the source language. Other languages are produced at build time by `s
 
 ## Publishing on a new server (quick start)
 
-On a fresh Amazon Linux 2023 or Ubuntu EC2 instance, with inbound port 80 open in the security group:
+On a fresh Amazon Linux 2023 or Ubuntu EC2 instance, with the website's port open in the security group:
 
 ```bash
 sudo dnf install -y git || sudo apt-get install -y git
@@ -83,7 +83,7 @@ git clone -b claude/gifted-einstein-cd6zqn https://github.com/dkiran/a3trackwebs
 cd veyro-website && bash deploy/setup-server.sh
 ```
 
-The script installs nginx and Node.js 22, builds the site, copies it to `/var/www/veyro` and serves it on port 80 at the server's IP address (marked `noindex` until the domain is live). To publish later changes: `bash deploy/update-site.sh`. When the domain is ready, follow the HTTPS steps below.
+The script installs nginx and Node.js 22, builds the site, copies it to `/var/www/veyro` and serves it at the server's IP address (marked `noindex` until the domain is live). It is safe on a server that already runs other applications: it never stops other programs, uses port 80 only if it is free and otherwise picks a free port such as 8080 (choose one with `PORT=8085 bash deploy/setup-server.sh`). Open that port in the security group. To publish later changes: `bash deploy/update-site.sh`. When the domain is ready, follow the HTTPS steps below.
 
 ## Deploying to AWS EC2 (Ubuntu)
 

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# One-time setup of a NEW server for the Veyro website (Amazon Linux 2023 or Ubuntu).
-# Installs nginx, Git and Node.js 22, builds the site and serves it on port 80.
+# One-time setup of the Veyro website on an Amazon Linux 2023 or Ubuntu server.
+# Installs nginx, Git and Node.js 22, builds the site and serves it with nginx.
+#
+# Safe on a server that already runs other applications: it never stops or changes
+# other programs. It uses port 80 only if nothing is listening there; otherwise it
+# picks the first free port from 8080, 8081, 8090, 8888. To choose the port yourself:
+#   PORT=8085 bash deploy/setup-server.sh
 #
 # Run as the normal login user (ec2-user or ubuntu), from inside the cloned repository:
 #   bash deploy/setup-server.sh
@@ -41,14 +46,51 @@ sudo mkdir -p "$WEB_ROOT"
 sudo rsync -a --delete dist/ "$WEB_ROOT/"
 
 echo "==> 5/5 Configuring nginx"
-# Ubuntu ships a default site on port 80; remove it so Veyro answers instead.
-sudo rm -f /etc/nginx/sites-enabled/default
+port_in_use() { [ -n "$(sudo ss -ltnH "sport = :$1" 2>/dev/null)" ]; }
+NGINX_WAS_RUNNING=no
+systemctl is-active --quiet nginx && NGINX_WAS_RUNNING=yes
+# Our own earlier config may hold a port from a previous run; ignore it while choosing.
+sudo rm -f "$NGINX_CONF"
+[ "$NGINX_WAS_RUNNING" = yes ] && sudo systemctl reload nginx
+
+if [ -n "${PORT:-}" ]; then
+  if port_in_use "$PORT"; then
+    echo "Port $PORT is already used by another program. Choose another: PORT=8085 bash deploy/setup-server.sh" >&2
+    exit 1
+  fi
+else
+  for candidate in 80 8080 8081 8090 8888; do
+    if ! port_in_use "$candidate"; then PORT=$candidate; break; fi
+  done
+  if [ -z "${PORT:-}" ]; then
+    echo "Ports 80, 8080, 8081, 8090 and 8888 are all in use. Choose one: PORT=8085 bash deploy/setup-server.sh" >&2
+    exit 1
+  fi
+fi
+echo "    Using port $PORT"
+if [ "$PORT" != 80 ]; then
+  echo "    (Port 80 is used by another application on this server; it is left untouched.)"
+fi
+
+# nginx ships a placeholder site on port 80 (Ubuntu: sites-enabled/default; Amazon Linux: a
+# server block inside nginx.conf). If nginx was not already running, that placeholder serves
+# nothing of yours, but it would stop nginx from starting when another program owns port 80,
+# or answer instead of Veyro. So, only in that case, switch it off (a backup is kept).
+if [ "$NGINX_WAS_RUNNING" = no ]; then
+  if [ -L /etc/nginx/sites-enabled/default ]; then
+    sudo rm -f /etc/nginx/sites-enabled/default
+  fi
+  if grep -q '^[[:space:]]*listen[[:space:]]*80;' /etc/nginx/nginx.conf; then
+    sudo cp -n /etc/nginx/nginx.conf /etc/nginx/nginx.conf.veyro-backup
+    sudo python3 "$REPO_DIR/deploy/disable-placeholder.py" /etc/nginx/nginx.conf
+  fi
+fi
 sudo tee "$NGINX_CONF" >/dev/null <<NGINX
 # Veyro website on port 80, reachable by the server's IP address.
 # When the domain is ready, replace this file with deploy/nginx.conf (adds HTTPS).
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen $PORT default_server;
+    listen [::]:$PORT default_server;
     server_name veyro;
 
     root $WEB_ROOT;
@@ -75,18 +117,13 @@ NGINX
 # Amazon Linux's main nginx.conf also defines a server on port 80; ours is marked default_server, so it wins.
 sudo nginx -t
 
-# Before starting nginx, make sure nothing else already holds port 80.
-BLOCKER="$(sudo ss -ltnpH 'sport = :80' 2>/dev/null | grep -v nginx || true)"
-if [ -n "$BLOCKER" ]; then
-  echo
-  echo "Port 80 is already in use by another program, so nginx cannot start:" >&2
-  echo "$BLOCKER" >&2
-  echo "Stop that program (for Apache: sudo systemctl disable --now httpd), then run this script again." >&2
-  exit 1
-fi
-
 sudo systemctl enable nginx >/dev/null 2>&1
-if ! sudo systemctl restart nginx; then
+if [ "$NGINX_WAS_RUNNING" = yes ]; then
+  START="sudo systemctl reload nginx"   # keep other sites served by this nginx running
+else
+  START="sudo systemctl start nginx"
+fi
+if ! $START; then
   echo
   echo "nginx did not start. Its last messages:" >&2
   sudo journalctl -u nginx --no-pager -n 15 >&2 || true
@@ -95,5 +132,6 @@ fi
 
 IP="$(curl -fsS -m 3 http://checkip.amazonaws.com 2>/dev/null || hostname -I | awk '{print $1}')"
 echo
-echo "Done. Open http://${IP}/ in your browser."
-echo "If it does not load, allow inbound HTTP (port 80) in the EC2 security group."
+if [ "$PORT" = 80 ]; then URL="http://${IP}/"; else URL="http://${IP}:${PORT}/"; fi
+echo "Done. Open $URL in your browser."
+echo "If it does not load, allow inbound TCP port $PORT in the EC2 security group."
