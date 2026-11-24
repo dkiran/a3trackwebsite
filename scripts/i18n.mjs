@@ -7,7 +7,7 @@ import { parse, NodeType } from 'node-html-parser';
 import { locales, defaultLocale, isTranslatable } from '../src/i18n/config.mjs';
 
 const DIST = 'dist';
-const SITE = 'https://veyro.com';
+const SITE = 'https://veyrotrack.com';
 const SKIP_TAGS = new Set(['script', 'style', 'code', 'pre', 'noscript']);
 const ATTRS = ['aria-label', 'placeholder', 'alt', 'title'];
 const META = ['description', 'og:title', 'og:description', 'twitter:title', 'twitter:description'];

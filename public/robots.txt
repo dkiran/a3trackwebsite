@@ -1,4 +1,4 @@
-# Veyro — https://veyro.com
+# Veyro — https://veyrotrack.com
 User-agent: *
 Allow: /
 Disallow: /api/
@@ -20,4 +20,4 @@ User-agent: Bingbot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://veyro.com/sitemap-index.xml
+Sitemap: https://veyrotrack.com/sitemap-index.xml

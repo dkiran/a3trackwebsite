@@ -86,8 +86,17 @@ if [ "$NGINX_WAS_RUNNING" = no ]; then
   fi
 fi
 sudo tee "$NGINX_CONF" >/dev/null <<NGINX
-# Veyro website on port 80, reachable by the server's IP address.
-# When the domain is ready, replace this file with deploy/nginx.conf (adds HTTPS).
+# Veyro website, served on port $PORT.
+# Visitors normally arrive through the server's main web server (which handles HTTPS for
+# veyrotrack.com and forwards to this port); it can also be opened directly by IP and port.
+
+# Search engines may index the site only on the real domain, never on the IP address.
+map \$host \$veyro_robots {
+    veyrotrack.com      "";
+    www.veyrotrack.com  "";
+    default             "noindex, nofollow";
+}
+
 server {
     listen $PORT default_server;
     listen [::]:$PORT default_server;
@@ -98,8 +107,10 @@ server {
     charset utf-8;
     server_tokens off;
 
-    # Keep the site out of search engines until the real domain is live.
-    add_header X-Robots-Tag "noindex, nofollow" always;
+    # One address for search engines: www.veyrotrack.com redirects to veyrotrack.com.
+    if (\$host = www.veyrotrack.com) { return 301 https://veyrotrack.com\$request_uri; }
+
+    add_header X-Robots-Tag \$veyro_robots always;
     add_header X-Content-Type-Options "nosniff" always;
 
     gzip on;

@@ -5,13 +5,13 @@
 export const site = {
   name: 'Veyro',
   legalName: 'Veyro Technologies Pvt. Ltd.', // DUMMY
-  url: 'https://veyro.com',
+  url: 'https://veyrotrack.com',
   tagline: 'Move Smarter.',
   description:
     'Veyro is an AI-powered GPS telematics and fleet intelligence platform. Track vehicles and assets in real time, improve driver safety, cut fuel costs and automate compliance, with AI agents on WhatsApp, phone call and chat, 24/7 in regional languages.',
-  email: 'hello@veyro.com', // DUMMY
-  salesEmail: 'sales@veyro.com', // DUMMY
-  supportEmail: 'support@veyro.com', // DUMMY
+  email: 'hello@veyrotrack.com', // DUMMY
+  salesEmail: 'sales@veyrotrack.com', // DUMMY
+  supportEmail: 'support@veyrotrack.com', // DUMMY
   phone: '+91 80 0000 0000', // DUMMY
   phoneHref: '+918000000000', // DUMMY
   aiCallNumber: '1800 000 0000', // DUMMY — AI agent call-centre number

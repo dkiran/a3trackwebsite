@@ -1,6 +1,6 @@
 # Veyro website
 
-Marketing website for **Veyro** (veyro.com) — AI-powered GPS telematics and fleet intelligence. *Move Smarter.*
+Marketing website for **Veyro** (veyrotrack.com) — AI-powered GPS telematics and fleet intelligence. *Move Smarter.*
 
 Static site built with [Astro](https://astro.build): every page is pre-rendered HTML/CSS with minimal JavaScript, served by nginx.
 
@@ -68,9 +68,9 @@ English is the source language. Other languages are produced at build time by `s
 
 ### Google Search Console
 
-1. Add the property `veyro.com` at <https://search.google.com/search-console>. Prefer **Domain** verification with a DNS TXT record.
+1. Add the property `veyrotrack.com` at <https://search.google.com/search-console>. Prefer **Domain** verification with a DNS TXT record.
 2. Alternatively choose **HTML tag**, copy the `content` value into `googleSiteVerification` in `src/config/site.ts`, rebuild and deploy.
-3. Submit the sitemap: `https://veyro.com/sitemap-index.xml`.
+3. Submit the sitemap: `https://veyrotrack.com/sitemap-index.xml`.
 4. Repeat in Bing Webmaster Tools (`bingSiteVerification`), which also feeds several AI search products.
 
 ## Publishing on a new server (quick start)
@@ -95,12 +95,12 @@ curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt in
 sudo mkdir -p /var/www/veyro /opt/veyro-mailer /etc/veyro
 ```
 
-Point the DNS A records for `veyro.com` and `www.veyro.com` at the instance, open ports 80 and 443 in the security group, then:
+Point the DNS A records for `veyrotrack.com` and `www.veyrotrack.com` at the instance, open ports 80 and 443 in the security group, then:
 
 ```bash
-sudo certbot certonly --nginx -d veyro.com -d www.veyro.com
-sudo cp deploy/nginx.conf /etc/nginx/sites-available/veyro.com
-sudo ln -s /etc/nginx/sites-available/veyro.com /etc/nginx/sites-enabled/
+sudo certbot certonly --nginx -d veyrotrack.com -d www.veyrotrack.com
+sudo cp deploy/nginx.conf /etc/nginx/sites-available/veyrotrack.com
+sudo ln -s /etc/nginx/sites-available/veyrotrack.com /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
@@ -114,7 +114,7 @@ DEPLOY_HOST=ubuntu@your-ec2-host WITH_MAILER=1 ./deploy/deploy.sh
 
 The contact form posts to `/api/demo`, which nginx proxies to a small Node service (`server/server.mjs`) that emails the request to your sales inbox. It includes a honeypot, input validation, origin check and per-IP rate limiting.
 
-1. In Amazon SES (region `ap-south-1` suggested), verify the `veyro.com` domain, request production access and create SMTP credentials. Any SMTP provider works.
+1. In Amazon SES (region `ap-south-1` suggested), verify the `veyrotrack.com` domain, request production access and create SMTP credentials. Any SMTP provider works.
 2. On the server, copy `server/.env.example` to `/etc/veyro/mailer.env`, fill it in and `sudo chmod 600` it.
 3. Install and start the service:
 

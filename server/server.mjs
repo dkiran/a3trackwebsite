@@ -8,7 +8,7 @@ const env = process.env;
 const PORT = Number(env.PORT || 8787);
 const MAIL_TO = env.MAIL_TO;
 const MAIL_FROM = env.MAIL_FROM;
-const ALLOWED_ORIGINS = (env.ALLOWED_ORIGINS || 'https://veyro.com,https://www.veyro.com').split(',').map((s) => s.trim());
+const ALLOWED_ORIGINS = (env.ALLOWED_ORIGINS || 'https://veyrotrack.com,https://www.veyrotrack.com').split(',').map((s) => s.trim());
 const DRY_RUN = env.DRY_RUN === '1'; // log instead of sending (local testing)
 
 if (!DRY_RUN && (!MAIL_TO || !MAIL_FROM || !env.SMTP_HOST)) {
