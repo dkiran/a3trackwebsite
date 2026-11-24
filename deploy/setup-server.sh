@@ -49,7 +49,7 @@ sudo tee "$NGINX_CONF" >/dev/null <<NGINX
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name _;
+    server_name veyro;
 
     root $WEB_ROOT;
     index index.html;
@@ -74,8 +74,24 @@ NGINX
 
 # Amazon Linux's main nginx.conf also defines a server on port 80; ours is marked default_server, so it wins.
 sudo nginx -t
+
+# Before starting nginx, make sure nothing else already holds port 80.
+BLOCKER="$(sudo ss -ltnpH 'sport = :80' 2>/dev/null | grep -v nginx || true)"
+if [ -n "$BLOCKER" ]; then
+  echo
+  echo "Port 80 is already in use by another program, so nginx cannot start:" >&2
+  echo "$BLOCKER" >&2
+  echo "Stop that program (for Apache: sudo systemctl disable --now httpd), then run this script again." >&2
+  exit 1
+fi
+
 sudo systemctl enable nginx >/dev/null 2>&1
-sudo systemctl restart nginx
+if ! sudo systemctl restart nginx; then
+  echo
+  echo "nginx did not start. Its last messages:" >&2
+  sudo journalctl -u nginx --no-pager -n 15 >&2 || true
+  exit 1
+fi
 
 IP="$(curl -fsS -m 3 http://checkip.amazonaws.com 2>/dev/null || hostname -I | awk '{print $1}')"
 echo
