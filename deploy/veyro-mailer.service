@@ -1,14 +1,14 @@
 # systemd unit for the demo-form mail service.
-# Install: sudo cp deploy/a3track-mailer.service /etc/systemd/system/
-#          sudo systemctl daemon-reload && sudo systemctl enable --now a3track-mailer
+# Install: sudo cp deploy/veyro-mailer.service /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable --now veyro-mailer
 [Unit]
 Description=Veyro demo-request mailer
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-WorkingDirectory=/opt/a3track-mailer
-EnvironmentFile=/etc/a3track/mailer.env
+WorkingDirectory=/opt/veyro-mailer
+EnvironmentFile=/etc/veyro/mailer.env
 ExecStart=/usr/bin/node server.mjs
 Restart=always
 RestartSec=3

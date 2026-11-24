@@ -80,7 +80,7 @@ One-time server setup:
 ```bash
 sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx rsync
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs
-sudo mkdir -p /var/www/a3track /opt/a3track-mailer /etc/a3track
+sudo mkdir -p /var/www/veyro /opt/veyro-mailer /etc/veyro
 ```
 
 Point the DNS A records for `veyro.com` and `www.veyro.com` at the instance, open ports 80 and 443 in the security group, then:
@@ -103,12 +103,12 @@ DEPLOY_HOST=ubuntu@your-ec2-host WITH_MAILER=1 ./deploy/deploy.sh
 The contact form posts to `/api/demo`, which nginx proxies to a small Node service (`server/server.mjs`) that emails the request to your sales inbox. It includes a honeypot, input validation, origin check and per-IP rate limiting.
 
 1. In Amazon SES (region `ap-south-1` suggested), verify the `veyro.com` domain, request production access and create SMTP credentials. Any SMTP provider works.
-2. On the server, copy `server/.env.example` to `/etc/a3track/mailer.env`, fill it in and `sudo chmod 600` it.
+2. On the server, copy `server/.env.example` to `/etc/veyro/mailer.env`, fill it in and `sudo chmod 600` it.
 3. Install and start the service:
 
 ```bash
-sudo cp deploy/a3track-mailer.service /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable --now a3track-mailer
+sudo cp deploy/veyro-mailer.service /etc/systemd/system/
+sudo systemctl daemon-reload && sudo systemctl enable --now veyro-mailer
 curl http://127.0.0.1:8787/api/health
 ```
 

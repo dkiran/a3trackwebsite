@@ -86,4 +86,4 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '127.0.0.1', () => console.log(`a3track-mailer listening on 127.0.0.1:${PORT}${DRY_RUN ? ' (dry run)' : ''}`));
+server.listen(PORT, '127.0.0.1', () => console.log(`veyro-mailer listening on 127.0.0.1:${PORT}${DRY_RUN ? ' (dry run)' : ''}`));

@@ -9,12 +9,12 @@ cd "$(dirname "$0")/.."
 npm ci
 npm run build
 
-rsync -az --delete dist/ "$DEPLOY_HOST:/tmp/a3track-dist/"
-ssh "$DEPLOY_HOST" 'sudo mkdir -p /var/www/a3track && sudo rsync -a --delete /tmp/a3track-dist/ /var/www/a3track/ && sudo chown -R www-data:www-data /var/www/a3track'
+rsync -az --delete dist/ "$DEPLOY_HOST:/tmp/veyro-dist/"
+ssh "$DEPLOY_HOST" 'sudo mkdir -p /var/www/veyro && sudo rsync -a --delete /tmp/veyro-dist/ /var/www/veyro/ && sudo chown -R www-data:www-data /var/www/veyro'
 
 if [[ "${WITH_MAILER:-0}" == "1" ]]; then
-  rsync -az --exclude node_modules --exclude .env server/ "$DEPLOY_HOST:/tmp/a3track-mailer/"
-  ssh "$DEPLOY_HOST" 'sudo mkdir -p /opt/a3track-mailer && sudo rsync -a /tmp/a3track-mailer/ /opt/a3track-mailer/ && cd /opt/a3track-mailer && sudo npm ci --omit=dev && sudo systemctl restart a3track-mailer'
+  rsync -az --exclude node_modules --exclude .env server/ "$DEPLOY_HOST:/tmp/veyro-mailer/"
+  ssh "$DEPLOY_HOST" 'sudo mkdir -p /opt/veyro-mailer && sudo rsync -a /tmp/veyro-mailer/ /opt/veyro-mailer/ && cd /opt/veyro-mailer && sudo npm ci --omit=dev && sudo systemctl restart veyro-mailer'
 fi
 
 echo "Deployed to $DEPLOY_HOST"
