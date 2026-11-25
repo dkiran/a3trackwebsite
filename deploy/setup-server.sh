@@ -14,6 +14,9 @@ set -euo pipefail
 
 WEB_ROOT=/var/www/veyro
 NGINX_CONF=/etc/nginx/conf.d/veyro.conf
+# The contact form is handled by the Veyro portal backend (track.veyrotrack.com), which saves each enquiry
+# and emails it through ZeptoMail. Change this if the portal API runs elsewhere.
+ENQUIRY_API="${ENQUIRY_API:-http://127.0.0.1:4000/api/public/enquiry}"
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 echo "==> 1/5 Installing nginx, Git and rsync"
@@ -118,7 +121,16 @@ server {
     gzip_types text/plain text/css application/javascript application/json application/xml image/svg+xml;
 
     location /_astro/ { expires 1y; access_log off; }
-    location /api/ { proxy_pass http://127.0.0.1:8787; proxy_set_header X-Real-IP \$remote_addr; }
+    # Contact form -> portal backend. Keep the visitor address Caddy put in X-Forwarded-For.
+    location = /api/demo {
+        limit_except POST { deny all; }
+        client_max_body_size 32k;
+        proxy_pass $ENQUIRY_API;
+        proxy_set_header X-Forwarded-For \$http_x_forwarded_for;
+        proxy_set_header Content-Type \$content_type;
+        proxy_read_timeout 30s;
+    }
+    location /api/ { return 404; }
     location / { try_files \$uri \$uri/ =404; expires -1; }
 
     error_page 404 /404.html;

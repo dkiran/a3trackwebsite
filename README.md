@@ -30,7 +30,7 @@ npm run preview    # preview the production build
 | Animated hero | `src/components/Hero.astro` |
 | SEO head, structured data | `src/layouts/Base.astro`, `src/lib.ts` |
 | robots.txt, icons, social image | `public/` |
-| Demo-form mail service | `server/` |
+| Contact form handling | the Veyro portal backend (`dkiran/veyro`, `server/src/routes/enquiry.ts`) |
 | nginx, systemd, deploy script | `deploy/` |
 
 To add a blog post, drop a new `.md` file in `src/content/blog/` with the same front matter as the existing ones. To add a solution or industry, add an entry to the data file; the page, navigation, sitemap and `llms.txt` update automatically.
@@ -57,7 +57,7 @@ English is the source language. Other languages are produced at build time by `s
 - [ ] Review product claims (features, AIS-140 support, hardware) against what Veyro actually ships.
 - [ ] Have the legal pages (`privacy`, `terms`, `cookies`) reviewed by counsel and remove the template notice in `src/components/Legal.astro`.
 - [ ] Replace `public/og-image.png`, `public/logo.png` and `public/favicon.svg` if you have final brand assets.
-- [ ] Configure SMTP for the mail service (below) and send a test demo request.
+- [ ] Configure ZeptoMail in the portal backend (below) and send a test enquiry.
 
 ## SEO / AEO / GEO
 
@@ -112,7 +112,7 @@ One-time server setup:
 ```bash
 sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx rsync
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt install -y nodejs
-sudo mkdir -p /var/www/veyro /opt/veyro-mailer /etc/veyro
+sudo mkdir -p /var/www/veyro
 ```
 
 Point the DNS A records for `veyrotrack.com` and `www.veyrotrack.com` at the instance, open ports 80 and 443 in the security group, then:
@@ -130,18 +130,6 @@ Deploy (from your machine or CI):
 DEPLOY_HOST=ubuntu@your-ec2-host WITH_MAILER=1 ./deploy/deploy.sh
 ```
 
-### Demo-form email
+### Contact form email
 
-The contact form posts to `/api/demo`, which nginx proxies to a small Node service (`server/server.mjs`) that emails the request to your sales inbox. It includes a honeypot, input validation, origin check and per-IP rate limiting.
-
-1. In Amazon SES (region `ap-south-1` suggested), verify the `veyrotrack.com` domain, request production access and create SMTP credentials. Any SMTP provider works.
-2. On the server, copy `server/.env.example` to `/etc/veyro/mailer.env`, fill it in and `sudo chmod 600` it.
-3. Install and start the service:
-
-```bash
-sudo cp deploy/veyro-mailer.service /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable --now veyro-mailer
-curl http://127.0.0.1:8787/api/health
-```
-
-Local test without sending mail: `cd server && npm install && DRY_RUN=1 node server.mjs`.
+The contact form posts to `/api/demo` on the website. nginx forwards it to the Veyro portal backend (`http://127.0.0.1:4000/api/public/enquiry`, set by `ENQUIRY_API` in `deploy/setup-server.sh`), which saves every enquiry in its database and emails it to the sales inbox through the ZeptoMail API. Email settings (`ZEPTOMAIL_TOKEN`, `MAIL_FROM`, `ENQUIRY_MAIL_TO`) live in the portal's `server/.env`; see the portal README.
