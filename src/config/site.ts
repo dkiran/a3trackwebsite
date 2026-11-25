@@ -36,6 +36,8 @@ export const site = {
   // Google Analytics 4 measurement ID, e.g. 'G-ABC123XYZ'. Leave empty to switch analytics off.
   // Analytics loads only after a visitor accepts the cookie banner (src/components/ConsentBanner.astro).
   gaMeasurementId: '',
+  // IndexNow key (public by design): lets Bing and other engines re-crawl changed pages quickly. File: public/<key>.txt
+  indexNowKey: 'fe34d3654fdc6f8ef598a1e0666b0b57',
   // Google Tag Manager container ID. Loaded only after the visitor accepts the cookie banner.
   // If GA4 is set up inside Tag Manager, leave gaMeasurementId empty to avoid counting visits twice.
   gtmContainerId: 'GTM-P7GKC98R',

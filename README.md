@@ -86,6 +86,13 @@ The container `GTM-P7GKC98R` (`gtmContainerId` in `src/config/site.ts`) loads on
 4. Link Search Console to Google Analytics under GA Admin → Product links → Search Console links.
 5. Optional: Bing Webmaster Tools can import the Search Console property; put a Bing tag value in `bingSiteVerification` if you use the tag method.
 
+### AI assistants (AEO / GEO)
+
+- `robots.txt` welcomes the crawlers of ChatGPT, Claude, Perplexity, Gemini (Google-Extended), Meta AI, Apple, Amazon, DuckDuckGo and Mistral.
+- `/llms.txt` gives AI assistants a short summary and key facts; `/llms-full.txt` holds the site's full text in one file. Both are generated from the same data as the pages.
+- IndexNow: after each publish, `deploy/update-site.sh` runs `scripts/indexnow.mjs`, which tells Bing (used by ChatGPT search and Copilot) that pages changed. It skips itself until the real domain serves the site. The key is `indexNowKey` in `src/config/site.ts` and the file `public/<key>.txt`.
+- Also submit the sitemap in Bing Webmaster Tools (it can import from Google Search Console).
+
 ## Publishing on a new server (quick start)
 
 On a fresh Amazon Linux 2023 or Ubuntu EC2 instance, with the website's port open in the security group:

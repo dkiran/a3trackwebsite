@@ -10,4 +10,5 @@ git pull --ff-only
 npm ci
 npm run build
 sudo rsync -a --delete dist/ /var/www/veyro/
+node scripts/indexnow.mjs || true
 echo "Published. Hard-refresh the site in your browser to see the changes."
