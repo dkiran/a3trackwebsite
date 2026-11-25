@@ -52,6 +52,23 @@ const nums = [
     </div>
   </section>
 
+  <section class="section section--tight">
+    <div class="container ways">
+      <div class="way reveal">
+        <span class="eyebrow">For fleet owners and transporters</span>
+        <h2>Try Veyro on your own vehicles for 30 days</h2>
+        <p>Start with one or two vehicles. Use the GPS device you already have, or we can supply one. A small pilot fee covers setup, and founding customers get special pricing based on fleet size.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="/contact/?interest=pilot#demo">Start a 30-day pilot</a><a class="arrow-link" href="/pricing/#pilot">Pilot details</a></div>
+      </div>
+      <div class="way way--dark reveal" style="--d:100ms">
+        <span class="eyebrow">For GPS and telematics companies</span>
+        <h2>Add AI agents to your own tracking platform</h2>
+        <p>Give your customers AI chat, WhatsApp and voice assistants and a ChatGPT integration, under your brand and connected to your data, without rebuilding your software.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="/ai-for-gps-companies/">See how it works</a><a class="arrow-link" href="/contact/?interest=partner#demo">Talk to us</a></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="answer reveal">
@@ -210,6 +227,16 @@ const nums = [
 </Base>
 
 <style>
+  .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px; }
+  .way { border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 36px); background: var(--bg-2); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .way h2 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+  .way p { color: var(--muted); margin-bottom: 22px; }
+  .way .btn-row { margin-top: auto; align-items: center; gap: 18px; }
+  .way--dark { background: linear-gradient(135deg, #0f1a3d, #1e3a8a); border-color: transparent; color: #f1f5ff; }
+  .way--dark .eyebrow { color: #93c5fd; }
+  .way--dark p { color: #c7d4ee; }
+  .way--dark .arrow-link { color: #bfdbfe; }
+  .way--dark .btn--primary { background: #fff; color: #1d4ed8; }
   .strip { border-block: 1px solid var(--line); background: var(--bg-2); padding: 18px 0; overflow: hidden; }
   .marquee { mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
   .marquee ul { display: flex; gap: 44px; width: max-content; animation: slide 60s linear infinite; }

@@ -64,14 +64,15 @@ const server = http.createServer((req, res) => {
     const f = {
       name: clean(d.name, 100), company: clean(d.company, 120), email: clean(d.email, 160), phone: clean(d.phone, 30),
       fleetSize: clean(d.fleetSize, 20), industry: clean(d.industry, 60),
+      interest: { pilot: '30-day pilot', demo: 'Demo', partner: 'AI for GPS platform (partner)', hub: 'GPS data hub', other: 'Other' }[clean(d.interest, 20)] || 'Demo',
       message: String(d.message ?? '').trim().slice(0, 2000),
     };
     if (!f.name || !f.company || !f.phone || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) return send(res, 422, { error: 'invalid_fields' });
 
-    const rows = [['Name', f.name], ['Company', f.company], ['Email', f.email], ['Phone', f.phone], ['Fleet size', f.fleetSize], ['Industry', f.industry], ['Message', f.message], ['IP', ip]];
+    const rows = [['Interested in', f.interest], ['Name', f.name], ['Company', f.company], ['Email', f.email], ['Phone', f.phone], ['Fleet size', f.fleetSize], ['Industry', f.industry], ['Message', f.message], ['IP', ip]];
     const mail = {
       from: MAIL_FROM, to: MAIL_TO, replyTo: f.email,
-      subject: `New demo request: ${f.company} (${f.fleetSize || 'fleet size n/a'})`,
+      subject: `New enquiry (${f.interest}): ${f.company} (${f.fleetSize || 'fleet size n/a'})`,
       text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
       html: `<h2>New Veyro demo request</h2><table cellpadding="6" style="border-collapse:collapse">${rows.map(([k, v]) => `<tr><td style="border:1px solid #ddd"><b>${k}</b></td><td style="border:1px solid #ddd">${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table>`,
     };

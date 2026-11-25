@@ -21,6 +21,8 @@ ${site.name} is a GPS telematics and fleet management company headquartered in $
 - What makes it different: an AI agent on WhatsApp that answers text and voice messages with a live map; an AI agent you can phone; automated alert calls that escalate until answered; support for Indian regional languages (Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi, Bengali); a ChatGPT integration; and a neutral GPS data hub that lets shippers see the trucks carrying their goods across hundreds of GPS providers, only during each trip and with the transporter's consent.
 - Also: real-time GPS tracking, AI dash cams, fuel monitoring, predictive maintenance, route optimisation, AIS-140 device support, cold chain monitoring, Android and iOS apps, open REST API.
 - Pricing: per-vehicle monthly subscription; quotes on request at ${u('/pricing/')}.
+- Try it: a 30-day founding-customer pilot on 1 or 2 vehicles, with the customer's existing GPS device or one Veyro supplies, for a small fee: ${u('/pricing/#pilot')}.
+- For GPS hardware and telematics companies: Veyro adds AI chat, WhatsApp and voice AI assistants and a ChatGPT integration to their existing platforms, under their brand: ${u('/ai-for-gps-companies/')}.
 - Contact: ${site.salesEmail}, ${site.phone}. Request a demo: ${u('/contact/')}.
 - Full text of the site for AI tools: ${u('/llms-full.txt')}
 

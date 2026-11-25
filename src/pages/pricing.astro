@@ -14,6 +14,7 @@ const faqs = [
   { q: 'How much does GPS fleet tracking cost?', a: 'GPS fleet tracking is normally priced as a monthly subscription per vehicle, plus the cost of the tracking device. The total depends on the hardware chosen, the features enabled, the contract term and the number of vehicles. Veyro provides an itemised quote based on your fleet.' },
   { q: 'Is hardware included in the price?', a: 'Hardware can be purchased upfront or bundled into the monthly subscription, depending on your preference. Your quote will show both options.' },
   { q: 'Is there a minimum fleet size or contract?', a: 'No minimum fleet size. Contract terms are flexible and are discussed as part of your quote.' },
+  { q: 'Can I try Veyro before committing?', a: 'Yes. Start with a 30-day pilot on one or two vehicles, using the GPS device you already have or one we supply. There is a small pilot fee to cover setup and support, and early customers get founding-customer pricing for the full rollout, based on fleet size.' },
   { q: 'Can I change plans later?', a: 'Yes. You can add vehicles, devices and modules at any time as your needs change.' },
 ];
 ---
@@ -31,6 +32,24 @@ const faqs = [
           <a class={`btn ${p.hot ? 'btn--primary' : 'btn--ghost'}`} style="width:100%" href="/contact/#demo">Get a quote</a>
         </div>
       ))}
+    </div>
+  </section>
+  <section class="section" id="pilot">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Founding-customer pilot</span>
+        <h2>Start with a 30-day pilot on one or two vehicles</h2>
+        <p class="lead">See Veyro working on your own vehicles and routes before you commit to a full rollout.</p>
+      </div>
+      <div class="card reveal" style="--d:100ms;height:auto">
+        <ul class="checks">
+          <li><strong>30 days, 1 or 2 vehicles.</strong> Long enough to see real trips, alerts and reports.</li>
+          <li><strong>Your device or ours.</strong> Connect the GPS tracker you already have, or we supply and install one.</li>
+          <li><strong>A small pilot fee.</strong> It covers setup and support; we confirm the amount when we talk.</li>
+          <li><strong>Founding-customer pricing.</strong> Early customers get special pricing for the full rollout, based on fleet size.</li>
+        </ul>
+        <a class="btn btn--primary" style="width:100%;margin-top:10px" href="/contact/?interest=pilot#demo">Start a 30-day pilot</a>
+      </div>
     </div>
   </section>
   <section class="section"><div class="container center reveal"><h2>Want to estimate the return first?</h2><p class="lead">Use the ROI calculator to model fuel, productivity and maintenance savings with your own numbers.</p><p style="margin-top:22px"><a class="btn btn--ghost" href="/roi-calculator/">Open the ROI calculator</a></p></div></section>

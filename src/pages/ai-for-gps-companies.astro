@@ -1,0 +1,149 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import WhatsAppDemo from '../components/WhatsAppDemo.astro';
+import CallDemo from '../components/CallDemo.astro';
+import ChatGPTDemo from '../components/ChatGPTDemo.astro';
+import { faqSchema, serviceSchema } from '../lib';
+
+const path = '/ai-for-gps-companies/';
+const crumbs = [{ name: 'AI for GPS companies', href: path }];
+const definition = {
+  q: 'What is AI enablement for a GPS tracking platform?',
+  a: 'AI enablement adds conversational AI agents to an existing GPS tracking or telematics platform. The platform’s customers can then ask about their vehicles in everyday language, in an AI chat inside the app, on WhatsApp, by voice call or inside ChatGPT, and get answers drawn from the platform’s own live data. The platform keeps its devices, software, brand and customers; the AI agents connect to it through its existing data.',
+};
+const offers = [
+  { icon: 'chat', title: 'AI chat in your app and dashboard', text: 'A chat assistant inside your web dashboard and mobile app that answers questions such as “Which trucks are idle right now?” from your live data.' },
+  { icon: 'mic', title: 'WhatsApp AI assistant', text: 'Your customers message your WhatsApp number by text or voice and get the location, status and a live map of their vehicles in the chat.' },
+  { icon: 'phone', title: 'Voice AI assistant and alert calls', text: 'Customers can phone an AI agent for a vehicle’s status, and urgent alerts become phone calls that escalate until someone responds.' },
+  { icon: 'plug', title: 'ChatGPT integration', text: 'Your customers connect their account to ChatGPT and ask fleet questions there, answered with data from your platform.' },
+  { icon: 'globe', title: 'Indian regional languages', text: 'Every assistant understands and replies in English and in regional languages such as Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi and Bengali.' },
+  { icon: 'shield', title: 'Under your brand', text: 'The assistants carry your name, logo and WhatsApp number. Your customers deal with you, not with Veyro.' },
+];
+const steps = [
+  { title: 'Technical call', text: 'We look at how your platform stores and exposes data (API, database or data feed) and agree which assistant to start with.' },
+  { title: 'Connect', text: 'We connect the AI agents to your data with read-only access, scoped so each of your customers sees only their own vehicles.' },
+  { title: 'Configure', text: 'We set up the questions the agents can answer, your brand, languages and alert rules, and test them against your real data.' },
+  { title: 'Pilot', text: 'You launch with a few of your customers, collect feedback and measure use before rolling out.' },
+  { title: 'Roll out', text: 'The assistants go live for all your customers, and we keep the AI models and integrations up to date.' },
+];
+const keeps = [
+  { title: 'Your customers stay yours', text: 'We do not sell to or contact your customers. The assistants appear as part of your product.' },
+  { title: 'Your data stays yours', text: 'Access is read-only by default and covered by a data processing agreement. Data is used only to answer your customers.' },
+  { title: 'Permissions you already have', text: 'Each customer and user sees only what your platform already allows them to see.' },
+  { title: 'Every answer traceable', text: 'Conversations and the data each answer used are logged, so you can review quality and resolve disputes.' },
+];
+const audience = [
+  { icon: 'chip', title: 'GPS hardware makers and dealers', text: 'Your devices are good, but the software your customers use is basic. Add AI agents and give dealers a stronger reason to choose your devices.' },
+  { icon: 'chart', title: 'Telematics and fleet software companies', text: 'Compete with global platforms that already offer AI assistants, without building an AI team of your own.' },
+  { icon: 'clipboard', title: 'AIS-140 and VLTD providers', text: 'Turn devices that were installed for compliance into a service customers use every day.' },
+];
+const faqs = [
+  { q: 'Do we need to replace our tracking software?', a: 'No. The AI agents connect to the platform you already have, through its API, a database replica or a data feed. Your devices, servers and apps stay as they are.' },
+  { q: 'Will Veyro access our customers’ data?', a: 'Only the data needed to answer questions, with read-only access, under a data processing agreement. Each answer is limited to the vehicles the asking user is allowed to see in your platform.' },
+  { q: 'Can the assistants carry our brand?', a: 'Yes. They appear under your name, logo and WhatsApp number, inside your app and on your channels.' },
+  { q: 'Which assistant should we start with?', a: 'Most companies start with the one their customers ask for most. For fleets in India that is often the WhatsApp assistant, because owners and supervisors already use WhatsApp all day.' },
+  { q: 'How long does it take?', a: 'It depends mainly on how your platform exposes its data. After a technical call we give you a written plan with timelines and costs for a pilot.' },
+  { q: 'Which AI models do you use?', a: 'We use leading commercial AI models through their official APIs and choose the model per task for quality and cost. Your customers’ data is not used to train these models under the providers’ API terms.' },
+];
+const service = serviceSchema('AI agents for GPS and telematics platforms', 'Veyro adds AI chat, WhatsApp and voice assistants and a ChatGPT integration to existing GPS tracking and telematics platforms, under the platform’s brand.', path, 'AI enablement for telematics platforms');
+---
+<Base title="AI for GPS & Telematics Companies — Add AI Agents to Your Platform" description="Add AI chat, WhatsApp and voice AI assistants and a ChatGPT integration to your GPS tracking platform, under your brand and connected to your existing data." crumbs={crumbs} schema={[service, faqSchema([definition, ...faqs])]}>
+  <PageHero crumbs={crumbs} eyebrow="For GPS and telematics companies" title="Add AI agents to your GPS tracking platform" lead="Fleet owners now expect to ask about their vehicles in plain words: on WhatsApp, by voice and in ChatGPT. Veyro adds these AI agents to the platform you already have, under your brand and connected to your data, without rebuilding your software." cta={false}>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="/contact/?interest=partner#demo">Talk to us about your platform</a>
+      <a class="btn btn--ghost" href="#demos">See the assistants</a>
+    </div>
+  </PageHero>
+
+  <section class="section section--tight"><div class="container"><div class="answer reveal"><h2>{definition.q}</h2><p>{definition.a}</p></div></div></section>
+
+  <section class="section section--alt">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Why now</span>
+        <h2>Your customers will ask why your platform can't do this</h2>
+      </div>
+      <ul class="checks reveal" style="--d:100ms">
+        <li>Large global telematics platforms have already launched AI assistants and connections to ChatGPT.</li>
+        <li>Fleet owners use WhatsApp and voice notes all day, and expect to ask about their trucks the same way.</li>
+        <li>Building AI agents in-house needs specialist skills, careful safety work and constant upkeep as AI models change.</li>
+        <li>Partnering lets you offer it in your own product, under your own brand, without that cost.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">What we add</span><h2>Four AI assistants, connected to your data</h2><p class="lead">Start with one and add the others when your customers are ready.</p></div>
+      <div class="grid g3">
+        {offers.map((o, i) => (<div class="card reveal" style={`--d:${(i % 3) * 80}ms`}><span class="ico"><Icon name={o.icon} /></span><h3>{o.title}</h3><p>{o.text}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="demos">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">See the assistants</span><h2>What your customers would get</h2><p class="lead">Shown here under the Veyro name. On your platform they carry your brand.</p></div>
+      <div class="demos">
+        <figure><WhatsAppDemo /><figcaption><strong>WhatsApp assistant</strong>Text or voice messages, in the customer's own language, answered with a live map.</figcaption></figure>
+        <figure><CallDemo /><figcaption><strong>Voice assistant and alert calls</strong>Status by phone, and alerts that escalate until someone answers.</figcaption></figure>
+      </div>
+      <figure class="gptfig"><ChatGPTDemo /><figcaption><strong>ChatGPT integration</strong>Your customers connect their account and ask fleet questions inside ChatGPT.</figcaption></figure>
+      <p class="center" style="color:var(--muted);font-size:.8rem;margin:24px 0 0">Illustrative conversations. ChatGPT is a trademark of OpenAI.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">How it works</span><h2>From first call to live assistants</h2></div>
+      <ol class="steps">
+        {steps.map((s, i) => (<li class="card reveal" style={`--d:${i * 70}ms`}><span class="num">0{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="head center reveal"><span class="eyebrow">Who it's for</span><h2>Built for companies that already track vehicles</h2></div>
+      <div class="grid g3">
+        {audience.map((o, i) => (<div class="card reveal" style={`--d:${i * 80}ms`}><span class="ico"><Icon name={o.icon} /></span><h3>{o.title}</h3><p>{o.text}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head reveal"><span class="eyebrow">What you keep</span><h2>Your brand, your customers, your data</h2></div>
+      <div class="grid g2">
+        {keeps.map((o, i) => (<div class="card reveal" style={`--d:${(i % 2) * 80}ms`}><h3>{o.title}</h3><p>{o.text}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt"><div class="container"><div class="head center reveal"><span class="eyebrow">FAQ</span><h2>Common questions from GPS companies</h2></div><Faq items={faqs} /></div></section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta reveal">
+        <h2>Bring AI to your platform</h2>
+        <p>Tell us about your platform and your customers. We'll suggest the assistant to start with and send a plan for a pilot.</p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn--primary" href="/contact/?interest=partner#demo">Talk to us about your platform</a>
+          <a class="btn btn--ghost" href="/blog/ai-agents-for-gps-telematics-companies/">Read the guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .demos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px 24px; max-width: 820px; margin-inline: auto; align-items: start; }
+  .demos figure, .gptfig { margin: 0; }
+  .gptfig { margin: 56px auto 0; max-width: 620px; }
+  figcaption { text-align: center; color: var(--muted); margin-top: 18px; font-size: .95rem; }
+  figcaption strong { display: block; color: var(--text); font-size: 1.05rem; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; }
+</style>

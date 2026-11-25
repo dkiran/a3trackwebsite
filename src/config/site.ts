@@ -44,6 +44,11 @@ export const site = {
   // Paste the Google Search Console HTML-tag verification code here (content value only).
   googleSiteVerification: '',
   bingSiteVerification: '',
+  // Founding-customer pilot offered on the site (home, pricing, contact). The fee amount is agreed per enquiry.
+  pilot: {
+    days: 30,
+    vehicles: '1 or 2',
+  },
   // Endpoint the demo form posts to (proxied by nginx to the mail service in /server).
   formEndpoint: '/api/demo',
 };
@@ -56,6 +61,7 @@ export const nav = {
     { href: '/platform/hardware/', label: 'Hardware & devices', desc: 'Trackers, dash cams, sensors' },
     { href: '/platform/integrations/', label: 'Integrations & API', desc: 'Connect ERP, TMS and more' },
     { href: '/platform/security/', label: 'Security & privacy', desc: 'Enterprise-grade protection' },
+    { href: '/ai-for-gps-companies/', label: 'AI for GPS companies', desc: 'Add AI agents to your platform' },
   ],
   resources: [
     { href: '/blog/', label: 'Blog', desc: 'Guides for fleet leaders' },

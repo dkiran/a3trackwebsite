@@ -14,6 +14,14 @@ const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name:
       <div class="card reveal" style="height:auto">
         <h2 style="font-size:1.5rem">Request a demo</h2>
         <form class="form" id="demo-form" action={site.formEndpoint} method="post" novalidate>
+          <div class="field"><label for="interest">I'm interested in</label>
+            <select id="interest" name="interest">
+              <option value="pilot">A 30-day pilot on 1 or 2 vehicles</option>
+              <option value="demo" selected>A full product demo</option>
+              <option value="partner">AI agents for my GPS or telematics platform</option>
+              <option value="hub">The GPS data hub for shippers</option>
+              <option value="other">Something else</option>
+            </select></div>
           <div class="row">
             <div class="field"><label for="name">Full name *</label><input id="name" name="name" autocomplete="name" required maxlength="100" /></div>
             <div class="field"><label for="company">Company *</label><input id="company" name="company" autocomplete="organization" required maxlength="120" /></div>
@@ -26,7 +34,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name:
             <div class="field"><label for="fleet">Fleet size</label>
               <select id="fleet" name="fleetSize"><option>1–10</option><option>11–50</option><option>51–200</option><option>201–1,000</option><option>1,000+</option></select></div>
             <div class="field"><label for="industry">Industry</label>
-              <select id="industry" name="industry">{industries.map((i) => <option>{i.name}</option>)}<option>Other</option></select></div>
+              <select id="industry" name="industry">{industries.map((i) => <option>{i.name}</option>)}<option>GPS or telematics company</option><option>Other</option></select></div>
           </div>
           <div class="field"><label for="message">What would you like to solve?</label><textarea id="message" name="message" maxlength="2000"></textarea></div>
           <div class="hp" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
@@ -59,6 +67,11 @@ const schema = { '@context': 'https://schema.org', '@type': 'ContactPage', name:
 <script>
   const form = document.querySelector<HTMLFormElement>('#demo-form');
   const status = form?.querySelector<HTMLElement>('.form__status');
+  // Preselect the enquiry type from links such as /contact/?interest=pilot
+  const wanted = new URLSearchParams(location.search).get('interest');
+  const interestSelect = form?.querySelector<HTMLSelectElement>('#interest');
+  if (wanted && interestSelect && [...interestSelect.options].some((o) => o.value === wanted)) interestSelect.value = wanted;
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
