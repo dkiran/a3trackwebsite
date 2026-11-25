@@ -73,6 +73,10 @@ English is the source language. Other languages are produced at build time by `s
 3. Analytics loads only after a visitor clicks **Accept** in the cookie banner; declining sends nothing to Google. Visitors can change their choice with **Cookie settings** in the footer.
 4. A completed demo request sends the event `generate_lead`. In GA, under Admin → Events, mark it as a key event to count leads.
 
+### Google Tag Manager
+
+The container `GTM-P7GKC98R` (`gtmContainerId` in `src/config/site.ts`) loads only after a visitor accepts the cookie banner. Set up GA4 inside Tag Manager (a Google tag with the measurement ID, triggered on Initialization - All Pages) and keep `gaMeasurementId` empty, otherwise visits are counted twice. Completed demo requests push `{ event: 'generate_lead', form_name: 'demo_request' }` to the data layer; use a Custom Event trigger named `generate_lead`.
+
 ### Google Search Console
 
 1. At search.google.com/search-console, add a **Domain** property for `veyrotrack.com`.

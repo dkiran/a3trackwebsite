@@ -1,11 +1,12 @@
 ---
-// Google Analytics 4, loaded only after the visitor accepts analytics cookies.
+// Google Tag Manager and/or Google Analytics 4, loaded only after the visitor accepts analytics cookies.
 // Nothing is requested from Google until then; declining (or having JavaScript off) means no tracking.
 // The choice is stored in this browser and can be changed with the "Cookie settings" link in the footer.
 import { site } from '../config/site';
 const GA_ID = site.gaMeasurementId;
+const GTM_ID = site.gtmContainerId;
 ---
-{GA_ID && (
+{(GA_ID || GTM_ID) && (
   <div class="consent" data-consent hidden role="dialog" aria-live="polite" aria-labelledby="consent-title">
     <p class="consent__title" id="consent-title">Can we use analytics cookies?</p>
     <p class="consent__text">We use Google Analytics to see which pages are useful, so we can improve the site. No advertising, and nothing is shared for marketing. You can change your choice at any time. <a href="/cookies/">Cookie policy</a></p>
@@ -14,7 +15,7 @@ const GA_ID = site.gaMeasurementId;
       <button type="button" class="btn btn--ghost btn--sm" data-consent-decline>Decline</button>
     </div>
   </div>
-  <script is:inline define:vars={{ GA_ID }}>
+  <script is:inline define:vars={{ GA_ID, GTM_ID }}>
     (function () {
       var KEY = 'veyro-analytics-consent';
       var banner = document.querySelector('[data-consent]');
@@ -28,12 +29,17 @@ const GA_ID = site.gaMeasurementId;
         gtag('consent', 'update', { analytics_storage: 'granted' });
         if (loaded) return;
         loaded = true;
-        gtag('js', new Date());
-        gtag('config', GA_ID);
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
-        document.head.appendChild(s);
+        function add(src) { var s = document.createElement('script'); s.async = true; s.src = src; document.head.appendChild(s); }
+        if (GTM_ID) {
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          add('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID));
+        }
+        if (GA_ID) {
+          window.veyroGA = true;
+          gtag('js', new Date());
+          gtag('config', GA_ID);
+          add('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID));
+        }
       }
       function clearCookies() {
         document.cookie.split(';').forEach(function (c) {
