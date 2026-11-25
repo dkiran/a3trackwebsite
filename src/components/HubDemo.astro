@@ -1,0 +1,128 @@
+---
+// Animated explainer for the GPS data hub:
+// many GPS providers -> one Veyro hub (one identity per truck) -> each shipper sees a truck only during its own trip.
+// Timeline is driven by data-at / data-off (see src/scripts/demo.ts); the carousel or the page replays it.
+const { plate = 'AP09CC2318' } = Astro.props;
+const providers = ['Provider A', 'Provider B', 'Provider C', '+400 more'];
+const P = [12.5, 37.5, 62.5, 87.5]; // x positions (%) of the four provider chips
+---
+<div class="hub" data-demo="15500" role="img" aria-label={`Illustration of the Veyro GPS data hub. Data from many different GPS providers flows into Veyro, where truck ${plate} has one identity. During its first trip only Shipper A can see the truck. When that trip ends, Shipper A's access ends, and during the next trip only Shipper B can see it. Every view is logged and the driver's personal details are hidden.`}>
+  <div class="hub__bar"><span></span><span></span><span></span><em>Veyro GPS hub</em><b><i></i>Live</b></div>
+  <div class="hub__body">
+    <p class="hub__label">Transporters' GPS providers, hundreds of brands</p>
+    <div class="hub__providers">{providers.map((p, i) => <span style={`--i:${i}`}><i></i>{p}</span>)}</div>
+
+    <svg class="hub__wires" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+      {P.map((x) => <path d={`M${x} 0 C ${x} 22, 50 18, 50 40`} class="wire" />)}
+      {P.map((x, i) => <path d={`M${x} 0 C ${x} 22, 50 18, 50 40`} class="wire wire--flow" style={`--i:${i}`} />)}
+    </svg>
+
+    <div class="hub__core">
+      <div class="hub__logo"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#2563eb" /><path d="M11.5 12.5 L20 28.5 L27.2 14.9" stroke="#fff" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round" fill="none" /><circle cx="28.6" cy="12.2" r="3.5" fill="#fff" /></svg><div><strong>Veyro hub</strong><small>One connection for every shipper</small></div></div>
+      <div class="hub__truck">
+        <span class="hub__plate">{plate}</span>
+        <small>One truck, one identity, any GPS provider</small>
+      </div>
+      <div class="hub__trip">
+        <span data-at="0" data-off="6200"><b>Trip 1</b> carrying goods for Shipper A</span>
+        <span data-at="6200" data-off="8200" class="is-end"><b>Trip 1 complete</b> access for Shipper A ends</span>
+        <span data-at="8200"><b>Trip 2</b> same truck, now working for Shipper B</span>
+      </div>
+    </div>
+
+    <svg class="hub__wires hub__wires--out" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M50 0 C 50 20, 25 18, 25 40" class="wire" />
+      <path d="M50 0 C 50 20, 75 18, 75 40" class="wire" />
+      <path d="M50 0 C 50 20, 25 18, 25 40" class="wire wire--live" data-at="800" data-off="6200" />
+      <path d="M50 0 C 50 20, 75 18, 75 40" class="wire wire--live" data-at="8600" />
+    </svg>
+
+    <div class="hub__shippers">
+      <div class="ship">
+        <strong>Shipper A</strong><small>E-commerce</small>
+        <div class="ship__state">
+          <span data-at="0" data-off="800" class="st st--off">No access</span>
+          <span data-at="800" data-off="6200" class="st st--on">Can see {plate}</span>
+          <span data-at="6200" class="st st--end">Access ended</span>
+        </div>
+      </div>
+      <div class="ship">
+        <strong>Shipper B</strong><small>Retail chain</small>
+        <div class="ship__state">
+          <span data-at="0" data-off="8600" class="st st--off">No access</span>
+          <span data-at="8600" class="st st--on">Can see {plate}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hub__foot">
+      <span><i class="ok"></i>Only during its own trip</span>
+      <span><i class="ok"></i>Every view logged</span>
+      <span><i class="ok"></i>Driver's name and phone hidden</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hub { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid rgba(15, 23, 42, 0.16); box-shadow: 0 50px 100px -50px rgba(15, 23, 42, 0.6), 0 12px 30px -18px rgba(15, 23, 42, 0.3); color: #0f172a; letter-spacing: 0; }
+  .hub__bar { display: flex; align-items: center; gap: 6px; padding: 11px 14px; background: #0f172a; }
+  .hub__bar span { width: 9px; height: 9px; border-radius: 50%; background: #334155; }
+  .hub__bar em { margin-left: 10px; font: 500 0.72rem/1 var(--font); font-style: normal; color: #b3c2e0; padding: 5px 10px; border-radius: 6px; background: rgba(255, 255, 255, 0.07); }
+  .hub__bar b { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 0.7rem/1 var(--font); color: #5fd3a0; }
+  .hub__bar b i { width: 7px; height: 7px; border-radius: 50%; background: #5fd3a0; animation: hub-blink 1.4s infinite; }
+  .hub__body { padding: 16px clamp(12px, 3.5%, 22px) 14px; background: linear-gradient(180deg, #f8fafc, #eef4ff); }
+  .hub__label { margin: 0 0 8px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #64748b; text-align: center; }
+
+  .hub__providers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .hub__providers span { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 4px; border-radius: 10px; background: #fff; border: 1px solid #e2e8f0; font-size: 0.72rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 4px 10px -8px rgba(15, 23, 42, 0.4); }
+  .hub__providers i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: #1f9d6e; animation: hub-blink 1.6s infinite; animation-delay: calc(var(--i) * 0.3s); }
+
+  .hub__wires { display: block; width: 100%; height: 44px; overflow: visible; }
+  .wire { fill: none; stroke: #cbd5e1; stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .wire--flow { stroke: #2563eb; stroke-dasharray: 4 9; animation: hub-flow 1.1s linear infinite; animation-delay: calc(var(--i) * -0.25s); }
+  .wire--live { stroke: #1f9d6e; stroke-width: 3; stroke-dasharray: 5 8; opacity: 0; transition: opacity .4s; animation: hub-flow 0.9s linear infinite; }
+  .wire--live.on { opacity: 1; }
+
+  .hub__core { display: grid; gap: 8px; padding: 12px; border-radius: 14px; background: #fff; border: 1px solid #bfdbfe; box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.07), 0 16px 30px -22px rgba(37, 99, 235, 0.8); }
+  .hub__logo { display: flex; align-items: center; gap: 10px; }
+  .hub__logo svg { flex: none; width: 32px; height: 32px; }
+  .hub__logo strong { display: block; font-size: 0.92rem; }
+  .hub__logo small { display: block; font-size: 0.7rem; color: #64748b; }
+  .hub__truck { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 8px 10px; border-radius: 10px; background: #eff6ff; }
+  .hub__plate { font: 700 0.82rem/1 var(--font); padding: 5px 8px; border-radius: 6px; background: #fff; border: 1.5px solid #0f172a; letter-spacing: 0.04em; }
+  .hub__truck small { font-size: 0.7rem; color: #334155; }
+  .hub__trip { display: grid; min-height: 2.6em; }
+  .hub__trip span { grid-area: 1 / 1; align-self: center; font-size: 0.76rem; color: #334155; opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s; }
+  .hub__trip span.on { opacity: 1; transform: none; }
+  .hub__trip b { color: #0f172a; margin-right: 4px; }
+  .hub__trip .is-end b { color: #b45309; }
+
+  .hub__shippers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ship { padding: 10px 12px; border-radius: 12px; background: #fff; border: 1px solid #e2e8f0; min-width: 0; }
+  .ship strong { display: block; font-size: 0.86rem; }
+  .ship small { display: block; font-size: 0.68rem; color: #64748b; margin-bottom: 8px; }
+  .ship__state { display: grid; }
+  .st { grid-area: 1 / 1; justify-self: start; max-width: 100%; font: 600 0.68rem/1.2 var(--font); padding: 5px 8px; border-radius: 999px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transform: scale(.94); transition: opacity .35s, transform .35s; }
+  .st.on { opacity: 1; transform: none; }
+  .st--off { background: #f1f5f9; color: #64748b; }
+  .st--on { background: #dcfce7; color: #166534; }
+  .st--end { background: #fef3c7; color: #92400e; }
+
+  .hub__foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; margin-top: 12px; font-size: 0.68rem; color: #475569; }
+  .hub__foot span { display: inline-flex; align-items: center; gap: 6px; }
+  .hub__foot i.ok { width: 12px; height: 12px; border-radius: 50%; background: #1f9d6e; position: relative; }
+  .hub__foot i.ok::after { content: ''; position: absolute; left: 4px; top: 2px; width: 3px; height: 6px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+
+  /* Without JavaScript: show the final state (trip 2, Shipper B has access, Shipper A's ended). */
+  :global(html:not(.js)) .hub [data-at]:not([data-off]) { opacity: 1; transform: none; }
+
+  @keyframes hub-flow { to { stroke-dashoffset: -26; } }
+  @keyframes hub-blink { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+  @media (max-width: 420px) { .hub__providers span { font-size: 0.64rem; } .hub__foot { font-size: 0.64rem; } }
+  @media (prefers-reduced-motion: reduce) { .wire--flow, .wire--live { animation: none; } }
+</style>
+
+<script>
+  import { initStandaloneDemos } from '../scripts/demo';
+  initStandaloneDemos();
+</script>

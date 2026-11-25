@@ -18,6 +18,47 @@ export interface Solution {
 
 export const solutions: Solution[] = [
   {
+    slug: 'gps-data-hub',
+    name: 'GPS Data Hub for Shippers',
+    icon: 'hub',
+    short: 'One connection to see the trucks carrying your goods, whatever GPS they use.',
+    metaTitle: 'GPS Data Hub — One Connection to Every Transporter\u2019s Trucks',
+    metaDescription:
+      'Veyro collects GPS data from every transporter\u2019s tracking provider and shows each shipper only the trucks carrying its goods, only during the trip, with consent.',
+    h1: 'See every truck carrying your goods, through one connection',
+    lead: 'Your transporters use hundreds of different GPS providers. Veyro brings them all into one place, so a shipper connects once and sees exactly the trucks working for it, and only while they are working for it.',
+    definition: {
+      q: 'What is a GPS data hub?',
+      a: 'A GPS data hub collects vehicle location data from many different GPS providers and makes it available through one connection. Transporters keep the trackers they already have, and shippers connect to the hub once instead of to each transporter\u2019s GPS provider. Veyro identifies every truck by its registration number and shares its location with a shipper only while that truck is assigned to the shipper\u2019s trip, with the transporter\u2019s consent.',
+    },
+    features: [
+      { title: 'One connection instead of hundreds', text: 'Shippers connect to Veyro once and see trucks from every transporter, whichever GPS provider each one uses.' },
+      { title: 'One identity per truck', text: 'Every truck is identified by its registration number, so it keeps the same identity when it changes GPS provider or starts working for a different shipper.' },
+      { title: 'No new hardware for transporters', text: 'Most GPS trackers can send a second copy of their data to another server. Transporters point that copy to Veyro and keep their current provider.' },
+      { title: 'Three ways to connect', text: 'The tracker sends a copy directly, the GPS provider forwards the data under an agreement with Veyro, or Veyro reads it from the provider\u2019s system with access the transporter grants.' },
+      { title: 'Access only during the trip', text: 'A shipper sees a truck only while it is assigned to that shipper, for the agreed time window and with the transporter\u2019s consent. When the trip ends, access ends automatically.' },
+      { title: 'Privacy built in', text: 'Every view is recorded, and the driver\u2019s personal details, such as name and phone number, are hidden from shippers.' },
+    ],
+    outcomes: [
+      { title: 'For shippers', text: 'Live location and arrival times for every consignment in one screen or one API, without chasing transporters for updates.' },
+      { title: 'For transporters', text: 'Share location with customers in minutes, keep your current GPS provider, and stay in control of who sees which truck and for how long.' },
+      { title: 'For GPS providers', text: 'Reach large shippers through one standard connection, on terms agreed with Veyro.' },
+    ],
+    steps: [
+      { title: 'Connect', text: 'The transporter links its trucks to Veyro, usually by sending a copy of the tracker data. No new device.' },
+      { title: 'Assign', text: 'When a truck is booked for a shipper\u2019s trip, the transporter approves sharing it for that trip.' },
+      { title: 'Share', text: 'The shipper sees the truck live until the trip ends. Then access stops, and the next trip starts fresh.' },
+    ],
+    faqs: [
+      { q: 'Do transporters need to buy new GPS devices?', a: 'No. Most trackers can send a second copy of their data to another server at the same time. If that is not possible, Veyro can receive the data from the GPS provider, or read it from the provider\u2019s system with the transporter\u2019s permission.' },
+      { q: 'Can a shipper see all of a transporter\u2019s trucks?', a: 'No. A shipper sees only the trucks assigned to its own trips, and only for the time window of each trip.' },
+      { q: 'What happens when a truck starts working for another shipper?', a: 'Access follows the assignment. When the truck\u2019s trip for one shipper ends, that shipper loses access. When it starts a trip for another shipper, only the new shipper can see it.' },
+      { q: 'Is the driver\u2019s personal information shared?', a: 'No. Shippers see the truck, its location and its arrival time. The driver\u2019s name and phone number are hidden, and every view of a vehicle is recorded.' },
+      { q: 'How does Veyro handle data protection?', a: 'Location is shared only with the transporter\u2019s consent, for a defined purpose and time, and the hub is designed around Bharat\u2019s Digital Personal Data Protection Act. Veyro connects to a GPS provider only where its terms allow it or under an agreement with that provider.' },
+    ],
+    industries: ['transportation-logistics', 'last-mile-delivery', 'food-beverage', 'construction'],
+  },
+  {
     slug: 'gps-fleet-tracking',
     name: 'GPS Fleet Tracking',
     icon: 'pin',

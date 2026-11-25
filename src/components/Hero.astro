@@ -1,10 +1,12 @@
 ---
+import HubDemo from './HubDemo.astro';
 import LiveMapDemo from './LiveMapDemo.astro';
 import WhatsAppDemo from './WhatsAppDemo.astro';
 import MobileAppDemo from './MobileAppDemo.astro';
 import ChatGPTDemo from './ChatGPTDemo.astro';
 import CallDemo from './CallDemo.astro';
 const slides = [
+  { tab: 'GPS hub', title: 'One connection to every transporter\u2019s trucks', text: 'Transporters use hundreds of different GPS providers. Veyro brings them together, so a shipper connects once and sees exactly the trucks carrying its goods, only while they carry them. No new devices, and the transporter stays in control.', href: '/solutions/gps-data-hub/', cta: 'How the GPS hub works', ms: 15500 },
   { tab: 'Live map', title: 'One live view of your whole fleet', text: 'Track every vehicle, driver and asset in real time. AI flags risk, fuel waste and breakdowns as they happen.', href: '/platform/', cta: 'Explore the platform', ms: 8000 },
   { tab: 'Mobile app', title: 'Veyro mobile app for Android and iOS', text: 'Carry your fleet in your pocket. Follow vehicles live on the map, replay any trip, get instant alerts and check the day\u2019s numbers, wherever you are.', href: '/platform/#mobile-app', cta: 'See the mobile app', ms: 17500 },
   { tab: 'WhatsApp', title: 'Your fleet, on WhatsApp', text: 'Type or send a voice message, in English or your own language: “Where is my vehicle AP09CC2318?” The AI agent answers in the same language, by text or voice, with the live map in the chat.', href: '/platform/ai-agent/', cta: 'See the AI agent', ms: 20000 },
@@ -39,14 +41,15 @@ const slides = [
 
     <div class="hero__viz">
       <div class="stage">
-        <div class="slide is-active" data-slide="0" role="img" aria-label="Animated illustration of the Veyro live fleet map with vehicles moving along routes and AI alerts appearing">
+        <div class="slide is-active" data-slide="0"><HubDemo /><p class="viz__note">Illustrative. Shipper names are examples.</p></div>
+        <div class="slide" data-slide="1" role="img" aria-label="Animated illustration of the Veyro live fleet map with vehicles moving along routes and AI alerts appearing">
           <LiveMapDemo />
           <p class="viz__note">Illustrative product view</p>
         </div>
-        <div class="slide" data-slide="1"><MobileAppDemo /><p class="viz__note" style="text-align:center">Illustrative app screens</p></div>
-        <div class="slide" data-slide="2"><WhatsAppDemo /><p class="viz__note" style="text-align:center">Illustrative conversation</p></div>
-        <div class="slide" data-slide="3"><CallDemo /><p class="viz__note" style="text-align:center">Illustrative call</p></div>
-        <div class="slide" data-slide="4"><ChatGPTDemo /><p class="viz__note">Illustrative. ChatGPT is a trademark of OpenAI.</p></div>
+        <div class="slide" data-slide="2"><MobileAppDemo /><p class="viz__note" style="text-align:center">Illustrative app screens</p></div>
+        <div class="slide" data-slide="3"><WhatsAppDemo /><p class="viz__note" style="text-align:center">Illustrative conversation</p></div>
+        <div class="slide" data-slide="4"><CallDemo /><p class="viz__note" style="text-align:center">Illustrative call</p></div>
+        <div class="slide" data-slide="5"><ChatGPTDemo /><p class="viz__note">Illustrative. ChatGPT is a trademark of OpenAI.</p></div>
       </div>
     </div>
   </div>
@@ -110,6 +113,7 @@ const slides = [
     const caps = [...hero.querySelectorAll<HTMLElement>('[data-cap]')];
     const tabs = [...hero.querySelectorAll<HTMLButtonElement>('[data-tab]')];
     const svg = hero.querySelector<SVGSVGElement>('.viz__svg');
+    const mapIndex = svg ? slides.findIndex((s) => s.contains(svg)) : -1;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
     let current = 0;
     let timer: number | undefined;
@@ -122,7 +126,7 @@ const slides = [
       hero.classList.toggle('is-paused', paused);
       if (!paused) timer = window.setTimeout(() => show((current + 1) % slides.length), Number(tabs[current].dataset.ms));
       // The map uses SVG (SMIL) animation: pause it when it is not the slide on screen.
-      if (svg) (reduce.matches || !visible || current !== 0 ? svg.pauseAnimations() : svg.unpauseAnimations());
+      if (svg) (reduce.matches || !visible || current !== mapIndex ? svg.pauseAnimations() : svg.unpauseAnimations());
     };
 
     const show = (i: number) => {
@@ -146,6 +150,8 @@ const slides = [
     hero.querySelector('.hero__in')!.addEventListener('mouseleave', () => { hovering = false; schedule(); });
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.2 }).observe(hero);
     reduce.addEventListener('change', schedule);
+    const firstDemo = slides[0].querySelector('[data-demo]');
+    if (firstDemo) playDemo(firstDemo);
     tabs[0].style.setProperty('--ms', `${tabs[0].dataset.ms}ms`);
     schedule();
   }

@@ -9,7 +9,7 @@ const crumbs = [{ name: 'Solutions', href: '/solutions/' }];
 const list = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Veyro fleet solutions', itemListElement: solutions.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: `${site.url}/solutions/${s.slug}/` })) };
 ---
 <Base title="Fleet Management Solutions — GPS, AI Video, Fuel & More" description="Explore Veyro fleet solutions: GPS tracking, AI dash cams, driver safety, fuel management, asset tracking, predictive maintenance, routing, compliance and cold chain." crumbs={crumbs} schema={[list]}>
-  <PageHero crumbs={crumbs} eyebrow="Solutions" title="One platform. Nine ways to move smarter." lead="Pick the capabilities you need today and add more as your operation grows. Every solution shares the same live data, the same AI and the same simple interface." />
+  <PageHero crumbs={crumbs} eyebrow="Solutions" title="One platform. Ten ways to move smarter." lead="Pick the capabilities you need today and add more as your operation grows. Every solution shares the same live data, the same AI and the same simple interface." />
   <section class="section section--alt">
     <div class="container grid g3">
       {solutions.map((s, i) => (

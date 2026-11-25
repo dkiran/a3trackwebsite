@@ -11,6 +11,7 @@ export const homeFaqs = [
   { q: 'Can I ask about my fleet on WhatsApp or by phone call?', a: 'Yes. Veyro AI agents are available 24/7 on WhatsApp, on a phone call to our AI call centre, inside ChatGPT through the Veyro integration, and by voice or chat in the app, in English and regional languages. Ask “Where is my vehicle AP09CC2318?” and the agent replies in seconds with the status and a live map. The agents also place automated calls when an alert threshold is crossed and escalate until someone responds.' },
   { q: 'How long does it take to deploy?', a: 'Plug-in trackers can be installed in minutes and are typically visible on the platform the same day. Larger wired or camera deployments are scheduled in phases with certified installers.' },
   { q: 'Does Veyro integrate with other software?', a: 'Yes. Veyro provides an open REST API and webhooks to connect with ERP, transport-management, maintenance, payroll and business-intelligence systems.' },
+  { q: 'Can a shipper track trucks from many different GPS providers in one place?', a: 'Yes. Veyro works as a neutral GPS data hub. Each transporter\u2019s GPS provider sends data to Veyro, and a shipper connects once to see the trucks carrying its goods, whichever provider they use. A shipper sees a truck only while it is assigned to its trip, with the transporter\u2019s consent.' },
 ];
 
 export const faqGroups: FaqGroup[] = [
@@ -20,6 +21,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       homeFaqs[3],
       homeFaqs[4],
+      homeFaqs[7],
       { q: 'What hardware do I need?', a: 'At minimum, a GPS tracker in each vehicle. Depending on your goals you can add AI dash cams, fuel-level sensors, temperature sensors, driver ID readers and battery-powered asset trackers. Our team recommends a configuration for each vehicle type.' },
       { q: 'Does Veyro work with electric vehicles?', a: 'Yes. Veyro tracks electric vehicles alongside conventional ones and reports state of charge, range, charging sessions and energy consumption where the vehicle provides the data.' },
       { q: 'Is there a mobile app?', a: 'Yes. Managers get a fleet app for live tracking, alerts and reports. Drivers get a separate app for jobs, navigation, inspections, proof of delivery and their own safety score.' },
