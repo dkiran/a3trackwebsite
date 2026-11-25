@@ -54,7 +54,7 @@ export const solutions: Solution[] = [
       { q: 'Can a shipper see all of a transporter\u2019s trucks?', a: 'No. A shipper sees only the trucks assigned to its own trips, and only for the time window of each trip.' },
       { q: 'What happens when a truck starts working for another shipper?', a: 'Access follows the assignment. When the truck\u2019s trip for one shipper ends, that shipper loses access. When it starts a trip for another shipper, only the new shipper can see it.' },
       { q: 'Is the driver\u2019s personal information shared?', a: 'No. Shippers see the truck, its location and its arrival time. The driver\u2019s name and phone number are hidden, and every view of a vehicle is recorded.' },
-      { q: 'How does Veyro handle data protection?', a: 'Location is shared only with the transporter\u2019s consent, for a defined purpose and time, and the hub is designed around Bharat\u2019s Digital Personal Data Protection Act. Veyro connects to a GPS provider only where its terms allow it or under an agreement with that provider.' },
+      { q: 'How does Veyro handle data protection?', a: 'Location is shared only with the transporter\u2019s consent, for a defined purpose and time, and the hub is designed around India\u2019s Digital Personal Data Protection Act. Veyro connects to a GPS provider only where its terms allow it or under an agreement with that provider.' },
     ],
     industries: ['transportation-logistics', 'last-mile-delivery', 'food-beverage', 'construction'],
   },
@@ -339,7 +339,7 @@ export const solutions: Solution[] = [
     short: 'Automated records, regulatory device support and audit-ready reports.',
     metaTitle: 'Fleet Compliance Software — AIS-140, Driver Hours & Reports',
     metaDescription:
-      'Simplify fleet compliance with Veyro: support for AIS-140 tracking requirements in Bharat, driver hours, inspections, document renewals and audit-ready reports.',
+      'Simplify fleet compliance with Veyro: support for AIS-140 tracking requirements in India, driver hours, inspections, document renewals and audit-ready reports.',
     h1: 'Compliance that runs itself',
     lead: 'Regulations differ by country and vehicle type, but the need is the same: accurate records, on time. Veyro captures them automatically and keeps you audit-ready.',
     definition: {
@@ -347,7 +347,7 @@ export const solutions: Solution[] = [
       a: 'Fleet compliance management is the practice of making sure vehicles, drivers and operations meet legal and contractual requirements. This includes mandated tracking devices, driver working hours, vehicle inspections, permits and insurance, speed governance and data-retention rules. Telematics automates the record-keeping.',
     },
     features: [
-      { title: 'AIS-140 support for Bharat', text: 'Works with vehicle location tracking devices and emergency buttons specified under Bharat’s AIS-140 standard for public and commercial vehicles.' },
+      { title: 'AIS-140 support for India', text: 'Works with vehicle location tracking devices and emergency buttons specified under India’s AIS-140 standard for public and commercial vehicles.' },
       { title: 'Driver hours and fatigue', text: 'Track driving, rest and duty time; alert before limits are breached. Supports regional hours-of-service schemes.' },
       { title: 'Digital vehicle inspections', text: 'Paperless checklists with photos, defect tracking and sign-off history.' },
       { title: 'Document vault and reminders', text: 'Store registration, insurance, permits and licences with renewal alerts.' },
@@ -365,8 +365,8 @@ export const solutions: Solution[] = [
       { title: 'Report', text: 'Exceptions are flagged in real time; reports are generated on schedule.' },
     ],
     faqs: [
-      { q: 'What is AIS-140?', a: 'AIS-140 is an Automotive Industry Standard published in Bharat that specifies requirements for vehicle location tracking devices and emergency (panic) buttons in public service and certain commercial vehicles. It covers device features, communication with government back-end systems and testing requirements.' },
-      { q: 'Which regulations does Veyro support?', a: 'Veyro is designed around configurable rule sets, so it can support different regional requirements, for example vehicle tracking mandates in Bharat and driver-hours rules in other markets. Speak to our team about the specific regulations that apply to your fleet.' },
+      { q: 'What is AIS-140?', a: 'AIS-140 is an Automotive Industry Standard published in India that specifies requirements for vehicle location tracking devices and emergency (panic) buttons in public service and certain commercial vehicles. It covers device features, communication with government back-end systems and testing requirements.' },
+      { q: 'Which regulations does Veyro support?', a: 'Veyro is designed around configurable rule sets, so it can support different regional requirements, for example vehicle tracking mandates in India and driver-hours rules in other markets. Speak to our team about the specific regulations that apply to your fleet.' },
       { q: 'How long is compliance data stored?', a: 'Retention periods are configurable to meet the requirements of your regulators and contracts. Data can be exported at any time in standard formats.' },
     ],
     industries: ['public-transport', 'school-buses', 'government', 'oil-gas'],

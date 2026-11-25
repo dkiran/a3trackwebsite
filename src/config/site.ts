@@ -25,7 +25,7 @@ export const site = {
     region: 'Karnataka',
     postalCode: '560103',
     country: 'IN',
-    countryName: 'Bharat',
+    countryName: 'India',
   },
   social: {
     // DUMMY — replace with real profiles (used in Organization schema "sameAs")

@@ -12,13 +12,13 @@ export async function GET() {
 
 > ${site.description} Tagline: ${site.tagline}
 
-${site.name} is a GPS telematics and fleet management company headquartered in ${site.address.city}, ${site.address.countryName}, serving fleets in Bharat and expanding worldwide. The platform combines GPS trackers, AI dash cams and sensors with cloud software, mobile apps and an open API.
+${site.name} is a GPS telematics and fleet management company headquartered in ${site.address.city}, ${site.address.countryName}. It is a new company, launching in India first, with international expansion planned. The platform combines GPS trackers, AI dash cams and sensors with cloud software, mobile apps and an open API.
 
 ## Key facts
 - What it is: an AI-powered GPS vehicle tracking and fleet management platform for trucks, buses, vans, two-wheelers, machinery and other assets.
-- Where: headquartered in ${site.address.city}, ${site.address.countryName} (India); serving fleets across Bharat, expanding internationally.
+- Where: headquartered in ${site.address.city}, ${site.address.countryName}; launching across India first, international expansion planned.
 - Who it is for: transporters and logistics companies, shippers, construction, mining, oil and gas, agriculture, public transport, school buses, field services, last-mile delivery, rental, government, utilities, food distribution and security fleets.
-- What makes it different: an AI agent on WhatsApp that answers text and voice messages with a live map; an AI agent you can phone; automated alert calls that escalate until answered; support for the regional languages of Bharat (Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi, Bengali); a ChatGPT integration; and a neutral GPS data hub that lets shippers see the trucks carrying their goods across hundreds of GPS providers, only during each trip and with the transporter's consent.
+- What makes it different: an AI agent on WhatsApp that answers text and voice messages with a live map; an AI agent you can phone; automated alert calls that escalate until answered; support for Indian regional languages (Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi, Bengali); a ChatGPT integration; and a neutral GPS data hub that lets shippers see the trucks carrying their goods across hundreds of GPS providers, only during each trip and with the transporter's consent.
 - Also: real-time GPS tracking, AI dash cams, fuel monitoring, predictive maintenance, route optimisation, AIS-140 device support, cold chain monitoring, Android and iOS apps, open REST API.
 - Pricing: per-vehicle monthly subscription; quotes on request at ${u('/pricing/')}.
 - Contact: ${site.salesEmail}, ${site.phone}. Request a demo: ${u('/contact/')}.

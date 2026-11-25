@@ -10,7 +10,7 @@ const slugify = (s: string) =>
 const raw: Term[] = [
   { term: 'Accelerometer', def: 'A sensor inside a telematics device that measures changes in speed and direction. It is used to detect harsh braking, harsh acceleration, sharp cornering and collisions.', link: '/solutions/driver-safety/' },
   { term: 'ADAS (Advanced Driver Assistance Systems)', def: 'Technology that uses cameras and sensors to warn drivers about hazards on the road, such as an imminent forward collision, tailgating or unintended lane departure.', link: '/solutions/ai-dash-cams/' },
-  { term: 'AIS-140', def: 'An Automotive Industry Standard in Bharat that specifies requirements for vehicle location tracking devices and emergency buttons in public service and certain commercial vehicles.', link: '/solutions/compliance/' },
+  { term: 'AIS-140', def: 'An Automotive Industry Standard in India that specifies requirements for vehicle location tracking devices and emergency buttons in public service and certain commercial vehicles.', link: '/solutions/compliance/' },
   { term: 'API (Application Programming Interface)', def: 'A documented way for software systems to exchange data. A telematics API lets ERP, TMS and other business systems read vehicle locations, trips and events automatically.', link: '/platform/integrations/' },
   { term: 'Asset tracking', def: 'Monitoring the location and status of non-vehicle equipment such as trailers, containers, generators and tools, usually with long-life battery-powered GPS devices.', link: '/solutions/asset-tracking/' },
   { term: 'BLE (Bluetooth Low Energy)', def: 'A short-range, low-power wireless technology. In fleets it connects sensors and tags, for example temperature probes and tool tags, to a vehicle gateway.' },
@@ -29,7 +29,7 @@ const raw: Term[] = [
   { term: 'Fleet telematics', def: 'The use of GPS, on-board sensors and mobile connectivity to collect vehicle data and deliver it to software that helps manage a fleet.', link: '/platform/' },
   { term: 'Fuel level sensor', def: 'A sensor installed in a fuel tank to measure the fuel level precisely. It enables detection of refills, drains and theft and calculation of true consumption.', link: '/solutions/fuel-management/' },
   { term: 'Geofence', def: 'A virtual boundary drawn on a map. A telematics system triggers alerts or records events when a vehicle or asset enters, leaves or stays inside it.', link: '/solutions/gps-fleet-tracking/' },
-  { term: 'GNSS (Global Navigation Satellite System)', def: 'The general term for satellite positioning systems, including GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China) and NavIC (Bharat).' },
+  { term: 'GNSS (Global Navigation Satellite System)', def: 'The general term for satellite positioning systems, including GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China) and NavIC (India).' },
   { term: 'GPS (Global Positioning System)', def: 'A satellite navigation system operated by the United States that lets a receiver determine its position anywhere on Earth. It is the most widely used GNSS.', link: '/solutions/gps-fleet-tracking/' },
   { term: 'Harsh braking', def: 'A sudden, forceful application of the brakes, detected by an accelerometer. Frequent harsh braking indicates tailgating or inattention and increases wear and collision risk.', link: '/solutions/driver-safety/' },
   { term: 'Hours of Service (HOS)', def: 'Regulations that limit how long commercial drivers may drive and work before resting, intended to prevent fatigue-related accidents.', link: '/solutions/compliance/' },
@@ -38,7 +38,7 @@ const raw: Term[] = [
   { term: 'IoT (Internet of Things)', def: 'A network of physical devices with sensors and connectivity that collect and share data. Vehicle trackers, dash cams and temperature sensors are IoT devices.' },
   { term: 'IVMS (In-Vehicle Monitoring System)', def: 'A telematics system that records driving behaviour and vehicle use, widely required in oil, gas and mining operations to enforce safety standards.', link: '/industries/oil-gas/' },
   { term: 'J1939', def: 'A communication standard used on the CAN bus of heavy-duty vehicles such as trucks and buses. Telematics devices use it to read engine and vehicle data.' },
-  { term: 'NavIC', def: 'Navigation with Bharatiya Constellation: Bharat’s regional satellite navigation system operated by ISRO, providing positioning over Bharat and the surrounding region.' },
+  { term: 'NavIC', def: 'Navigation with Indian Constellation: India’s regional satellite navigation system operated by ISRO, providing positioning over India and the surrounding region.' },
   { term: 'OBD-II', def: 'On-Board Diagnostics, second generation: a standard diagnostic port found in most cars and light vehicles. Plug-in trackers use it for power and engine data.' },
   { term: 'Predictive maintenance', def: 'Using real-time vehicle data and analytics to forecast when a component is likely to fail, so it can be serviced just in time.', link: '/solutions/predictive-maintenance/' },
   { term: 'Proof of delivery (POD)', def: 'Evidence that goods were delivered, typically a signature, photo or scanned code captured in a driver app with time and GPS location.', link: '/solutions/route-optimization/' },
@@ -49,7 +49,7 @@ const raw: Term[] = [
   { term: 'Total cost of ownership (TCO)', def: 'The full cost of acquiring and operating a vehicle over its life, including purchase, fuel, maintenance, insurance, downtime and resale value.' },
   { term: 'Utilisation', def: 'The proportion of available time that a vehicle or asset is productively used. Low utilisation indicates a fleet that could be reduced or redeployed.' },
   { term: 'Video telematics', def: 'The integration of dash-camera video with GPS and vehicle data, usually with AI event detection, to improve safety and provide evidence.', link: '/solutions/ai-dash-cams/' },
-  { term: 'VLTD (Vehicle Location Tracking Device)', def: 'The term used in Bharatiya regulations for a GPS tracking device fitted to a vehicle, as specified under the AIS-140 standard.', link: '/solutions/compliance/' },
+  { term: 'VLTD (Vehicle Location Tracking Device)', def: 'The term used in Indian regulations for a GPS tracking device fitted to a vehicle, as specified under the AIS-140 standard.', link: '/solutions/compliance/' },
 ];
 
 export const glossary = raw

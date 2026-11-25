@@ -21,7 +21,7 @@ Here is what that means in practice.
 |---|---|---|
 | Find a vehicle | Open the app, search, read the map | Message or say "Where is my vehicle?" and get the map back |
 | Ask a question | Build or find a report | Ask in plain words on WhatsApp, a call, ChatGPT or the app |
-| Use your own language | Usually English menus | English and Bharatiya regional languages, typed or spoken |
+| Use your own language | Usually English menus | English and Indian regional languages, typed or spoken |
 | Hear about a problem | App notification, SMS or email | A phone call from the AI agent, escalated until answered |
 | Get help at night | Wait for office hours | AI agents answer 24/7 |
 | Give an owner or customer access | Create a login and train them | They message or call. Nothing to install |

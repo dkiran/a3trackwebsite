@@ -171,7 +171,7 @@ export const industries: Industry[] = [
     ],
     capabilities: [
       { title: 'Live bus tracking and ETAs', text: 'Real-time positions feed passenger apps and display boards.', solution: 'gps-fleet-tracking' },
-      { title: 'Regulatory device support', text: 'Supports AIS-140 tracking and emergency-button requirements in Bharat.', solution: 'compliance' },
+      { title: 'Regulatory device support', text: 'Supports AIS-140 tracking and emergency-button requirements in India.', solution: 'compliance' },
       { title: 'On-board video', text: 'Multi-camera recording and AI driver monitoring.', solution: 'ai-dash-cams' },
       { title: 'Fleet health', text: 'Remote diagnostics to keep buses on the road.', solution: 'predictive-maintenance' },
     ],

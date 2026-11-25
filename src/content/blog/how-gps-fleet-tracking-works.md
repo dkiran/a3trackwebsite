@@ -15,7 +15,7 @@ faqs:
 
 ## Step 1: Satellites broadcast time signals
 
-Navigation satellites continuously broadcast their position and a very precise time. GPS is the best-known system, but there are others: GLONASS, Galileo, BeiDou and Bharat's NavIC. Together they are called GNSS, for global navigation satellite systems.
+Navigation satellites continuously broadcast their position and a very precise time. GPS is the best-known system, but there are others: GLONASS, Galileo, BeiDou and India's NavIC. Together they are called GNSS, for global navigation satellite systems.
 
 ## Step 2: The tracker calculates its position
 
