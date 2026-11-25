@@ -33,6 +33,9 @@ export const site = {
     x: 'https://x.com/veyro',
     youtube: 'https://www.youtube.com/@veyro',
   },
+  // Google Analytics 4 measurement ID, e.g. 'G-ABC123XYZ'. Leave empty to switch analytics off.
+  // Analytics loads only after a visitor accepts the cookie banner (src/components/ConsentBanner.astro).
+  gaMeasurementId: '',
   // Paste the Google Search Console HTML-tag verification code here (content value only).
   googleSiteVerification: '',
   bingSiteVerification: '',

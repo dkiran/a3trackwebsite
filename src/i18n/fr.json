@@ -1541,5 +1541,11 @@
  "Location is shared only with the transporter’s consent, for a defined purpose and time, and the hub is designed around Bharat’s Digital Personal Data Protection Act. Veyro connects to a GPS provider only where its terms allow it or under an agreement with that provider.": "La position n'est partagée qu'avec le consentement du transporteur, pour une finalité et une durée définies, et le hub est conçu autour de la loi du Bharat sur la protection des données personnelles numériques (DPDP Act). Veyro ne se connecte à un fournisseur GPS que si ses conditions le permettent ou dans le cadre d'un accord avec ce fournisseur.",
  "GPS Data Hub — One Connection to Every Transporter’s Trucks | Veyro": "Hub de données GPS — Une seule connexion vers les camions de tous vos transporteurs | Veyro",
  "Veyro collects GPS data from every transporter’s tracking provider and shows each shipper only the trucks carrying its goods, only during the trip, with consent.": "Veyro collecte les données GPS du fournisseur de chaque transporteur et ne montre à chaque chargeur que les camions qui transportent ses marchandises, pendant le trajet, avec consentement.",
- "One platform. Ten ways to move smarter.": "Une plateforme. Dix façons de se déplacer plus intelligemment."
+ "One platform. Ten ways to move smarter.": "Une plateforme. Dix façons de se déplacer plus intelligemment.",
+ "Cookie settings": "Paramètres des cookies",
+ "Can we use analytics cookies?": "Pouvons-nous utiliser des cookies de mesure d'audience ?",
+ "We use Google Analytics to see which pages are useful, so we can improve the site. No advertising, and nothing is shared for marketing. You can change your choice at any time.": "Nous utilisons Google Analytics pour savoir quelles pages sont utiles et améliorer le site. Aucune publicité, et rien n'est partagé à des fins marketing. Vous pouvez modifier votre choix à tout moment.",
+ "Cookie policy": "Politique relative aux cookies",
+ "Accept": "Accepter",
+ "Decline": "Refuser"
 }

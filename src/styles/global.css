@@ -275,3 +275,7 @@ a.chip:hover { border-color: var(--teal); color: var(--text); }
 }
 .logo svg { flex: none; }
 @media (max-width: 420px) { .header__cta .btn--primary { padding: 9px 12px; font-size: 0.82rem; } .header__in { gap: 10px; } }
+
+.linklike { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.footer .linklike { color: #cfd9ee; }
+.footer .linklike:hover { color: var(--teal); }

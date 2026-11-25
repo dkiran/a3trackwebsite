@@ -66,12 +66,21 @@ English is the source language. Other languages are produced at build time by `s
 - `llms.txt` is generated at build time for AI assistants; `robots.txt` explicitly allows major AI crawlers.
 - `rss.xml` lists blog posts.
 
+### Google Analytics
+
+1. At analytics.google.com, create a GA4 property for the website and a **Web** data stream for `https://veyrotrack.com`.
+2. Copy the stream's **Measurement ID** (`G-…`) into `gaMeasurementId` in `src/config/site.ts`, then build and deploy.
+3. Analytics loads only after a visitor clicks **Accept** in the cookie banner; declining sends nothing to Google. Visitors can change their choice with **Cookie settings** in the footer.
+4. A completed demo request sends the event `generate_lead`. In GA, under Admin → Events, mark it as a key event to count leads.
+
 ### Google Search Console
 
-1. Add the property `veyrotrack.com` at <https://search.google.com/search-console>. Prefer **Domain** verification with a DNS TXT record.
-2. Alternatively choose **HTML tag**, copy the `content` value into `googleSiteVerification` in `src/config/site.ts`, rebuild and deploy.
-3. Submit the sitemap: `https://veyrotrack.com/sitemap-index.xml`.
-4. Repeat in Bing Webmaster Tools (`bingSiteVerification`), which also feeds several AI search products.
+1. At search.google.com/search-console, add a **Domain** property for `veyrotrack.com`.
+2. Google shows a `TXT` record (`google-site-verification=…`). Add it in GoDaddy DNS (type TXT, name `@`), wait a few minutes, then click **Verify**.
+   (Alternative: a **URL prefix** property with the HTML-tag method; put the tag's `content` value in `googleSiteVerification` in `src/config/site.ts` and deploy.)
+3. Under **Sitemaps**, submit `https://veyrotrack.com/sitemap-index.xml` (it lists the English and French pages).
+4. Link Search Console to Google Analytics under GA Admin → Product links → Search Console links.
+5. Optional: Bing Webmaster Tools can import the Search Console property; put a Bing tag value in `bingSiteVerification` if you use the tag method.
 
 ## Publishing on a new server (quick start)
 
